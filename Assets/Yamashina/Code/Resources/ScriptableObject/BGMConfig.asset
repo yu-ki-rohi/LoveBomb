@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459e197dd0923244aa3f01939641da86, type: 3}
+  m_Name: BGMConfig
+  m_EditorClassIdentifier: 
+  bgmLists:
+  - bgmId: 1
+    bgmAudioClip: {fileID: 8300000, guid: ed121d18fdffb954e848a34897addcd0, type: 3}
+    bgmDisplayName: 
+    bgmJacketImage: {fileID: 21300000, guid: 9425e1cb493f2bd47bcfef58089d9f67, type: 3}
+  - bgmId: 2
+    bgmAudioClip: {fileID: 8300000, guid: 7423974d28b13714b9a937c24dec7a3b, type: 3}
+    bgmDisplayName: 
+    bgmJacketImage: {fileID: 21300000, guid: 07c1e0f78b0c2fd4f9b3e42a68622b88, type: 3}
+  - bgmId: 3
+    bgmAudioClip: {fileID: 8300000, guid: fc4c1fbcc6c4cc744bb9bbf062367933, type: 3}
+    bgmDisplayName: 
+    bgmJacketImage: {fileID: 21300000, guid: 44059bac7034b014cbfdfd2969182d69, type: 3}
+  - bgmId: 4
+    bgmAudioClip: {fileID: 8300000, guid: 944ebc3f980147343a1f068a6e371310, type: 3}
+    bgmDisplayName: "\u30DE\u30C8\u30EA\u30C3\u30AF\u30B9"
+    bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
+  - bgmId: 5
+    bgmAudioClip: {fileID: 8300000, guid: a9dac24fd6c7d5c46ad1c09865bcb524, type: 3}
+    bgmDisplayName: "\u30DE\u30C8\u30EA\u30C3\u30AF\u30B9"
+    bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}

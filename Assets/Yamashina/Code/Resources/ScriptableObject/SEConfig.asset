@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d749fe79b512d43bc98a998f4198ed, type: 3}
+  m_Name: SEConfig
+  m_EditorClassIdentifier: 
+  seLists:
+  - seId: 8
+    seAudioClip: {fileID: 8300000, guid: dba814b7c7cab4a4182d700ecacfccda, type: 3}
+    description: "\u30DF\u30B9"
+  - seId: 0
+    seAudioClip: {fileID: 8300000, guid: 4e9113fb4966a734196e51864dacfa01, type: 3}
+    description: "\u30B0\u30EC\u30FC\u30C8"
+  - seId: 1
+    seAudioClip: {fileID: 8300000, guid: 1b8243105f1253a4392d37198911985b, type: 3}
+    description: "\u30D1\u30FC\u30D5\u30A7\u30AF\u30C8"
+  - seId: 2
+    seAudioClip: {fileID: 8300000, guid: b129597beb31af8498ef015f34d8e2f6, type: 3}
+    description: "\u30EA\u30B6\u30EB\u30C8\u753B\u9762\u3078\u9077\u79FB"
+  - seId: 3
+    seAudioClip: {fileID: 8300000, guid: f290874e32cc26e459bbe4649bf8c5a7, type: 3}
+    description: "\u30EA\u30B6\u30EB\u30C8\u753B\u9762\u3078\u9077\u79FB"
+  - seId: 4
+    seAudioClip: {fileID: 8300000, guid: af373039ce9fee442b4323fadd66f7c1, type: 3}
+    description: "\u30AF\u30EA\u30C3\u30AFSE"
+  - seId: 5
+    seAudioClip: {fileID: 8300000, guid: 2af140d1cf25b8a4ea5fc20f4bc6fc35, type: 3}
+    description: "\u30AF\u30EA\u30C3\u30AFSE"
+  - seId: 6
+    seAudioClip: {fileID: 8300000, guid: b484e24a9eaff0a418931cd4d4bb38f6, type: 3}
+    description: "\u30AF\u30EA\u30C3\u30AFSE"
+  - seId: 7
+    seAudioClip: {fileID: 8300000, guid: c814b791011f9fa49bf111d942fd8c72, type: 3}
+    description: "\u30AF\u30EA\u30C3\u30AFSE"
+  - seId: 8
+    seAudioClip: {fileID: 8300000, guid: c814b791011f9fa49bf111d942fd8c72, type: 3}
+    description: "\u30AF\u30EA\u30C3\u30AFSE"

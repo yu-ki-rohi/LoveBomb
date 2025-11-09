@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270dadc838c4b15439c9cba9ff57be01, type: 3}
+  m_Name: PlayerParameters
+  m_EditorClassIdentifier: 
+  PlayerMovementParameters:
+    Agility: 8
+    DashSpeedMultiplier: 2
+    AimSpeedMultiplier: 0.497
+    AccelerationForce: 36.4
+    DampingForce: 4.9
+    BurstForce: 60.2
+    BurstCoolTime: 0.92
+    PlayerRadius: 0.8
+  PlayerAnimationParameters:
+    LeadInTime: 0.1
+    FollowThroughTime: 0.208
+  CameraOffsetParameters:
+    OffsetX: 5
+    OffsetY: 3
+    ChangeOffsetTime: 0.6
+  PlayerShootParameters:
+    ShootPositionDistance: 1.01
+    ChargeTime: 0.92
+    Arrows:
+    - Name: Normal
+      ArrowType: 0
+      Image: {fileID: -765150924802650856, guid: 4953ff9561651ee47a7ce387774442cc, type: 3}
+      Power: 3
+      Cost: 0
+      Speed: 30
+      EffectiveRange: 15
+    - Name: Explosion
+      ArrowType: 1
+      Image: {fileID: 7520068711724117926, guid: 4a41885d589923743b3bc3166b406287, type: 3}
+      Power: 6
+      Cost: 0
+      Speed: 10
+      EffectiveRange: 8
+    ExplosionScale: 1.48
