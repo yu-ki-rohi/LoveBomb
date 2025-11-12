@@ -83,6 +83,12 @@ public class PlayerShootParameters
 
     [Range(0.1f, 5.0f)]
     public float ExplosionScale = 1.0f;
+    
+    [Min(1)]
+    public int HeartEnergyMax = 1;
+
+    [Min(1)]
+    public int InitialHeartEnergy = 1;
 }
 
 

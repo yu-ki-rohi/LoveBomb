@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DelayToDisapeear: 1
   DelayToExplosion: 0.242
-  AnxietyPropagateSpeed: 3.2
+  AnxietyPropagateSpeed: 30

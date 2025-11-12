@@ -13,9 +13,17 @@ using UnityEngine.Scripting;
 [RequireComponent (typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
+    #region 列挙型
+    public enum State
+    {
+        Idle,
+        Aim,
+        Shoot
+    }
+
     // 提案用に挙動パターンを複数個用意するとき、
     // こんな感じでenumを用意して切り替えると
-    // プランナーとかに伝えやすいと思います
+    // 他の人に伝える時に便利だと思います
     enum MovePattern
     {
         AddForceAndEscape,
@@ -24,6 +32,11 @@ public class Player : MonoBehaviour
         Transform,
         Translate
     }
+
+    #endregion
+
+    #region シリアライズするフィールド
+
     [SerializeField] private MovePattern movePattern = MovePattern.Transform;
 
     [SerializeField] private PlayerParameters parameters;
@@ -35,41 +48,22 @@ public class Player : MonoBehaviour
 
     [SerializeField] private ArrowPoolManager arrowPoolManager;
 
-    public enum PlayerState
-    { 
-        Idle,
-        Aim,
-        Shoot
-    }
-    private PlayerState state;
-
-
-    private List<NormalPlayerComponent> playerComponents = new ();
-    private IShootable shootable;
-    // ゲームパッドが接続されているか
-    private bool isGamePadConnected = false;
-
-    #region プロパティ
-    // 定義が面倒なのでラムダ式
-    public PlayerState State { get => state; }
-
-    public bool IsShooting { get => state == PlayerState.Aim ||  state == PlayerState.Shoot; }
 
     #endregion
 
-    #region Animation Clip から起動する予定のメソッド
-    [Preserve]
-    public void Shoot()
-    {
-        ChangeState(PlayerState.Shoot);
-        shootable?.Shoot();
-    }
+    #region　その他のフィールド
 
-    [Preserve]
-    public void FinishShooting()
-    {
-        ChangeState(PlayerState.Idle);
-    }
+    private PlayerIndividualData data;
+
+    private List<NormalPlayerComponent> playerComponents = new();
+
+    // ゲームパッドが接続されているか
+    private bool isGamePadConnected = false;
+
+    #endregion
+
+    #region プロパティ
+    
 
     #endregion
 
@@ -101,8 +95,8 @@ public class Player : MonoBehaviour
         // 押した瞬間
         if (context.performed)
         {
-            if (IsShooting) { return; }
-            ChangeState(PlayerState.Aim);
+            if (data.IsShooting) { return; }
+            data.ChangeState(State.Aim);
           
         }
 
@@ -140,16 +134,11 @@ public class Player : MonoBehaviour
 
     #endregion
 
-
+    #region Enable, Disable, Destroyの際のふるまい
     private void OnEnable()
     {
         // ヌルチェック + エラーメッセージ
-        // todo : 後でデバッグ用機能はまとめたい
-        if(playerInput == null)
-        {
-            Debug.LogError("Player Input is Null!!");
-            return;
-        }
+        if (DebugMessenger.NullCheckError(playerInput)) { return; }
 
         foreach (var playerComponent in playerComponents)
         {
@@ -163,12 +152,7 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         // ヌルチェック + エラーメッセージ
-        // todo : 後でデバッグ用機能はまとめたい
-        if (playerInput == null)
-        {
-            Debug.LogError("Player Input is Null!!");
-            return;
-        }
+        if (DebugMessenger.NullCheckError(playerInput)) { return; }
 
         foreach (var playerComoponent in playerComponents)
         {
@@ -184,11 +168,18 @@ public class Player : MonoBehaviour
         playerComponents.Clear();
     }
 
+    #endregion
+
+    #region 初期化
     void Awake()
     {
+        data = new PlayerIndividualData(parameters);
+        // データ部にゲームオブジェクトのTransformへの参照を書き込み
+        data.Transform = transform;
+
         // 移動コンポーネント
         var infoPackage = new PlayerMovementBase.InfoPackage(
-                    this,
+                    data,
                     transform,
                     parameters.PlayerMovementParameters,
                     followCamera.StageRange,
@@ -219,37 +210,41 @@ public class Player : MonoBehaviour
         }
 
         // アニメーションコンポーネント
-        var playerAnimation = new PlayerAnimation(this, transform, parameters.PlayerAnimationParameters, GetComponent<SpriteRenderer>(), GetComponent<Animator>());
+        var playerAnimation = new PlayerAnimation(data, transform, parameters.PlayerAnimationParameters, GetComponent<SpriteRenderer>(), GetComponent<Animator>());
         playerComponents.Add(playerAnimation);
 
         // カメラオフセットコンポーネント
-        playerComponents.Add(new CameraOffsetController(this, followCamera, parameters.CameraOffsetParameters));
+        playerComponents.Add(new CameraOffsetController(data, followCamera, parameters.CameraOffsetParameters));
 
         // 射撃コンポーネント
-        var arrowShooter = new ArrowShooter(this, arrowPoolManager, parameters.PlayerShootParameters, parameters.PlayerAnimationParameters, playerAnimation);
+        var arrowShooter = new ArrowShooter(data, arrowPoolManager, parameters.PlayerShootParameters, parameters.PlayerAnimationParameters, playerAnimation);
         playerComponents.Add(arrowShooter);
-        shootable = arrowShooter;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if( DebugMessenger.NullCheckError(parameters) ||
+        if (DebugMessenger.NullCheckError(parameters) ||
             DebugMessenger.NullCheckError(followCamera) ||
             DebugMessenger.NullCheckError(arrowPoolManager))
         { return; }
 
         arrowPoolManager.SetArrowParameters(parameters.PlayerShootParameters);
 
+        data.HeartEnergy = parameters.PlayerShootParameters.InitialHeartEnergy;
+
         // ゲームパッド接続確認
         CheckGamePadIsConnected();
 
-       
+
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.Start();
         }
     }
+
+
+    #endregion
 
     private void FixedUpdate()
     {
@@ -263,15 +258,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.Update(Time.deltaTime);
         }
-
     }
 
-
+    #region ヘルパーメソッド
     private void CheckGamePadIsConnected()
     {
         // 参考資料：https://kan-kikuchi.hatenablog.com/entry/InputSystem_onDeviceChange
@@ -300,12 +293,6 @@ public class Player : MonoBehaviour
 
     }
 
-    public void ChangeState(PlayerState nextState)
-    {
-        Debug.Log("PlayerState: " + state + " → " + nextState);
-        state = nextState;
-    }
-
     private void SetInputEnabled(bool enabled)
     {
         Action<InputAction.CallbackContext>[] actions =
@@ -316,7 +303,7 @@ public class Player : MonoBehaviour
             OnDash,
         };
         // 登録処理
-        if(enabled)
+        if (enabled)
         {
             foreach (var action in actions)
             {
@@ -334,4 +321,6 @@ public class Player : MonoBehaviour
 
         }
     }
+    #endregion
+
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using static PlayerMovementBase;
 
 public class PlayerMovementByRigidbodyVelocity : PlayerMovementBase
 {
@@ -24,7 +23,7 @@ public class PlayerMovementByRigidbodyVelocity : PlayerMovementBase
     public override void FixedUpdate(float fixedDeltaTime)
     {
         // ‘¬“x‚Ìİ’è
-        rigidbody.linearVelocity = moveDir * GetSpeed();
+        rigidbody.linearVelocity = player.MoveDir * GetSpeed();
 
         // §ŒÀ”ÍˆÍ‚ğ’´‚¦‚³‚¹‚È‚¢ˆ—
         // ‚Æ‚è‚ ‚¦‚¸ˆÀ’¼‚È•û–@‚Å

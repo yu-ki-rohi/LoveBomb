@@ -6,15 +6,15 @@ public abstract class PlayerMovementBase : NormalPlayerComponent
 {
     public struct InfoPackage
     {
-        public Player Player;
+        public PlayerIndividualData PlayerIndividualData;
         public Transform Transform;
         public PlayerMovementParameters Parameters;
         public Vector2 StageRange;
         public Vector2 StageCenter;
 
-        public InfoPackage(Player player, Transform transform, PlayerMovementParameters parameters, Vector2 stageRange, Vector2 stageCenter)
+        public InfoPackage(PlayerIndividualData playerIndividualData, Transform transform, PlayerMovementParameters parameters, Vector2 stageRange, Vector2 stageCenter)
         {
-            Player = player;
+            PlayerIndividualData = playerIndividualData;
             Transform = transform;
             Parameters = parameters;
             StageRange = stageRange;
@@ -25,9 +25,7 @@ public abstract class PlayerMovementBase : NormalPlayerComponent
     protected Transform transform;
 
     protected PlayerMovementParameters parameters;
-    // ˆÚ“®•ûŒü
-    protected Vector2 moveDir = Vector2.zero;
-
+   
 
     // ˆÚ“®”ÍˆÍ
     private readonly Vector2 stageRange;
@@ -46,7 +44,7 @@ public abstract class PlayerMovementBase : NormalPlayerComponent
     public float MoveLimitDown { get => stageCenter.y - (stageRange.y / 2) + parameters.PlayerRadius; }
 
     public PlayerMovementBase(InfoPackage infoPackage) :
-       base(infoPackage.Player)
+       base(infoPackage.PlayerIndividualData)
     {
         transform = infoPackage.Transform;
         parameters = infoPackage.Parameters;
@@ -72,7 +70,7 @@ public abstract class PlayerMovementBase : NormalPlayerComponent
 
     public override void OnMove(Vector2 input)
     {
-        moveDir = input;
+        player.MoveDir = input;
     }
 
 

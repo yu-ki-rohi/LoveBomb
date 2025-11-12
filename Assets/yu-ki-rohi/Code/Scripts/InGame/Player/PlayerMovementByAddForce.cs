@@ -24,7 +24,7 @@ public class PlayerMovementByAddForce : PlayerMovementBase
 
     public override void FixedUpdate(float fixedDeltaTime)
     {
-        Vector2 addedForce = moveDir * parameters.AccelerationForce;
+        Vector2 addedForce = player.MoveDir * parameters.AccelerationForce;
 
         // ç≈çÇë¨ìxÇê›íË
         float speedLimit = GetSpeed();

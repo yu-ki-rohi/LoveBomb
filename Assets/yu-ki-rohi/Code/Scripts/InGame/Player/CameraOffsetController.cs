@@ -15,7 +15,7 @@ public class CameraOffsetController : NormalPlayerComponent
     private float offsetTimerY = 0.0f;
     private Vector2 cameraOffset = Vector2.zero;
 
-    public CameraOffsetController(Player player, FollowCamera followCamera, CameraOffsetParameters parameters) :
+    public CameraOffsetController(PlayerIndividualData player, FollowCamera followCamera, CameraOffsetParameters parameters) :
         base(player)
     {
         this.followCamera = followCamera;
@@ -130,7 +130,7 @@ public class CameraOffsetController : NormalPlayerComponent
     {
         // player‚ÌState‚ªAim‚¶‚á‚È‚¢‚Æ‚«
         // —áŠO‚Æ‚µ‚Äˆø”‚É-1‚ğ“n‚µ‚½‚Æ‚«(ˆø”–³‚µ‚ÅÀs‚µ‚½‚Æ‚«)‚Íˆ—‚ğÀs
-        if (player.State != Player.PlayerState.Aim &&
+        if (player.State != Player.State.Aim &&
             deltaTime != -1.0f) { return; }
 
         Vector2 mousePosition = Input.mousePosition;

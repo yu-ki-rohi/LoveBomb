@@ -3,12 +3,14 @@ using UnityEngine;
 
 public static class DebugMessenger
 {
+    private static bool enableMessage = true;
     public static bool NullCheckError<T>(T instance, string additionalMessage = "", [CallerFilePath] string filePath = "",  [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "") where T : class
     {
         if(instance == null)
         {
+            if (enableMessage == false) { return true; }
             string fileName = System.IO.Path.GetFileName(filePath);
-            Debug.LogError(typeof(T).Name + " is Null!! " + additionalMessage + "\n[ " + fileName + " : " + lineNumber + " ]"); 
+            Debug.LogError("[ " + fileName + " : " + lineNumber + " ] " + typeof(T).Name + " is Null!! " + additionalMessage); 
             return true;
         }
 
@@ -19,8 +21,9 @@ public static class DebugMessenger
     {
         if (instance == null)
         {
+            if (enableMessage == false) { return true; }
             string fileName = System.IO.Path.GetFileName(filePath);
-            Debug.LogWarning(typeof(T).Name + " is Null!! " + additionalMessage + "\n[ " + fileName + " : " + lineNumber + " ]");
+            Debug.LogWarning("[ " + fileName + " : " + lineNumber + " ] " + typeof(T).Name + " is Null!! " + additionalMessage);
             return true;
         }
 
@@ -30,11 +33,19 @@ public static class DebugMessenger
     {
         if (instance == null)
         {
+            if (enableMessage == false) { return true; }
             string fileName = System.IO.Path.GetFileName(filePath);
-            Debug.Log(typeof(T).Name + " is Null!! " + additionalMessage + "\n[ " + fileName + " : " + lineNumber + " ]");
+            Debug.Log( " [ " + fileName + " : " + lineNumber + " ] " + typeof(T).Name + " is Null!! " + additionalMessage);
             return true;
         }
 
         return false;
+    }
+
+    public static void Log(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
+    {
+        if (enableMessage == false) { return; }
+        string fileName = System.IO.Path.GetFileName(filePath);
+        Debug.Log("[ " + fileName + " : " + lineNumber + " ] " + message);
     }
 }

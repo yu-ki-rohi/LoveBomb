@@ -14,6 +14,7 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
         this.rigidbody = rigidbody;
         this.target = target;
         this.enemyIndividualData = enemyIndividualData;
+        enemyIndividualData.MoveDir = (target.position - transform.position).normalized;
     }
 
     public void Start()
@@ -25,7 +26,6 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
             Debug.LogWarning("Lack of Movement Info");
             return;
         }
-        enemyIndividualData.MoveDir = (target.position - transform.position).normalized;
     }
 
     public void FixedUpdate(float fixedDeltaTime)

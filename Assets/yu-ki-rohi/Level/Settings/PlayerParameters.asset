@@ -36,14 +36,16 @@ MonoBehaviour:
       ArrowType: 0
       Image: {fileID: -765150924802650856, guid: 4953ff9561651ee47a7ce387774442cc, type: 3}
       Power: 3
-      Cost: 0
+      Cost: 1
       Speed: 30
       EffectiveRange: 15
     - Name: Explosion
       ArrowType: 1
       Image: {fileID: 7520068711724117926, guid: 4a41885d589923743b3bc3166b406287, type: 3}
       Power: 6
-      Cost: 0
+      Cost: 50
       Speed: 10
       EffectiveRange: 8
     ExplosionScale: 1.48
+    HeartEnergyMax: 100
+    InitialHeartEnergy: 1

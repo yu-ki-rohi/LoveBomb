@@ -156,7 +156,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private void Die(DamageType damageType)
     {
-        if(!DebugMessenger.NullCheck(anxietyEffectGenerator))
+        if(DebugMessenger.NullCheck(anxietyEffectGenerator) == false)
         {
             StopCoroutine(anxietyEffectGenerator);
         }
@@ -187,12 +187,15 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
                 break;
         }
     }
+
+    // Invoke‚Å‹N“®
     protected void Disapear()
     {
         
         Deactivate();
     }
 
+    // Invoke‚Å‹N“®
     protected void Explode()
     {
         if(DebugMessenger.NullCheckError(pools.ExplosionPool) == false)
@@ -214,7 +217,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         {
             if(individualData.HoldingHandsEnemy.IsAttacking == false)
             {
-                Debug.Log("Holding Enemy has gone");
+                DebugMessenger.Log("Holding Enemy has gone");
                 individualData.HeartCore.ReduceEnemyCount();
                 individualData.HoldingHandsEnemy.DisconnectedHands();
                 individualData.HeartCore = null;

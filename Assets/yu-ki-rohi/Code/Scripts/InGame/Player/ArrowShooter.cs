@@ -23,10 +23,10 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
     private bool isPreparedToShoot = false;
 
-    public ArrowShooter(Player player, ArrowPoolManager poolManager, PlayerShootParameters parameters, PlayerAnimationParameters animParameters, PlayerAnimation playerAnimation) :
+    public ArrowShooter(PlayerIndividualData player, ArrowPoolManager poolManager, PlayerShootParameters parameters, PlayerAnimationParameters animParameters, PlayerAnimation playerAnimation) :
         base(player)
     {
-        this.transform = player.transform;
+        transform = player.Transform;
         this.poolManager = poolManager;
         this.parameters = parameters;
         this.animParameters = animParameters;
@@ -45,7 +45,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         
         else if(context.canceled)
         {
-            if (player.State != Player.PlayerState.Aim) { return; }
+            if (player.State != Player.State.Aim) { return; }
             isPreparedToShoot = true;
         }
     }
@@ -86,7 +86,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         // 矢を溜め無し状態に戻す
         type = Arrow.Type.Normal;
 
-        player?.ChangeState(Player.PlayerState.Shoot);
+        player?.ChangeState(Player.State.Shoot);
         playerAnimation?.FinishAction();
         isPreparedToShoot = false;
     }
@@ -116,7 +116,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             // 最大チャージ到達
             currentCharge = parameters.ChargeTime;
             type = Arrow.Type.Explosion;
-            Debug.Log("Fully Charged!");
+            DebugMessenger.Log("Fully Charged!");
 
             while(isPreparedToShoot == false) 
             {
@@ -129,7 +129,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         }
         catch (OperationCanceledException)
         {
-            Debug.Log("Charge canceled");
+            DebugMessenger.Log("Charge canceled");
         }
         finally
         {
@@ -159,7 +159,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         }
         finally
         {
-            player?.ChangeState(Player.PlayerState.Idle);
+            player?.ChangeState(Player.State.Idle);
             playerAnimation?.FinishAction();
             // CTSの破棄 ヌルチェック + 実行
             chargeCts?.Dispose();

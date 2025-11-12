@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public abstract class PlayerComponentBase
 {
-    protected readonly Player player;
+    protected readonly PlayerIndividualData player;
 
-    public PlayerComponentBase(Player owner)
+    public PlayerComponentBase(PlayerIndividualData ownersData)
     {
-        player = owner;
+        player = ownersData;
     }
 }

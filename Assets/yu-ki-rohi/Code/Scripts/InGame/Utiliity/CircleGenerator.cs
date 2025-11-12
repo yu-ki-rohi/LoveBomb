@@ -33,7 +33,7 @@ public class CircleGenerator : GeneratorBase
         float theta = Random.Range(-Mathf.PI, Mathf.PI);
         float distance = Random.Range(innerRadius, outerRadius);
         float z = -1.0f;
-        return new Vector3(distance * Mathf.Sin(theta), distance * Mathf.Cos(theta), z);
+        return transform.position + new Vector3(distance * Mathf.Sin(theta), distance * Mathf.Cos(theta), z);
     }
 
     #region Unity Editor

@@ -8,9 +8,7 @@ public class PlayerAnimation : NormalPlayerComponent
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
-    Vector2 moveDir = Vector2.zero;
-
-    public PlayerAnimation(Player player, Transform transform, PlayerAnimationParameters parameters, SpriteRenderer spriteRenderer, Animator animator) :
+    public PlayerAnimation(PlayerIndividualData player, Transform transform, PlayerAnimationParameters parameters, SpriteRenderer spriteRenderer, Animator animator) :
         base(player)
     {
         this.transform = transform;
@@ -34,9 +32,9 @@ public class PlayerAnimation : NormalPlayerComponent
     {
         if(!player.IsShooting)
         {
-            FlipX(moveDir.x);
+            FlipX(player.MoveDir.x);
         }
-        else if(player.State == Player.PlayerState.Aim)
+        else if(player.State == Player.State.Aim)
         {
             Vector2 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -61,12 +59,6 @@ public class PlayerAnimation : NormalPlayerComponent
     // Ç±Ç±Ç‹Ç≈
 
     #region Input Systemä÷òA
-    // êÊÇ…ïœä∑ÇµÇƒÇ©ÇÁìnÇ∑
-    public override void OnMove(Vector2 input)
-    {
-        moveDir = input;
-    }
-
     public override void OnShoot(InputAction.CallbackContext context)
     {
         // âüÇµÇΩèuä‘
@@ -85,7 +77,7 @@ public class PlayerAnimation : NormalPlayerComponent
         // ó£ÇµÇΩèuä‘
         else if (context.canceled)
         {
-            if(player.State != Player.PlayerState.Aim) { return; }
+            if(player.State != Player.State.Aim) { return; }
             animator.SetBool("Shoot", false);
         }
     }

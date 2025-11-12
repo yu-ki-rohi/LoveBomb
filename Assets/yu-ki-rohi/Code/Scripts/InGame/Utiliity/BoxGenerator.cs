@@ -39,23 +39,31 @@ public class BoxGenerator : GeneratorBase
         int decideAppearDir = Random.Range(0, 4);
 
         float z = -0.5f;
+        Vector3 offset;
         switch(decideAppearDir)
         {
             case 0:
-                return new Vector3(Random.Range(-maxLength.x, maxLength.x), Random.Range(minLength.y, maxLength.y), z);
+                offset =  new Vector3(Random.Range(-maxLength.x, maxLength.x), Random.Range(minLength.y, maxLength.y), z);
+                break;
                 
             case 1:
-                return new Vector3(Random.Range(minLength.x, maxLength.x), Random.Range(-maxLength.y, maxLength.y), z);
-                
+                offset = new Vector3(Random.Range(minLength.x, maxLength.x), Random.Range(-maxLength.y, maxLength.y), z);
+                break;
+
             case 2:
-                return new Vector3(Random.Range(-maxLength.x, maxLength.x), Random.Range(-minLength.y, -maxLength.y), z);
-                
+                offset = new Vector3(Random.Range(-maxLength.x, maxLength.x), Random.Range(-minLength.y, -maxLength.y), z);
+                break;
+
             case 3:
-                return new Vector3(Random.Range(-minLength.x, -maxLength.x), Random.Range(-maxLength.y, maxLength.y), z);
+                offset = new Vector3(Random.Range(-minLength.x, -maxLength.x), Random.Range(-maxLength.y, maxLength.y), z);
+                break;
             default:
                 Debug.LogWarning("Detect invalid values");
-                return new Vector3(Random.Range(-maxLength.x, maxLength.x), Random.Range(-maxLength.y, maxLength.y), z);
+                offset = new Vector3(Random.Range(-maxLength.x, maxLength.x), Random.Range(-maxLength.y, maxLength.y), z);
+                break;
         }
+
+        return transform.position + offset;
     }
 
     #region Unity Editor

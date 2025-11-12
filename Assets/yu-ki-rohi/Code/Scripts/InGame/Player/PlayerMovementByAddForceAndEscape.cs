@@ -28,7 +28,7 @@ public class PlayerMovementByAddForceAndEscape : PlayerMovementByAddForce
         if (CanBurst && context.performed)
         {
             burstCoolTime = parameters.BurstCoolTime;
-            rigidbody.AddForce(moveDir * parameters.BurstForce * GetSpeed());
+            rigidbody.AddForce(player.MoveDir * parameters.BurstForce * GetSpeed());
         }
     }
 }

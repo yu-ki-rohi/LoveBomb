@@ -15,7 +15,7 @@ public class PlayerMovementByTranslate : PlayerMovementBase
 
     public override void Update(float deltaTime)
     {
-        transform.position += (Vector3)moveDir * GetSpeed() * deltaTime;
+        transform.position += (Vector3)player.MoveDir * GetSpeed() * deltaTime;
         ClampPlayerPosition();
     }
 
