@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,22 +18,18 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private IObjectPool<Enemy> pool;
     protected List<IUpdatable> enemyComponents = new List<IUpdatable>();
-    private EnemyData data;
-    private EnemyCommonData commonData;
-    private ExplosionPoolManager explosionPool;
-    private AnxietyPropagationEffectPoolManager anxietyPropagationEffectPool;
-    private EnemyDropsPoolManager enemyDropsPool;
+    protected EnemyCommonData commonData;
 
     private Coroutine anxietyEffectGenerator;
-
-    protected HeartCore heartCore;
-    protected Enemy holdingHandsEnemy;
 
     protected event Action OnDie;
     protected event Action OnAttack;
     protected event Action OnMove;
 
-    private int currentHitPoint = 0;
+    private bool isBlockedHoldingHands = false;
+
+    EnemyIndividualData individualData = new EnemyIndividualData();
+    PoolsEnemyUse pools = new PoolsEnemyUse();
 
     public IObjectPool<Enemy> ObjectPool { set { pool = value; } }
 
@@ -42,7 +37,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     { 
         get
         {
-            if(heartCore != null)
+            if(individualData.HeartCore != null)
             {
                 return true;
             }
@@ -51,20 +46,31 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             
     }
 
-    public HeartCore HeartCore { get { return heartCore; } }
-    public Enemy HoldingHandsEnemy { get { return holdingHandsEnemy; } }
+    public HeartCore HeartCore { get { return individualData.HeartCore; } }
+    public Enemy HoldingHandsEnemy { get { return individualData.HoldingHandsEnemy; } }
 
-    public Vector3 AnxietyEffectPos { get { return transform.position + (Vector3)data.AxietyEffectOffset; } }
+    public Vector3 AnxietyEffectPos { get { return transform.position + (Vector3)individualData.BasicData.AxietyEffectOffset; } }
 
-    public void OnCreate(EnemyCommonData commonData, ExplosionPoolManager explosionPoolManager, AnxietyPropagationEffectPoolManager anxietyPropagationEffectPoolManager, EnemyDropsPoolManager enemyDropsManager)
+    public int Strength { get { return individualData.BasicData.Strength; } }
+
+    public void ConnectedHands()
+    {
+        individualData.ConcatenatingNum++;
+    }
+
+    public void DisconnectedHands()
+    {
+        individualData.ConcatenatingNum--;
+    }
+
+
+    public void OnCreate(EnemyCommonData commonData, PoolsEnemyUse pools)
     {
         this.commonData = commonData;
-        explosionPool = explosionPoolManager;
-        anxietyPropagationEffectPool = anxietyPropagationEffectPoolManager;
-        enemyDropsPool = enemyDropsManager;
+        this.pools = pools;
 
         DebugMessenger.NullCheckWarning(this.commonData);
-        DebugMessenger.NullCheckWarning(explosionPool, "It won't Explode");
+        DebugMessenger.NullCheckWarning(pools.ExplosionPool, "It won't Explode");
     }
 
     public void Initialize(Vector3 position, Transform target, EnemyData data)
@@ -74,7 +80,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         transform.position = position;
 
         // 動き
-        var movement = new EnemyMovementToHeartCoreByAddForce(transform, GetComponent<Rigidbody2D>(), target, data);
+        var movement = new EnemyMovementToHeartCoreByAddForce(transform, GetComponent<Rigidbody2D>(), target, individualData);
         OnAttack += movement.OnAttack;
         OnMove += movement.OnMove;
         OnDie += movement.OnDie;
@@ -88,10 +94,11 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         OnMove += animationController.OnMove;
         OnDie += animationController.OnDie;
 
-        this.data = data;
+        individualData.BasicData = data;
         transform.localScale = new Vector3(data.Scale,data.Scale, 1.0f);
 
-        currentHitPoint = data.MaxHitPoint;
+        individualData.CurrentHitPoint = data.MaxHitPoint;
+        individualData.ConcatenatingNum = 0;
     }
 
     public void Initialize()
@@ -139,9 +146,9 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     public void TakeDamage(int attack, DamageType damageType, float bonus)
     {
-        if(currentHitPoint <= 0) { return; }
-        currentHitPoint -= attack;
-        if(currentHitPoint <= 0)
+        if(individualData.CurrentHitPoint <= 0) { return; }
+        individualData.CurrentHitPoint -= attack;
+        if(individualData.CurrentHitPoint <= 0)
         {
             Die(damageType);
         }
@@ -149,22 +156,27 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private void Die(DamageType damageType)
     {
-        if(!DebugMessenger.NullCheckWarning(anxietyEffectGenerator))
+        if(!DebugMessenger.NullCheck(anxietyEffectGenerator))
         {
             StopCoroutine(anxietyEffectGenerator);
         }
 
         OnDie?.Invoke();
-        if(DebugMessenger.NullCheckError(commonData)) { Deactivate(); return; }
 
-        if(heartCore != null)
-        {
-            heartCore.ReduceEnemyCount();
-        }
+        
 
-        heartCore = null;
-        holdingHandsEnemy = null;
+        if(DebugMessenger.NullCheckError(individualData)) { Deactivate(); return; }
+        
+        individualData.HeartCore?.ReduceEnemyCount();
+        individualData.HoldingHandsEnemy?.DisconnectedHands();
 
+        individualData.HeartCore = null;
+        individualData.HoldingHandsEnemy = null;
+
+
+        if (DebugMessenger.NullCheckError(commonData)) { Deactivate(); return; }
+
+       
         switch (damageType)
         {
             case DamageType.Piercing:
@@ -183,30 +195,51 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     protected void Explode()
     {
-        if(DebugMessenger.NullCheckError(explosionPool) == false)
+        if(DebugMessenger.NullCheckError(pools.ExplosionPool) == false)
         {
-            explosionPool.Explode(data.ExplosionPower, transform.position, data.ExplosionScale);
+            pools.ExplosionPool.Explode(individualData.BasicData.ExplosionPower, transform.position, individualData.BasicData.ExplosionScale);
         }
-        if(DebugMessenger.NullCheckError(enemyDropsPool) == false)
+        if(DebugMessenger.NullCheckError(pools.EnemyDropsPool) == false)
         {
-            enemyDropsPool.DropEnergy(data.BaseScore, transform.position);
+            pools.EnemyDropsPool.DropEnergy(individualData.BasicData.BaseScore, transform.position);
         }
         Deactivate();
     }
 
     protected void CheckHoldingHands()
     {
-        if (heartCore != null &&
-            holdingHandsEnemy != null &&
-            holdingHandsEnemy.IsAttacking == false)
+        // 攻撃中のみ行う処理
+        if (individualData.HeartCore != null &&
+            individualData.HoldingHandsEnemy != null)
         {
-            Debug.Log("Holding Enemy has gone");
-            heartCore.ReduceEnemyCount();
-            heartCore = null;
-            holdingHandsEnemy = null;
-            OnMove?.Invoke();
+            if(individualData.HoldingHandsEnemy.IsAttacking == false)
+            {
+                Debug.Log("Holding Enemy has gone");
+                individualData.HeartCore.ReduceEnemyCount();
+                individualData.HoldingHandsEnemy.DisconnectedHands();
+                individualData.HeartCore = null;
+                individualData.HoldingHandsEnemy = null;
+                OnMove?.Invoke();
+                if(anxietyEffectGenerator != null)
+                {
+                    StopCoroutine(anxietyEffectGenerator);
+                    anxietyEffectGenerator = null;
+                }
+                return;
+            }
 
-            StopCoroutine(anxietyEffectGenerator);
+            if( anxietyEffectGenerator != null && 
+                individualData.ConcatenatingNum > 0)
+            {
+                StopCoroutine(anxietyEffectGenerator);
+                anxietyEffectGenerator = null;
+            }
+
+            else if (anxietyEffectGenerator == null &&
+                individualData.ConcatenatingNum == 0)
+            {
+                anxietyEffectGenerator = StartCoroutine("GenerateAnxietyEffect");
+            }
         }
     }
 
@@ -222,37 +255,58 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private void AttackHeartCore(Collider2D collision)
     {
-        if (currentHitPoint <= 0 || IsAttacking) { return; }
+        if (individualData.CurrentHitPoint <= 0 ||
+            IsAttacking) { return; }
         // タグが"HeartCore"ならば<HeartCore>コンポーネントを取得し、近づいたことをコアへ通知
         if (collision.gameObject.tag =="HeartCore" &&
            collision.TryGetComponent<HeartCore>(out var heartCore))
         {
-            this.heartCore = heartCore;
+            this.individualData.HeartCore = heartCore;
             heartCore.AddEnemyCount();
             OnAttack?.Invoke();
             anxietyEffectGenerator = StartCoroutine("GenerateAnxietyEffect");
+
         }
         // 攻撃中のエネミーに近づいたら加勢
-        else if (collision.gameObject.tag == "Enemy" &&
-                collision.TryGetComponent<Enemy>(out var enemy) &&
-                enemy.IsAttacking &&
-                enemy.HoldingHandsEnemy != this)
+        else if (isBlockedHoldingHands == false &&
+                 collision.gameObject.tag == "Enemy" &&
+                 Vector3.Dot(collision.transform.position - transform.position, individualData.MoveDir ) > 0 && // 進行方向側に限定
+                 collision.TryGetComponent<Enemy>(out var enemy) &&
+                 enemy.IsAttacking &&
+                 enemy.HoldingHandsEnemy != this)
         {
-            holdingHandsEnemy = enemy;
-            this.heartCore = enemy.HeartCore;
-            this.heartCore.AddEnemyCount();
+
+            individualData.HoldingHandsEnemy = enemy;
+            this.individualData.HeartCore = enemy.HeartCore;
+            this.individualData.HeartCore.AddEnemyCount();
             OnAttack?.Invoke();
+            enemy.ConnectedHands();
             anxietyEffectGenerator = StartCoroutine("GenerateAnxietyEffect");
+
+            BlockHoldingHands();
         }
 
+    }
+
+    private void BlockHoldingHands()
+    {
+        // 循環してしまう不具合への対処
+        // 30f間があれば大丈夫やろの精神
+        isBlockedHoldingHands = true;
+        Invoke("UnlockHoldingHands", 0.5f);
+    }
+
+    private void UnlockHoldingHands()
+    {
+        isBlockedHoldingHands = false;
     }
 
     private IEnumerator GenerateAnxietyEffect()
     {
         while (true)
         {
-            yield return new WaitForSeconds(data.AnxietyPropagateInterval);
-            anxietyPropagationEffectPool?.AnxietyPopagate(holdingHandsEnemy, AnxietyEffectPos, data.Strength);
+            yield return new WaitForSeconds(individualData.BasicData.AnxietyPropagateInterval);
+            pools.AnxietyPropagationEffectPool?.AnxietyPopagate(individualData.HoldingHandsEnemy, AnxietyEffectPos, individualData.BasicData.Strength);
         }
     }
 }

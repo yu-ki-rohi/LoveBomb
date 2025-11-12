@@ -65,6 +65,7 @@ public class AnxietyPropagationEffect : MonoBehaviour, IPooledObject<AnxietyProp
                 Deactivate();
                 return;
             }
+            power += targetEnemy.Strength;
             var nextTargetEnemy = targetEnemy.HoldingHandsEnemy;
             if( nextTargetEnemy != null )
             {

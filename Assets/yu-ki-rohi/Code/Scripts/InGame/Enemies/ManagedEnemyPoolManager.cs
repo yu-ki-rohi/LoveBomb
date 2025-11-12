@@ -6,10 +6,8 @@ public class ManagedEnemyPoolManager : PoolManager<ManagedEnemy>, IEnemyPoolMana
 {
     [SerializeField] private EnemyDataList enemyDataList;
     [SerializeField] private EnemyCommonData enemyCommonData;
-    [SerializeField] private ExplosionPoolManager explosionPool;
-    [SerializeField] private AnxietyPropagationEffectPoolManager anxietyPropagationEffectPool;
-    [SerializeField] private EnemyDropsPoolManager enemyDropsManager;
     [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private PoolsEnemyUse poolsEnemyUse;
 #if UNITY_EDITOR
     public EnemyDataList EnemyDataList { get => enemyDataList; }
 #endif
@@ -44,7 +42,7 @@ public class ManagedEnemyPoolManager : PoolManager<ManagedEnemy>, IEnemyPoolMana
     protected override ManagedEnemy Create()
     {
         var instance = base.Create();
-        instance.OnCreate(enemyCommonData, explosionPool, anxietyPropagationEffectPool, enemyDropsManager);
+        instance.OnCreate(enemyCommonData, poolsEnemyUse);
         return instance;
     }
 

@@ -5,16 +5,15 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
     private Transform transform;
     private Rigidbody2D rigidbody;
     private Transform target;
-    private EnemyData enemyData;
     private bool canMove = true;
-    private Vector3 moveDir = Vector2.zero;
+    private EnemyIndividualData enemyIndividualData;
 
-    public EnemyMovementToHeartCoreByAddForce(Transform transform, Rigidbody2D rigidbody, Transform target, EnemyData enemyData)
+    public EnemyMovementToHeartCoreByAddForce(Transform transform, Rigidbody2D rigidbody, Transform target, EnemyIndividualData enemyIndividualData)
     {
         this.transform = transform;
         this.rigidbody = rigidbody;
         this.target = target;
-        this.enemyData = enemyData;
+        this.enemyIndividualData = enemyIndividualData;
     }
 
     public void Start()
@@ -26,7 +25,7 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
             Debug.LogWarning("Lack of Movement Info");
             return;
         }
-        moveDir = (target.position - transform.position).normalized;
+        enemyIndividualData.MoveDir = (target.position - transform.position).normalized;
     }
 
     public void FixedUpdate(float fixedDeltaTime)
@@ -46,12 +45,12 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
         }
 
         Vector3 toTargetVec = target.position - transform.position;
-        if(Vector3.Dot(toTargetVec, moveDir) <= 0.0f)
+        if(Vector3.Dot(toTargetVec, enemyIndividualData.MoveDir) <= 0.0f)
         {
-            moveDir = toTargetVec.normalized;
+            enemyIndividualData.MoveDir = toTargetVec.normalized;
         }
 
-        rigidbody.AddForce(moveDir * rigidbody.linearDamping * enemyData.Agility, ForceMode2D.Force);
+        rigidbody.AddForce(enemyIndividualData.MoveDir * rigidbody.linearDamping * enemyIndividualData.BasicData.Agility, ForceMode2D.Force);
     }
 
     public void Update(float deltaTime)

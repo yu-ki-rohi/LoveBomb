@@ -26,4 +26,15 @@ public static class DebugMessenger
 
         return false;
     }
+    public static bool NullCheck<T>(T instance, string additionalMessage = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "") where T : class
+    {
+        if (instance == null)
+        {
+            string fileName = System.IO.Path.GetFileName(filePath);
+            Debug.Log(typeof(T).Name + " is Null!! " + additionalMessage + "\n[ " + fileName + " : " + lineNumber + " ]");
+            return true;
+        }
+
+        return false;
+    }
 }
