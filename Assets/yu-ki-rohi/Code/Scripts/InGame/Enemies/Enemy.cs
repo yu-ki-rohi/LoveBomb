@@ -191,7 +191,10 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     // Invoke‚Å‹N“®
     protected void Disapear()
     {
-        
+        if(DebugMessenger.NullCheckError(pools.HeartEnergyPool) == false)
+        {
+            pools.HeartEnergyPool.GenerateHeart(individualData.BasicData.Enegy, transform.position);
+        }
         Deactivate();
     }
 

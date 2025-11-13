@@ -1,9 +1,22 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class ArrowPoolManager : PoolManager<Arrow>
 {
     [SerializeField] private ExplosionPoolManager explosionPoolManager;
     private PlayerShootParameters parametersOfArrows;
+
+    public int GetCost(Arrow.Type arrowType)
+    {
+        foreach (var arrowParams in parametersOfArrows.Arrows)
+        {
+            if (arrowParams.ArrowType == arrowType)
+            {
+                return arrowParams.Cost;
+            }
+        }
+        return 0;
+    }
 
     public void SetArrowParameters(PlayerShootParameters parameters)
     {

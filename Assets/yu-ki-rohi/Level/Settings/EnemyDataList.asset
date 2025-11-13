@@ -19,7 +19,7 @@ MonoBehaviour:
     Type: 0
     Scale: 0.6
     MaxHitPoint: 3
-    Strength: 100
+    Strength: 1
     Agility: 3
     ExplosionPower: 6
     ExplosionScale: 1.85
@@ -33,7 +33,7 @@ MonoBehaviour:
     Type: 0
     Scale: 1.2
     MaxHitPoint: 6
-    Strength: 500
+    Strength: 10
     Agility: 1
     ExplosionPower: 6
     ExplosionScale: 3.8
