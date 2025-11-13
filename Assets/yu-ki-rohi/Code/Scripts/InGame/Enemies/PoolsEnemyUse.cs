@@ -6,4 +6,5 @@ public class PoolsEnemyUse
     public ExplosionPoolManager ExplosionPool;
     public AnxietyPropagationEffectPoolManager AnxietyPropagationEffectPool;
     public EnemyDropsPoolManager EnemyDropsPool;
+    public HeartEnergyPoolManager HeartEnergyPool;
 }

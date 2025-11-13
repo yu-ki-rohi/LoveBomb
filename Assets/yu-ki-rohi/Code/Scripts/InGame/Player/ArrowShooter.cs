@@ -74,15 +74,18 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
     public void Shoot()
     {
-        // マウスポインターの座標を取得し、ワールド座標系に変換
-        Vector2 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        // 発射方向決定
-        Vector2 shootDir = (mousePosition - (Vector2)transform.position).normalized;
-        // 矢の生成位置を決定
-        Vector3 firePosition = transform.position + (Vector3)shootDir * parameters.ShootPositionDistance;
-        // オブジェクトプールから取り出し
-        poolManager?.Shoot(firePosition, shootDir, type);
+        if(player.ConsumeHeartEnergy(poolManager.GetCost(type)))
+        {
+            // マウスポインターの座標を取得し、ワールド座標系に変換
+            Vector2 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            // 発射方向決定
+            Vector2 shootDir = (mousePosition - (Vector2)transform.position).normalized;
+            // 矢の生成位置を決定
+            Vector3 firePosition = transform.position + (Vector3)shootDir * parameters.ShootPositionDistance;
+            // オブジェクトプールから取り出し
+            poolManager?.Shoot(firePosition, shootDir, type);
+        }
         // 矢を溜め無し状態に戻す
         type = Arrow.Type.Normal;
 
@@ -115,10 +118,12 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
             // 最大チャージ到達
             currentCharge = parameters.ChargeTime;
-            type = Arrow.Type.Explosion;
-            DebugMessenger.Log("Fully Charged!");
-
-            while(isPreparedToShoot == false) 
+            if (player.ConsumeHeartEnergy(poolManager.GetCost(type)))
+            {
+                type = Arrow.Type.Explosion;
+                DebugMessenger.Log("Fully Charged!");
+            }
+            while (isPreparedToShoot == false) 
             {
                 // フレーム待ち（Updateタイミング）
                 await UniTask.Yield(PlayerLoopTiming.Update, token);

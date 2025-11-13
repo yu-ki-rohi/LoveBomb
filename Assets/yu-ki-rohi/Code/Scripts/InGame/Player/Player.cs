@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Scripting;
+using UnityEngine.UI;
 
 // Input System関連の参考資料：https://nekojara.city/unity-input-system-player-input
 
@@ -47,7 +48,8 @@ public class Player : MonoBehaviour
     [SerializeField] private FollowCamera followCamera;
 
     [SerializeField] private ArrowPoolManager arrowPoolManager;
-
+    // 一旦プレイヤーから操作
+    [SerializeField] private Image heartGauge;
 
     #endregion
 
@@ -134,6 +136,11 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    public void AddHeartEnergy(int energy)
+    {
+        data.AddHeartEnergy(energy);
+    }
+
     #region Enable, Disable, Destroyの際のふるまい
     private void OnEnable()
     {
@@ -173,9 +180,12 @@ public class Player : MonoBehaviour
     #region 初期化
     void Awake()
     {
-        data = new PlayerIndividualData(parameters);
+        data = new PlayerIndividualData(parameters, heartGauge);
         // データ部にゲームオブジェクトのTransformへの参照を書き込み
         data.Transform = transform;
+        
+        data.HeartEnergy = parameters.PlayerShootParameters.InitialHeartEnergy;
+        data.ReflectUI();
 
         // 移動コンポーネント
         var infoPackage = new PlayerMovementBase.InfoPackage(
@@ -263,6 +273,17 @@ public class Player : MonoBehaviour
             playerComoponent.Update(Time.deltaTime);
         }
     }
+
+    #region 当たり判定系
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("HeartEnergy") && 
+            collision.TryGetComponent<HeartEnergy>(out var heartEnergy))
+        {
+            heartEnergy.Target = this;
+        }
+    }
+    #endregion
 
     #region ヘルパーメソッド
     private void CheckGamePadIsConnected()

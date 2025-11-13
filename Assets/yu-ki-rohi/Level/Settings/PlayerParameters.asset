@@ -43,9 +43,9 @@ MonoBehaviour:
       ArrowType: 1
       Image: {fileID: 7520068711724117926, guid: 4a41885d589923743b3bc3166b406287, type: 3}
       Power: 6
-      Cost: 50
-      Speed: 10
+      Cost: 15
+      Speed: 18
       EffectiveRange: 8
     ExplosionScale: 1.48
     HeartEnergyMax: 100
-    InitialHeartEnergy: 1
+    InitialHeartEnergy: 30
