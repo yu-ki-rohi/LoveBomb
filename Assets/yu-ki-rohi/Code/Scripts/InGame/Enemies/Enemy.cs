@@ -16,6 +16,15 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         GoToCore
     }
 
+    [Flags]
+    public enum Drops
+    {
+        None = 0,
+        HeartEnergy = 1 << 0,
+        LoveScore = 1 << 1,
+        Item = 1 << 2
+    }
+
     private IObjectPool<Enemy> pool;
     protected List<IUpdatable> enemyComponents = new List<IUpdatable>();
     protected EnemyCommonData commonData;
@@ -191,10 +200,8 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     // Invoke‚Å‹N“®
     protected void Disapear()
     {
-        if(DebugMessenger.NullCheckError(pools.HeartEnergyPool) == false)
-        {
-            pools.HeartEnergyPool.GenerateHeart(individualData.BasicData.Enegy, transform.position);
-        }
+        Debug.Log(individualData.BasicData.DropsNomal);
+        ItemDrop(individualData.BasicData.DropsNomal);
         Deactivate();
     }
 
@@ -205,10 +212,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         {
             pools.ExplosionPool.Explode(individualData.BasicData.ExplosionPower, transform.position, individualData.BasicData.ExplosionScale);
         }
-        if(DebugMessenger.NullCheckError(pools.EnemyDropsPool) == false)
-        {
-            pools.EnemyDropsPool.DropEnergy(individualData.BasicData.BaseScore, transform.position);
-        }
+        ItemDrop(individualData.BasicData.DropsExplosion);
         Deactivate();
     }
 
@@ -305,6 +309,28 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     private void UnlockHoldingHands()
     {
         isBlockedHoldingHands = false;
+    }
+
+    private void ItemDrop(Drops drops)
+    {
+        Debug.Log("Item Drop Called");
+        Debug.Log(drops);
+        if((drops & Drops.HeartEnergy) != 0 &&
+            DebugMessenger.NullCheckError(pools.HeartEnergyPool) == false)
+        {
+            pools.HeartEnergyPool.GenerateHeart(individualData.BasicData.Enegy, transform.position);
+            Debug.Log("Drop Heart");
+        }
+        if ((drops & Drops.LoveScore) != 0 &&
+             DebugMessenger.NullCheckError(pools.EnemyDropsPool) == false)
+        {
+            pools.EnemyDropsPool.DropEnergy(individualData.BasicData.BaseScore, transform.position);
+            Debug.Log("Drop Score");
+        }
+        if ((drops & Drops.Item) != 0)
+        {
+
+        }
     }
 
     private IEnumerator GenerateAnxietyEffect()

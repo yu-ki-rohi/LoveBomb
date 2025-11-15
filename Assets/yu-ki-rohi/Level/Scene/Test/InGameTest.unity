@@ -176,6 +176,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 657489125}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Anxiety
       objectReference: {fileID: 0}
@@ -326,6 +330,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 657489125}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: acba36556365da2498afbe4851f233ae, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Terror
@@ -1059,21 +1067,7 @@ MonoBehaviour:
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
   generator: {fileID: 798626412}
-  enemyData:
-    Name: Anxiety
-    Image: {fileID: 21300000, guid: 04bf9c752854d5f40953f04aa23514dc, type: 3}
-    Controller: {fileID: 9100000, guid: 9f8754622cdfc8d4290c9ad932047176, type: 2}
-    Type: 0
-    Scale: 0.6
-    MaxHitPoint: 3
-    Strength: 100
-    Agility: 3
-    ExplosionPower: 6
-    ExplosionScale: 1.85
-    AxietyEffectOffset: {x: 0, y: 1.2}
-    AnxietyPropagateInterval: 2.8
-    BaseScore: 5
-    Enegy: 10
+  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!1 &806857402
 GameObject:
@@ -1302,6 +1296,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 657489125}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Anxiety
@@ -1554,6 +1552,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 657489125}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Anxiety
       objectReference: {fileID: 0}
@@ -1696,6 +1698,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 657489125}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: acba36556365da2498afbe4851f233ae, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Terror
@@ -1944,6 +1950,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 657489125}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Anxiety
@@ -2220,21 +2230,7 @@ MonoBehaviour:
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
   generator: {fileID: 1463298898}
-  enemyData:
-    Name: Anxiety
-    Image: {fileID: 21300000, guid: 04bf9c752854d5f40953f04aa23514dc, type: 3}
-    Controller: {fileID: 9100000, guid: 9f8754622cdfc8d4290c9ad932047176, type: 2}
-    Type: 0
-    Scale: 0.6
-    MaxHitPoint: 3
-    Strength: 100
-    Agility: 3
-    ExplosionPower: 6
-    ExplosionScale: 1.85
-    AxietyEffectOffset: {x: 0, y: 1.2}
-    AnxietyPropagateInterval: 2.8
-    BaseScore: 5
-    Enegy: 10
+  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!1 &1505863633
 GameObject:
@@ -2619,6 +2615,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 657489125}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Anxiety
       objectReference: {fileID: 0}
@@ -2738,6 +2738,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 657489125}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Anxiety
@@ -3154,21 +3158,7 @@ MonoBehaviour:
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
   generator: {fileID: 1931540766}
-  enemyData:
-    Name: Anxiety
-    Image: {fileID: 21300000, guid: 04bf9c752854d5f40953f04aa23514dc, type: 3}
-    Controller: {fileID: 9100000, guid: 9f8754622cdfc8d4290c9ad932047176, type: 2}
-    Type: 0
-    Scale: 0.6
-    MaxHitPoint: 3
-    Strength: 100
-    Agility: 3
-    ExplosionPower: 6
-    ExplosionScale: 1.85
-    AxietyEffectOffset: {x: 0, y: 1.2}
-    AnxietyPropagateInterval: 2.8
-    BaseScore: 5
-    Enegy: 10
+  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!1 &1932349750
 GameObject:
@@ -3486,6 +3476,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 657489125}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
       value: Anxiety
@@ -3990,21 +3984,7 @@ MonoBehaviour:
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
   generator: {fileID: 7006878123204816083}
-  enemyData:
-    Name: Anxiety
-    Image: {fileID: 21300000, guid: 04bf9c752854d5f40953f04aa23514dc, type: 3}
-    Controller: {fileID: 9100000, guid: 9f8754622cdfc8d4290c9ad932047176, type: 2}
-    Type: 0
-    Scale: 0.6
-    MaxHitPoint: 3
-    Strength: 100
-    Agility: 3
-    ExplosionPower: 6
-    ExplosionScale: 1.85
-    AxietyEffectOffset: {x: 0, y: 1.2}
-    AnxietyPropagateInterval: 2.8
-    BaseScore: 5
-    Enegy: 10
+  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!4 &5613517258443121764
 Transform:
