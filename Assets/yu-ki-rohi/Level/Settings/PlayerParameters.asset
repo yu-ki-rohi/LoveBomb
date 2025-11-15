@@ -48,4 +48,4 @@ MonoBehaviour:
       EffectiveRange: 8
     ExplosionScale: 1.48
     HeartEnergyMax: 100
-    InitialHeartEnergy: 30
+    InitialHeartEnergy: 100

@@ -13,31 +13,5 @@ MonoBehaviour:
   m_Name: EnemyDataList
   m_EditorClassIdentifier: 
   EnemyList:
-  - Name: Anxiety
-    Image: {fileID: 21300000, guid: 04bf9c752854d5f40953f04aa23514dc, type: 3}
-    Controller: {fileID: 9100000, guid: 9f8754622cdfc8d4290c9ad932047176, type: 2}
-    Type: 0
-    Scale: 0.6
-    MaxHitPoint: 3
-    Strength: 1
-    Agility: 3
-    ExplosionPower: 6
-    ExplosionScale: 1.85
-    AxietyEffectOffset: {x: 0, y: 1.2}
-    AnxietyPropagateInterval: 2.8
-    BaseScore: 5
-    Enegy: 10
-  - Name: Terror
-    Image: {fileID: 21300000, guid: 1fcc7f3e8706834439e836a3500f1b19, type: 3}
-    Controller: {fileID: 9100000, guid: 9f8754622cdfc8d4290c9ad932047176, type: 2}
-    Type: 0
-    Scale: 1.2
-    MaxHitPoint: 6
-    Strength: 10
-    Agility: 1
-    ExplosionPower: 6
-    ExplosionScale: 3.8
-    AxietyEffectOffset: {x: 0, y: 1.8}
-    AnxietyPropagateInterval: 2
-    BaseScore: 15
-    Enegy: 10
+  - {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+  - {fileID: 11400000, guid: acba36556365da2498afbe4851f233ae, type: 2}
