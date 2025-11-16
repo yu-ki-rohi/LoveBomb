@@ -200,7 +200,6 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     // Invoke‚Å‹N“®
     protected void Disapear()
     {
-        Debug.Log(individualData.BasicData.DropsNomal);
         ItemDrop(individualData.BasicData.DropsNomal);
         Deactivate();
     }
@@ -313,19 +312,15 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private void ItemDrop(Drops drops)
     {
-        Debug.Log("Item Drop Called");
-        Debug.Log(drops);
         if((drops & Drops.HeartEnergy) != 0 &&
             DebugMessenger.NullCheckError(pools.HeartEnergyPool) == false)
         {
             pools.HeartEnergyPool.GenerateHeart(individualData.BasicData.Enegy, transform.position);
-            Debug.Log("Drop Heart");
         }
         if ((drops & Drops.LoveScore) != 0 &&
              DebugMessenger.NullCheckError(pools.EnemyDropsPool) == false)
         {
             pools.EnemyDropsPool.DropEnergy(individualData.BasicData.BaseScore, transform.position);
-            Debug.Log("Drop Score");
         }
         if ((drops & Drops.Item) != 0)
         {
