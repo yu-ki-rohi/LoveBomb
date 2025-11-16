@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4151674112362424743}
   - component: {fileID: 2399727539398752424}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 5803081446126685523}
   - component: {fileID: 4166225087363945827}
   - component: {fileID: 2865972630294793042}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ManagedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
