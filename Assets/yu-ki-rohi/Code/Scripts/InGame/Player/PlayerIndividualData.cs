@@ -13,6 +13,12 @@ public class PlayerIndividualData
     public int HeartEnergy = 0;
     public Transform Transform;
     public Vector2 MoveDir = Vector2.zero;
+    public Vector2 ShootDir = Vector2.zero;
+
+    // ゲームパッドが接続されているか
+    public bool IsGamePadConnected = false;
+    public bool IsRStickInput = false;
+
     private PlayerParameters parameters;
     // 一旦ここで保持
     private Image HeartGauge;

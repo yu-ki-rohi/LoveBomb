@@ -50,6 +50,30 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         }
     }
 
+    public override void OnMove(Vector2 input)
+    {
+        if( player.IsGamePadConnected == false ||
+            player.IsRStickInput == true) { return; }
+        if(input != Vector2.zero )
+        {
+            player.ShootDir = input;
+        }
+    }
+
+    public override void OnShootDir(Vector2 input)
+    {
+        if(player.IsGamePadConnected == false) { return; }
+        if(input == Vector2.zero ) 
+        { 
+            player.IsRStickInput = false;
+        }
+        else
+        {
+            player.IsRStickInput = true;
+            player.ShootDir = input;
+        }
+    }
+
     public override void OnDisable()
     {
         // オブジェクト破棄時に安全にキャンセル
@@ -76,15 +100,18 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
     {
         if(player.ConsumeHeartEnergy(poolManager.GetCost(type)))
         {
-            // マウスポインターの座標を取得し、ワールド座標系に変換
-            Vector2 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            // 発射方向決定
-            Vector2 shootDir = (mousePosition - (Vector2)transform.position).normalized;
+            if(player.IsGamePadConnected == false)
+            {
+                // マウスポインターの座標を取得し、ワールド座標系に変換
+                Vector2 mousePosition = Input.mousePosition;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                // 発射方向決定
+                player.ShootDir = (mousePosition - (Vector2)transform.position).normalized;
+            }
             // 矢の生成位置を決定
-            Vector3 firePosition = transform.position + (Vector3)shootDir * parameters.ShootPositionDistance;
+            Vector3 firePosition = transform.position + (Vector3)player.ShootDir * parameters.ShootPositionDistance;
             // オブジェクトプールから取り出し
-            poolManager?.Shoot(firePosition, shootDir, type);
+            poolManager?.Shoot(firePosition, player.ShootDir, type);
         }
         // 矢を溜め無し状態に戻す
         type = Arrow.Type.Normal;

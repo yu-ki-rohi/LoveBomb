@@ -834,11 +834,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3094d9973b0b43bf7e2b0683502dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateNumAtOnce: 1
+  generateNumRange: 0
   generator: {fileID: 798626412}
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
-  generateNumAtOnce: 1
-  generateNumAtRange: 0
   enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!1 &806857402
@@ -1092,6 +1092,10 @@ PrefabInstance:
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyData.Scale
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: generateNumRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyData.Agility
@@ -1827,11 +1831,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3094d9973b0b43bf7e2b0683502dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateNumAtOnce: 1
+  generateNumRange: 0
   generator: {fileID: 1463298898}
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
-  generateNumAtOnce: 1
-  generateNumAtRange: 0
   enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!1 &1505863633
@@ -2241,6 +2245,10 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: generateNumRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyData.Agility
       value: 3
       objectReference: {fileID: 0}
@@ -2601,6 +2609,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752787632}
   m_CullTransparentMesh: 1
+--- !u!1 &1808322081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808322084}
+  - component: {fileID: 1808322083}
+  - component: {fileID: 1808322082}
+  m_Layer: 0
+  m_Name: HeartEnergyGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1808322082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808322081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039f866765d9ec7479def91f8f2117f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialGenerateDelay: 5
+  generateInterval: 5
+  generateIntervalRandomOffset: 2
+  innerRadius: 16.809044
+  outerRadius: 19.809044
+--- !u!114 &1808322083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808322081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dedb25b46629b124db471a33d1d85792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateNumAtOnce: 2
+  generateNumRange: 1
+  generator: {fileID: 1808322082}
+  poolManager: {fileID: 819157906}
+  energyAmount: 5
+--- !u!4 &1808322084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808322081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1857667839
 GameObject:
   m_ObjectHideFlags: 0
@@ -27443,11 +27518,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3094d9973b0b43bf7e2b0683502dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateNumAtOnce: 1
+  generateNumRange: 0
   generator: {fileID: 1931540766}
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
-  generateNumAtOnce: 1
-  generateNumAtRange: 0
   enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!1 &1932349750
@@ -28271,11 +28346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3094d9973b0b43bf7e2b0683502dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateNumAtOnce: 1
+  generateNumRange: 0
   generator: {fileID: 7006878123204816083}
   target: {fileID: 657489125}
   pool: {fileID: 1530075058}
-  generateNumAtOnce: 1
-  generateNumAtRange: 0
   enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
   enemyName: Anxiety
 --- !u!4 &5613517258443121764
@@ -28351,6 +28426,7 @@ SceneRoots:
   - {fileID: 42163506}
   - {fileID: 1620514676}
   - {fileID: 487239106}
+  - {fileID: 1808322084}
   - {fileID: 1530766260}
   - {fileID: 199177695}
   - {fileID: 1195509246}

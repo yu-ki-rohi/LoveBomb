@@ -59,8 +59,7 @@ public class Player : MonoBehaviour
 
     private List<NormalPlayerComponent> playerComponents = new();
 
-    // ゲームパッドが接続されているか
-    private bool isGamePadConnected = false;
+    
 
     #endregion
 
@@ -79,7 +78,7 @@ public class Player : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         foreach (var playerComoponent in playerComponents)
         {
-            playerComoponent.OnMove(input);
+            playerComoponent.OnMove(input.normalized);
         }
 
     }
@@ -112,13 +111,13 @@ public class Player : MonoBehaviour
         if (context.action.name != "ShootDir") { return; }
 
         Vector3 input = context.ReadValue<Vector2>();
-        if (!isGamePadConnected)
+        if (!data.IsGamePadConnected)
         {
-            input = Camera.main.ScreenToWorldPoint(input);
+            input = Camera.main.ScreenToWorldPoint(input) - transform.position;
         }
         foreach (var playerComoponent in playerComponents)
         {
-            playerComoponent.OnShootDir((Vector2)(input - transform.position));
+            playerComoponent.OnShootDir(((Vector2)(input)).normalized);
         }
     }
 
@@ -220,7 +219,7 @@ public class Player : MonoBehaviour
         }
 
         // アニメーションコンポーネント
-        var playerAnimation = new PlayerAnimation(data, transform, parameters.PlayerAnimationParameters, GetComponent<SpriteRenderer>(), GetComponent<Animator>());
+        var playerAnimation = new PlayerAnimation(data, parameters.PlayerAnimationParameters, GetComponent<SpriteRenderer>(), GetComponent<Animator>());
         playerComponents.Add(playerAnimation);
 
         // カメラオフセットコンポーネント
@@ -293,7 +292,7 @@ public class Player : MonoBehaviour
         // 全デバイスを取得
         var devices = InputSystem.devices;
 
-        isGamePadConnected = false;
+        data.IsGamePadConnected = false;
         foreach (var device in devices)
         {
             if (device is Gamepad)
@@ -301,14 +300,14 @@ public class Player : MonoBehaviour
                 //デバイスがゲームパッド(コントローラー)の時だけ処理
                 Gamepad gamepad = device as Gamepad;
                 Debug.Log($"Ditect Contoroller: {gamepad.displayName}");
-                isGamePadConnected = true;
+                data.IsGamePadConnected = true;
                 break;
             }
         }
 
 #if UNITY_EDITOR
         // ゲームパッドが検出されたかをログへ出力
-        string gamepadExist = isGamePadConnected ? "GamePad" : "KeyBoard and Mouse";
+        string gamepadExist = data.IsGamePadConnected ? "GamePad" : "KeyBoard and Mouse";
         Debug.Log(gamepadExist + " Mode");
 #endif
 

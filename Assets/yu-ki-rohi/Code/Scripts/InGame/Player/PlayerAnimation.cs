@@ -3,15 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerAnimation : NormalPlayerComponent
 {
-    private Transform transform;
     private PlayerAnimationParameters parameters;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
-    public PlayerAnimation(PlayerIndividualData player, Transform transform, PlayerAnimationParameters parameters, SpriteRenderer spriteRenderer, Animator animator) :
+    public PlayerAnimation(PlayerIndividualData player, PlayerAnimationParameters parameters, SpriteRenderer spriteRenderer, Animator animator) :
         base(player)
     {
-        this.transform = transform;
         this.parameters = parameters;
         this.spriteRenderer = spriteRenderer;
         this.animator = animator;
@@ -38,7 +36,7 @@ public class PlayerAnimation : NormalPlayerComponent
         {
             Vector2 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            FlipX(mousePosition.x - transform.position.x);
+            FlipX(mousePosition.x - player.Transform.position.x);
         }
     }
 
