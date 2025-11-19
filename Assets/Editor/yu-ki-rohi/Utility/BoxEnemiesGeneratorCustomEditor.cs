@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(BoxGenerator), true)]
-public class BoxEnemiesGeneratorCustomEditor : GeneratorCustomEditor
+public class BoxEnemiesGeneratorCustomEditor : GeneratorBaseCustomEditor
 {
     public override void OnInspectorGUI()
     {

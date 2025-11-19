@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(CircleGenerator), true)]
-public class CircleEnemiesGeneratorEditor : GeneratorCustomEditor
+public class CircleEnemiesGeneratorEditor : GeneratorBaseCustomEditor
 {
     public override void OnInspectorGUI()
     {

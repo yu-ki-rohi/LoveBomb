@@ -1,51 +1,32 @@
-#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using System.Drawing;
-using System.Linq;
 
-[CanEditMultipleObjects]
-[CustomEditor(typeof(GeneratorBase), true)] 
+[CustomEditor(typeof(Generator))]
 public class GeneratorCustomEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        // Chat GPTによるサンプルコードを使用※一部アレンジ
+        Generator enemyGenerator = (Generator)target;
+        base.OnInspectorGUI();
 
-        // SerializedObjectを最新状態に更新
-        serializedObject.Update();
-
-
-        // デフォルトのインスペクタを描画
-        DrawDefaultInspector();
-
-        // 表示切替(常時)
-        if (GUILayout.Button("Draw Area Always"))
+        if (GUILayout.Button("Attach Circle Generator"))
         {
-            // 表示切替時しか必要ないのでこのスコープ
-            var generates = targets.Cast<GeneratorBase>().ToArray();
-
-            foreach (var g in generates)
-            {
-                g.SetShowAlways();
-                EditorUtility.SetDirty(g); // 変更を反映
-            }
-           
+            enemyGenerator.AttachCircle();
         }
 
-        // 表示切替(選択時のみ)
-        if (GUILayout.Button("Draw Area When Selected"))
-        { 
-            // 表示切替時しか必要ないのでこのスコープ
-            var generates = targets.Cast<GeneratorBase>().ToArray();
+        if (GUILayout.Button("Attach Box Generator"))
+        {
+            enemyGenerator.AttachBox();
+        }
 
-            foreach (var g in generates)
-            {
-                g.SetShowWhenSelected();
-                EditorUtility.SetDirty(g); // 変更を反映
-            }
+        if (GUILayout.Button("Generate Enemy"))
+        {
+            enemyGenerator.ForcedGenerate();
+        }
 
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(enemyGenerator);
         }
     }
 }
-#endif

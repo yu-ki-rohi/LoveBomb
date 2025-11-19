@@ -1,5 +1,7 @@
 using UnityEditor;
+#if UNITY_EDITOR
 using UnityEngine;
+#endif
 
 public class BoxGenerator : GeneratorBase
 {

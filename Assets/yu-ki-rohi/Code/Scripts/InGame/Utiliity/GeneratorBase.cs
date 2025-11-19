@@ -2,10 +2,9 @@ using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using System;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
+
+// 設計の変更からGeneratorBaseを名乗りつつ、出現範囲を取得することとSceneビュー上に描画することが主な役割になっている
 public abstract class GeneratorBase : MonoBehaviour
 {
     public enum Type
@@ -59,7 +58,7 @@ public abstract class GeneratorBase : MonoBehaviour
     void Start()
     {
         generateCts = new CancellationTokenSource();
-        GenerateAsync(generateCts.Token, initialGenerateDelay).Forget();
+        GenerateAsync(generateCts.Token).Forget();
     }
 
     void OnDisable()
@@ -74,29 +73,28 @@ public abstract class GeneratorBase : MonoBehaviour
         onGenerate = null;
     }
 
-    private async UniTaskVoid GenerateAsync(CancellationToken token, float delay)
+    private async UniTaskVoid GenerateAsync(CancellationToken token)
     {
         float currentTime = 0f;
-
+        float delay = initialGenerateDelay;
         try
         {
-            while (currentTime < delay)
+            while (true)
             {
-                // フレーム待ち（Updateタイミング）
-                await UniTask.Yield(PlayerLoopTiming.Update, token);
+                while (currentTime < delay)
+                {
+                    // フレーム待ち（Updateタイミング）
+                    await UniTask.Yield(PlayerLoopTiming.Update, token);
 
-                // 経過時間加算
-                currentTime += Time.deltaTime;
+                    // 経過時間加算
+                    currentTime += Time.deltaTime;
+                }
+
+                // コールバックで生成処理
+                onGenerate?.Invoke();
+                currentTime = 0f;
+                delay = generateInterval;
             }
-
-            // コールバックで生成処理
-            onGenerate?.Invoke();
-
-            // 次回生成処理を起動
-            generateCts?.Dispose();
-            generateCts = new CancellationTokenSource();
-            float randomOffset = UnityEngine.Random.Range(-generateIntervalRandomOffset, generateIntervalRandomOffset);
-            GenerateAsync(generateCts.Token, generateInterval + randomOffset).Forget();
         }
         catch (OperationCanceledException)
         {
