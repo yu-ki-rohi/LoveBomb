@@ -6,6 +6,8 @@ using UnityEngine;
 
 public abstract class Generator : MonoBehaviour
 {
+    [SerializeField, Min(1)] protected int generateNumAtOnce = 1;
+    [SerializeField, Min(0)] protected int generateNumRange = 0;
     [SerializeField, HideInInspector] protected GeneratorBase generator;
 
     void OnDestroy()

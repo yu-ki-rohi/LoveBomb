@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Generator))]
+[CustomEditor(typeof(Generator), true)]
 public class GeneratorCustomEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -19,7 +19,7 @@ public class GeneratorCustomEditor : Editor
             enemyGenerator.AttachBox();
         }
 
-        if (GUILayout.Button("Generate Enemy"))
+        if (GUILayout.Button("Generate"))
         {
             enemyGenerator.ForcedGenerate();
         }

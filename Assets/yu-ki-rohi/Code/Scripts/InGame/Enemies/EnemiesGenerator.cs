@@ -5,8 +5,6 @@ public class EnemiesGenerator : Generator
 {
     [SerializeField] Transform target;
     [SerializeField] private ManagedEnemyPoolManager pool;
-    [SerializeField, Min(1)] private int generateNumAtOnce = 1;
-    [SerializeField, Min(0)] private int generateNumAtRange = 0;
     [SerializeField, HideInInspector] private EnemyData enemyData;
 
     #region エディタ限定
@@ -83,7 +81,7 @@ public class EnemiesGenerator : Generator
             Debug.LogError("EnemyPool is Null!");
             return;
         }
-        int num = generateNumAtOnce + Random.Range(-generateNumAtRange, generateNumAtRange);
+        int num = generateNumAtOnce + Random.Range(-generateNumRange, generateNumRange);
         for(int i = 0; i < num; i++)
         {
             pool.EnemyAppear(generator.DecideGeneratePosition(), target, enemyData);
