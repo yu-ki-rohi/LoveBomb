@@ -1432,6 +1432,7 @@ Transform:
   - {fileID: 1530075057}
   - {fileID: 806857403}
   - {fileID: 819157905}
+  - {fileID: 2100888232}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227743738
@@ -1969,6 +1970,7 @@ MonoBehaviour:
     AnxietyPropagationEffectPool: {fileID: 548149327}
     EnemyDropsPool: {fileID: 806857404}
     HeartEnergyPool: {fileID: 819157906}
+    EffectPool: {fileID: 2100888233}
 --- !u!1 &1530766257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,6 +2009,7 @@ MonoBehaviour:
   playerInput: {fileID: 199177694}
   followCamera: {fileID: 2073771910}
   arrowPoolManager: {fileID: 1289782920633640137}
+  effectPoolManager: {fileID: 2100888233}
   heartGauge: {fileID: 1752787634}
 --- !u!212 &1530766259
 SpriteRenderer:
@@ -28197,6 +28200,54 @@ MonoBehaviour:
   stageCenter: {x: 0, y: 0}
   cameraOffset: {x: 0, y: 0}
   offsetLerpDuration: 0.83
+--- !u!1 &2100888231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2100888232}
+  - component: {fileID: 2100888233}
+  m_Layer: 0
+  m_Name: EffectPoolManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2100888232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100888231}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.2011843, y: -5.5153894, z: 0.16864541}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1195509246}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2100888233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100888231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bbba628971335d43b5d0f709013725d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledPrefab: {fileID: -6232914362951084427, guid: 858e98835dc4fc948a4851bc22fcb2f6, type: 3}
+  defaultCapacity: 20
+  maxSize: 100
+  list: {fileID: 11400000, guid: 30948eabcec1832489c3fd19bb75ce2f, type: 2}
 --- !u!1 &2115695164
 GameObject:
   m_ObjectHideFlags: 0

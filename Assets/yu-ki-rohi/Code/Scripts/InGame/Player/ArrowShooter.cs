@@ -13,6 +13,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 {
     private Transform transform;
     private ArrowPoolManager poolManager;
+    private EffectPoolManager effectPoolManager;
     private PlayerShootParameters parameters;
     private PlayerAnimationParameters animParameters;
 
@@ -21,13 +22,16 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
     private Arrow.Type type = Arrow.Type.Normal;
     private CancellationTokenSource chargeCts;
 
+    private PooledEffect chargeEffect;
+
     private bool isPreparedToShoot = false;
 
-    public ArrowShooter(PlayerIndividualData player, ArrowPoolManager poolManager, PlayerShootParameters parameters, PlayerAnimationParameters animParameters, PlayerAnimation playerAnimation) :
+    public ArrowShooter(PlayerIndividualData player, ArrowPoolManager poolManager, EffectPoolManager effectPoolManager, PlayerShootParameters parameters, PlayerAnimationParameters animParameters, PlayerAnimation playerAnimation) :
         base(player)
     {
         transform = player.Transform;
         this.poolManager = poolManager;
+        this.effectPoolManager = effectPoolManager;
         this.parameters = parameters;
         this.animParameters = animParameters;
         this.playerAnimation = playerAnimation;
@@ -41,6 +45,8 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
             chargeCts = new CancellationTokenSource();
             ChargeAsync(chargeCts.Token).Forget(); // チャージ処理開始
+
+            chargeEffect = effectPoolManager.PlayEffect(player.Transform.position, EffectData.EffectType.Charge, 1.0f / parameters.ChargeTime);
         }
         
         else if(context.canceled)
@@ -88,7 +94,10 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
     public override void Update(float deltaTime)
     {
-
+        if(chargeEffect != null)
+        {
+            chargeEffect.transform.position = player.Transform.position;
+        }
     }
 
     public override void FixedUpdate(float fixedDeltaTime)
@@ -108,6 +117,14 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
                 // 発射方向決定
                 player.ShootDir = (mousePosition - (Vector2)transform.position).normalized;
             }
+
+            // チャージせずに射る場合はエフェクトを消去
+            if(chargeEffect != null)
+            {
+                chargeEffect.Deactivate();
+                chargeEffect = null;
+            }
+
             // 矢の生成位置を決定
             Vector3 firePosition = transform.position + (Vector3)player.ShootDir * parameters.ShootPositionDistance;
             // オブジェクトプールから取り出し
@@ -145,6 +162,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
             // 最大チャージ到達
             currentCharge = parameters.ChargeTime;
+            chargeEffect = null;
             if (player.ConsumeHeartEnergy(poolManager.GetCost(type)))
             {
                 type = Arrow.Type.Explosion;

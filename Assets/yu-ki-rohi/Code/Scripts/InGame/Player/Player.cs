@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Scripting;
 using UnityEngine.UI;
 
 // Input System関連の参考資料：https://nekojara.city/unity-input-system-player-input
@@ -48,6 +47,9 @@ public class Player : MonoBehaviour
     [SerializeField] private FollowCamera followCamera;
 
     [SerializeField] private ArrowPoolManager arrowPoolManager;
+
+    [SerializeField] private EffectPoolManager effectPoolManager;
+
     // 一旦プレイヤーから操作
     [SerializeField] private Image heartGauge;
 
@@ -226,7 +228,7 @@ public class Player : MonoBehaviour
         playerComponents.Add(new CameraOffsetController(data, followCamera, parameters.CameraOffsetParameters));
 
         // 射撃コンポーネント
-        var arrowShooter = new ArrowShooter(data, arrowPoolManager, parameters.PlayerShootParameters, parameters.PlayerAnimationParameters, playerAnimation);
+        var arrowShooter = new ArrowShooter(data, arrowPoolManager, effectPoolManager, parameters.PlayerShootParameters, parameters.PlayerAnimationParameters, playerAnimation);
         playerComponents.Add(arrowShooter);
     }
 

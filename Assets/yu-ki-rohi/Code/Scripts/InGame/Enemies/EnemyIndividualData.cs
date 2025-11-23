@@ -8,4 +8,5 @@ public class EnemyIndividualData
     public int CurrentHitPoint = 0;
     public Vector3 MoveDir = Vector3.zero;
     public int ConcatenatingNum = 0;
+    public Animator Animator;
 }

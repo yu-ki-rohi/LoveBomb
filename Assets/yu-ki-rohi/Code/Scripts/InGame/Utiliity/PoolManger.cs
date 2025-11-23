@@ -17,7 +17,7 @@ public abstract class PoolManager<T> : MonoBehaviour where T : MonoBehaviour, IP
     [SerializeField] private int defaultCapacity = 20;
     [SerializeField] private int maxSize = 100;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Initialize();
     }
