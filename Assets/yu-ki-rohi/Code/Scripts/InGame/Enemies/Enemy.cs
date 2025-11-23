@@ -191,7 +191,9 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             case DamageType.Piercing:
                 if (DebugMessenger.NullCheckWarning(pools.EffectPool) == false)
                 {
-                    pools.EffectPool.PlayEffect(transform.position, EffectData.EffectType.HitEffect);
+                    var data = individualData.BasicData;
+                    var position = transform.position + new Vector3(data.AxietyEffectOffset.x, data.AxietyEffectOffset.y, 0.0f);
+                    pools.EffectPool.PlayEffect(position, EffectData.EffectType.HitEffect);
                 }
                 Invoke("Disapear", commonData.DelayToDisapeear);
                 break;

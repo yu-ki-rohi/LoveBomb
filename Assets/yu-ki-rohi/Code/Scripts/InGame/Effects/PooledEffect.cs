@@ -13,9 +13,9 @@ public class PooledEffect : MonoBehaviour, IPooledObject<PooledEffect>
 
     public void Initialize(EffectData effectData, float animSpeed)
     {
-        animator.SetFloat("AnimSpeed", animSpeed);
         isLoop = effectData.IsLoop;
         animator.runtimeAnimatorController = effectData.Controller;
+        animator.SetFloat("AnimSpeed", animSpeed);
     }
     
     public void Initialize()
