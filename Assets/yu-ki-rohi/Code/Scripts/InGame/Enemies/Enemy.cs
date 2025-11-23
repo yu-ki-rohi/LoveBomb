@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private bool isBlockedHoldingHands = false;
 
-    EnemyIndividualData individualData = new EnemyIndividualData();
+    EnemyIndividualData individualData;
     PoolsEnemyUse pools = new PoolsEnemyUse();
 
     public IObjectPool<Enemy> ObjectPool { set { pool = value; } }
@@ -96,9 +96,8 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         enemyComponents.Add(movement);
 
         // アニメーション
-        var animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = data.Controller;
-        var animationController = new EnemyAnimationController(animator);
+        individualData.Animator.runtimeAnimatorController = data.Controller;
+        var animationController = new EnemyAnimationController(individualData.Animator);
         OnAttack += animationController.OnAttack;
         OnMove += animationController.OnMove;
         OnDie += animationController.OnDie;
@@ -126,7 +125,8 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     void Awake()
     {
-
+        individualData = new EnemyIndividualData();
+        individualData.Animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -189,6 +189,10 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         switch (damageType)
         {
             case DamageType.Piercing:
+                if (DebugMessenger.NullCheckWarning(pools.EffectPool) == false)
+                {
+                    pools.EffectPool.PlayEffect(transform.position, EffectData.EffectType.HitEffect);
+                }
                 Invoke("Disapear", commonData.DelayToDisapeear);
                 break;
             case DamageType.Explosion:
