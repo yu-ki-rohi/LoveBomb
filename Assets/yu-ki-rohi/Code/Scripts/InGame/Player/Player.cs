@@ -184,9 +184,8 @@ public class Player : MonoBehaviour
         data = new PlayerIndividualData(parameters, heartGauge);
         // データ部にゲームオブジェクトのTransformへの参照を書き込み
         data.Transform = transform;
-        
-        data.HeartEnergy = parameters.PlayerShootParameters.InitialHeartEnergy;
-        data.ReflectUI();
+
+        data.AddHeartEnergy(parameters.PlayerShootParameters.InitialHeartEnergy);
 
         // 移動コンポーネント
         var infoPackage = new PlayerMovementBase.InfoPackage(
@@ -242,7 +241,6 @@ public class Player : MonoBehaviour
 
         arrowPoolManager.SetArrowParameters(parameters.PlayerShootParameters);
 
-        data.HeartEnergy = parameters.PlayerShootParameters.InitialHeartEnergy;
 
         // ゲームパッド接続確認
         CheckGamePadIsConnected();

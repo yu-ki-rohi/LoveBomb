@@ -46,7 +46,6 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             chargeCts = new CancellationTokenSource();
             ChargeAsync(chargeCts.Token).Forget(); // チャージ処理開始
 
-            chargeEffect = effectPoolManager.PlayEffect(player.Transform.position, EffectData.EffectType.Charge, 1.0f / parameters.ChargeTime);
         }
         
         else if(context.canceled)
@@ -140,10 +139,28 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
     private async UniTaskVoid ChargeAsync(CancellationToken token)
     {
-        float currentCharge = 0f;
-
         try
         {
+
+            float currentCharge = 0f;
+            int cost = poolManager.GetCost(Arrow.Type.Explosion);
+            while (player.HeartEnergy < cost)
+            {
+                if (isPreparedToShoot && currentCharge > animParameters.LeadInTime)
+                {
+                    Shoot();
+                    return;
+                }
+                // フレーム待ち（Updateタイミング）
+                await UniTask.Yield(PlayerLoopTiming.Update, token);
+
+                // 経過時間加算
+                currentCharge += Time.deltaTime;
+            }
+
+            currentCharge = 0f;
+            chargeEffect = effectPoolManager.PlayEffect(player.Transform.position, EffectData.EffectType.Charge, 1.0f / parameters.ChargeTime);
+            
             while (currentCharge < parameters.ChargeTime)
             {
                 if (isPreparedToShoot && currentCharge > animParameters.LeadInTime)
@@ -160,8 +177,6 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
 
             }
 
-            // 最大チャージ到達
-            currentCharge = parameters.ChargeTime;
             chargeEffect = null;
             if (player.ConsumeHeartEnergy(poolManager.GetCost(type)))
             {
@@ -196,7 +211,6 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             {
                 // フレーム待ち（Updateタイミング）
                 await UniTask.Yield(PlayerLoopTiming.Update, token);
-
                 // 経過時間加算
                 followThroughTime += Time.deltaTime;
 
