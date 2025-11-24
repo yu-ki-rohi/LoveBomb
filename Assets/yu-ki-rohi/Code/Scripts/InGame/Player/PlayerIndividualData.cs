@@ -10,18 +10,20 @@ public class PlayerIndividualData
     }
 
     public Player.State State = Player.State.Idle;
-    public int HeartEnergy = 0;
     public Transform Transform;
     public Vector2 MoveDir = Vector2.zero;
-    public Vector2 ShootDir = Vector2.zero;
+    public Vector2 ShootDir = Vector2.right;
 
     // ƒQ[ƒ€ƒpƒbƒh‚ªÚ‘±‚³‚ê‚Ä‚¢‚é‚©
     public bool IsGamePadConnected = false;
     public bool IsRStickInput = false;
 
+    private int heartEnergy = 0;
     private PlayerParameters parameters;
     // ˆê’U‚±‚±‚Å•ÛŽ
     private Image HeartGauge;
+
+    public int HeartEnergy { get => heartEnergy; }
 
     public bool IsShooting { get => State == Player.State.Aim || State == Player.State.Shoot; }
 
@@ -33,24 +35,24 @@ public class PlayerIndividualData
 
     public void AddHeartEnergy(int heartEnergy)
     {
-        HeartEnergy += heartEnergy;
-        if(HeartEnergy > parameters.PlayerShootParameters.HeartEnergyMax)
+        this.heartEnergy += heartEnergy;
+        if(this.heartEnergy > parameters.PlayerShootParameters.HeartEnergyMax)
         {
-            HeartEnergy = parameters.PlayerShootParameters.HeartEnergyMax;
+            this.heartEnergy = parameters.PlayerShootParameters.HeartEnergyMax;
         }
         ReflectUI();
     }
 
     public bool ConsumeHeartEnergy(int cost)
     {
-        if(cost > HeartEnergy) { return false;}
-        HeartEnergy -= cost;
+        if(cost > heartEnergy) { return false;}
+        heartEnergy -= cost;
         ReflectUI();
         return true;
     }
 
     public void ReflectUI()
     {
-        HeartGauge.fillAmount = (float)HeartEnergy / parameters.PlayerShootParameters.HeartEnergyMax;
+        HeartGauge.fillAmount = (float)heartEnergy / parameters.PlayerShootParameters.HeartEnergyMax;
     }
 }
