@@ -155,7 +155,17 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     public void TakeDamage(int attack, DamageType damageType, float bonus)
     {
-        if(individualData.CurrentHitPoint <= 0) { return; }
+        // 既に体力がない場合は判定を行わない
+        if (individualData.CurrentHitPoint <= 0) { return; }
+        // 通常攻撃を受けた場合はヒットエフェクトを出す
+        if (damageType == DamageType.Piercing &&
+            DebugMessenger.NullCheckWarning(pools.EffectPool) == false)
+        {
+            var data = individualData.BasicData;
+            var position = transform.position + new Vector3(data.AxietyEffectOffset.x, data.AxietyEffectOffset.y, 0.0f);
+            pools.EffectPool.PlayEffect(position, EffectData.EffectType.HitEffect);
+        }
+        // 体力を減らす
         individualData.CurrentHitPoint -= attack;
         if(individualData.CurrentHitPoint <= 0)
         {
@@ -189,12 +199,6 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         switch (damageType)
         {
             case DamageType.Piercing:
-                if (DebugMessenger.NullCheckWarning(pools.EffectPool) == false)
-                {
-                    var data = individualData.BasicData;
-                    var position = transform.position + new Vector3(data.AxietyEffectOffset.x, data.AxietyEffectOffset.y, 0.0f);
-                    pools.EffectPool.PlayEffect(position, EffectData.EffectType.HitEffect);
-                }
                 Invoke("Disapear", commonData.DelayToDisapeear);
                 break;
             case DamageType.Explosion:
