@@ -53,6 +53,15 @@ public class CameraOffsetParameters
 }
 
 [Serializable]
+public class CameraOffsetByCinemachineParameters
+{
+    [Min(0.0f)]
+    public float Distance = 5.0f;
+    [Min(0.0f)]
+    public float TimeOfChangeAimToMove = 1.0f;
+}
+
+[Serializable]
 public class ArrowParams
 {
     public string Name;
@@ -102,7 +111,7 @@ public class PlayerParameters : ScriptableObject
     public PlayerAnimationParameters PlayerAnimationParameters;
 
     [Header("Camera‚ÌoffsetŠÖŒWİ’è")]
-    public CameraOffsetParameters CameraOffsetParameters;
+    public CameraOffsetByCinemachineParameters CameraOffsetParameters;
 
     [Header("ËŒ‚ŠÖ˜Aİ’è")]
     public PlayerShootParameters PlayerShootParameters;

@@ -31,7 +31,21 @@ public class PlayerMovementByAddForce : PlayerMovementBase
 
         // 現在の速度ベクトルと力の加わる向きの関係を調べる
         float dotOfVelocityAndAddedForce = Vector2.Dot(rigidbody.linearVelocity, addedForce);
+#if true
+        // 速度超過している + 加速方向に力が加わっている
+        // 大小比較なので平方根はとらない
+        if (rigidbody.linearVelocity.sqrMagnitude > speedLimit * speedLimit &&
+            dotOfVelocityAndAddedForce > 0)
+        {
+            addedForce += -rigidbody.linearVelocity * parameters.AccelerationForce / speedLimit;
+        }
 
+        // 速度ベクトル方向に力が加わっていないとき、制動をかける
+        if (dotOfVelocityAndAddedForce <= 0)
+        {
+            addedForce += -rigidbody.linearVelocity * parameters.DampingForce;
+        }
+#else
         // 速度超過している + 加速方向に力が加わっている
         // 大小比較なので平方根はとらない
         if (rigidbody.linearVelocity.sqrMagnitude > speedLimit * speedLimit &&
@@ -40,7 +54,7 @@ public class PlayerMovementByAddForce : PlayerMovementBase
             // 速度ベクトルを正規化
             Vector2 normalizedVelocity = rigidbody.linearVelocity.normalized;
             // normalizedVelocityと直交するベクトル
-            Vector2 VectorAtRightAnglesToVelocity = new (normalizedVelocity.y, -normalizedVelocity.x);
+            Vector2 VectorAtRightAnglesToVelocity = new(normalizedVelocity.y, -normalizedVelocity.x);
 
             // 加える力から加速成分を抜く
             float cos = Vector2.Dot(VectorAtRightAnglesToVelocity, addedForce);
@@ -55,14 +69,15 @@ public class PlayerMovementByAddForce : PlayerMovementBase
         {
             addedForce += -rigidbody.linearVelocity * parameters.DampingForce;
         }
-
+#endif
         // 質量の影響を無視
         addedForce *= rigidbody.mass;
         rigidbody.AddForce(addedForce, ForceMode2D.Force);
 
+#if false
         // 制限範囲を超えさせない処理
         // とりあえず安直な方法で
-        
+
         // 条件式の意味：制限範囲を超えている かつ 制限範囲を超える方向の速度があるとき
         if (transform.position.x > MoveLimitRight &&
             rigidbody.linearVelocityX > 0)
@@ -84,5 +99,6 @@ public class PlayerMovementByAddForce : PlayerMovementBase
         {
             rigidbody.linearVelocityY = 0;
         }
+#endif
     }
 }
