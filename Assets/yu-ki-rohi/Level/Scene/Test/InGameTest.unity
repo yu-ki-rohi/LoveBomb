@@ -1029,7 +1029,7 @@ MonoBehaviour:
       Size: {x: 0.2, y: 0.2}
     HardLimits:
       Enabled: 0
-      Size: {x: 0.8, y: 0.8}
+      Size: {x: 3, y: 3}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   Lookahead:
     Enabled: 1
     Time: 0.462
-    Smoothing: 7.9
+    Smoothing: 22.1
     IgnoreY: 0
 --- !u!114 &795056637
 MonoBehaviour:
@@ -28544,7 +28544,7 @@ MonoBehaviour:
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
-  UpdateMethod: 2
+  UpdateMethod: 0
   BlendUpdateMethod: 1
   LensModeOverride:
     Enabled: 0

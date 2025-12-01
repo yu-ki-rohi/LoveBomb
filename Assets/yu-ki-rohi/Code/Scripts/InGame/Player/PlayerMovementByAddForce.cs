@@ -73,32 +73,5 @@ public class PlayerMovementByAddForce : PlayerMovementBase
         // Ž¿—Ê‚Ì‰e‹¿‚ð–³Ž‹
         addedForce *= rigidbody.mass;
         rigidbody.AddForce(addedForce, ForceMode2D.Force);
-
-#if false
-        // §ŒÀ”ÍˆÍ‚ð’´‚¦‚³‚¹‚È‚¢ˆ—
-        // ‚Æ‚è‚ ‚¦‚¸ˆÀ’¼‚È•û–@‚Å
-
-        // ðŒŽ®‚ÌˆÓ–¡F§ŒÀ”ÍˆÍ‚ð’´‚¦‚Ä‚¢‚é ‚©‚Â §ŒÀ”ÍˆÍ‚ð’´‚¦‚é•ûŒü‚Ì‘¬“x‚ª‚ ‚é‚Æ‚«
-        if (transform.position.x > MoveLimitRight &&
-            rigidbody.linearVelocityX > 0)
-        {
-            rigidbody.linearVelocityX = 0;
-        }
-        else if (transform.position.x < MoveLimitLeft &&
-            rigidbody.linearVelocityX < 0)
-        {
-            rigidbody.linearVelocityX = 0;
-        }
-        if (transform.position.y > MoveLimitUp &&
-            rigidbody.linearVelocityY > 0)
-        {
-            rigidbody.linearVelocityY = 0;
-        }
-        else if (transform.position.y < MoveLimitDown &&
-            rigidbody.linearVelocityY < 0)
-        {
-            rigidbody.linearVelocityY = 0;
-        }
-#endif
     }
 }
