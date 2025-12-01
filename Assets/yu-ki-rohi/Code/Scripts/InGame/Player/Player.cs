@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         foreach (var playerComoponent in playerComponents)
         {
-            playerComoponent.OnMove(input.normalized);
+            playerComoponent.OnMove(input);
         }
 
     }
