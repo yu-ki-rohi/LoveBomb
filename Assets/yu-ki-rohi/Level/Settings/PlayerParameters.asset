@@ -25,9 +25,8 @@ MonoBehaviour:
     LeadInTime: 0.1
     FollowThroughTime: 0.208
   CameraOffsetParameters:
-    OffsetX: 5
-    OffsetY: 3
-    ChangeOffsetTime: 0.6
+    Distance: 4
+    TimeOfChangeAimToMove: 1
   PlayerShootParameters:
     ShootPositionDistance: 1.01
     ChargeTime: 0.93

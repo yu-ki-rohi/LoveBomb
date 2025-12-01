@@ -27,6 +27,8 @@ public class PlayerIndividualData
 
     public bool IsShooting { get => State == Player.State.Aim || State == Player.State.Shoot; }
 
+    public CameraOffsetByCinemachineParameters CameraOffsetByCinemachineParameters { get => parameters.CameraOffsetParameters; }
+
     public void ChangeState(Player.State nextState)
     {
         DebugMessenger.Log("State: " + State + " Å® " + nextState);

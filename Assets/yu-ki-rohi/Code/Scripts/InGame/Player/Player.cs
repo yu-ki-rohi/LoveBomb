@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
         playerComponents.Add(playerAnimation);
 
         // カメラオフセットコンポーネント
-        playerComponents.Add(new CameraOffsetController(data, followCamera, parameters.CameraOffsetParameters));
+        playerComponents.Add(new CameraOffsetControllerByCinemachine(data, transform.Find("CameraTarget")));
 
         // 射撃コンポーネント
         var arrowShooter = new ArrowShooter(data, arrowPoolManager, effectPoolManager, parameters.PlayerShootParameters, parameters.PlayerAnimationParameters, playerAnimation);

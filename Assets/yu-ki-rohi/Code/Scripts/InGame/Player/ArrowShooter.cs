@@ -97,6 +97,16 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         {
             chargeEffect.transform.position = player.Transform.position;
         }
+
+        if (player.State == Player.State.Aim &&
+            player.IsGamePadConnected == false)
+        {
+            // マウスポインターの座標を取得し、ワールド座標系に変換
+            Vector2 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            // 発射方向決定
+            player.ShootDir = (mousePosition - (Vector2)transform.position).normalized;
+        }
     }
 
     public override void FixedUpdate(float fixedDeltaTime)
