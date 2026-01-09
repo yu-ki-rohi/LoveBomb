@@ -14,6 +14,8 @@ public class EnemyData : ScriptableObject
     public int MaxHitPoint = 3;
     [Min(0)]
     public int Strength = 10;
+    [Min(0)]
+    public int Power = 10;
     [Min(0.0f)]
     public float Agility = 5.0f;
     [Header("”š”­")]
