@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +10,25 @@ public class DefeatNumViewer : MonoBehaviour
     [SerializeField] private Image[] numViewers;
     [SerializeField] private Image exclamationViewer;
 
+    // HACK: ˆê’U‚±‚±‚Å
+    [SerializeField, Min(0.1f)] private float validityTime = 5.0f;
+
     private int defeatNum = 0;
 
+    private Coroutine invalidationCoroutine = null;
     
     public void OnDefeatEnemy()
     {
         defeatNum++;
 
+        if(invalidationCoroutine != null)
+        {
+            StopCoroutine(invalidationCoroutine);
+        }
+
+        invalidationCoroutine = StartCoroutine(InvalidationCoroutine());
+
+        SetViewerAlphaValue(1.0f);
         ReflectUI(defeatNum);
     }
 
@@ -62,9 +75,39 @@ public class DefeatNumViewer : MonoBehaviour
         ReflectUI(defeatNum);
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator InvalidationCoroutine()
     {
-        
+        float halfValideityTime = validityTime / 2.0f;
+
+        yield return new WaitForSeconds(halfValideityTime);
+
+        float remainingValideityTime = halfValideityTime;
+
+        while (remainingValideityTime > 0)
+        {
+            SetViewerAlphaValue(remainingValideityTime / halfValideityTime);
+
+            remainingValideityTime -= Time.deltaTime;
+
+            yield return null;
+
+        }
+
+        defeatNum = 0;
+
+        ReflectUI(defeatNum);
+
+    }
+
+    private void SetViewerAlphaValue(float alpha)
+    {
+        alpha = Mathf.Clamp01(alpha);
+
+        foreach (var numViewer in numViewers)
+        {
+            numViewer.color = new Color(1.0f, 1.0f, 1.0f, alpha);
+        }
+
+        exclamationViewer.color = new Color(1.0f, 1.0f, 1.0f, alpha);
     }
 }
