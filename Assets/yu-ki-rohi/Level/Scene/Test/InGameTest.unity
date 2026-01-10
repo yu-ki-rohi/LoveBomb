@@ -1289,6 +1289,7 @@ MonoBehaviour:
   - {fileID: 6997131}
   - {fileID: 382304118}
   exclamationViewer: {fileID: 1898871952}
+  validityTime: 3
 --- !u!1 &713868450
 GameObject:
   m_ObjectHideFlags: 0
