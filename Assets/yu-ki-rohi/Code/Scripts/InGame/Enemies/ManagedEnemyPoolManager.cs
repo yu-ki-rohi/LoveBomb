@@ -2,12 +2,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+// HACK: EnemyManagerAPoolManager‚Ì–ğŠ„‚Ìüˆø‚«‚ª‚¨‚©‚µ‚¢
+
+// NOTE: Œã‚©‚çEnemyManager‚ğ’Ç‰Á‚µ‚½‚Ì‚ÅA‚»‚ê‚É‚æ‚Á‚ÄŠÇ—‚³‚ê‚éEnemy‚ğ•Ê‚Éì‚Á‚Ä‚¢‚é
+
 public class ManagedEnemyPoolManager : PoolManager<ManagedEnemy>, IEnemyPoolManager
 {
     [SerializeField] private EnemyDataList enemyDataList;
     [SerializeField] private EnemyCommonData enemyCommonData;
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private PoolsEnemyUse poolsEnemyUse;
+
+    // HACK: –{—ˆ‚Í•Ê‚Ì‚Æ‚±‚ë‚ªó‚¯‚Â‚×‚«
+    [SerializeField] private DefeatNumViewer defeatNumViewer;
+
 #if UNITY_EDITOR
     public EnemyDataList EnemyDataList { get => enemyDataList; }
 #endif
@@ -42,7 +50,7 @@ public class ManagedEnemyPoolManager : PoolManager<ManagedEnemy>, IEnemyPoolMana
     protected override ManagedEnemy Create()
     {
         var instance = base.Create();
-        instance.OnCreate(enemyCommonData, poolsEnemyUse);
+        instance.OnCreate(enemyCommonData, poolsEnemyUse, defeatNumViewer);
         return instance;
     }
 

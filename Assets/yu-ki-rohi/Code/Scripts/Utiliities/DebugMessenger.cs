@@ -48,4 +48,11 @@ public static class DebugMessenger
         string fileName = System.IO.Path.GetFileName(filePath);
         Debug.Log("[ " + fileName + " : " + lineNumber + " ] " + message);
     }
+
+    public static void LogError(string message, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string memberName = "")
+    {
+        if (enableMessage == false) { return; }
+        string fileName = System.IO.Path.GetFileName(filePath);
+        Debug.LogError("[ " + fileName + " : " + lineNumber + " ] " + message);
+    }
 }

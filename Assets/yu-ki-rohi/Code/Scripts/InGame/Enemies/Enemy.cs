@@ -37,8 +37,11 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private bool isBlockedHoldingHands = false;
 
-    EnemyIndividualData individualData;
-    PoolsEnemyUse pools = new PoolsEnemyUse();
+    private EnemyIndividualData individualData;
+    private PoolsEnemyUse pools = new PoolsEnemyUse();
+
+    // HACK: 個々に持たせるのはイマイチな気がする
+    private DefeatNumViewer defeatNumViewer;
 
     public IObjectPool<Enemy> ObjectPool { set { pool = value; } }
 
@@ -73,10 +76,11 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     }
 
 
-    public void OnCreate(EnemyCommonData commonData, PoolsEnemyUse pools)
+    public void OnCreate(EnemyCommonData commonData, PoolsEnemyUse pools, DefeatNumViewer defeatNumViewer)
     {
         this.commonData = commonData;
         this.pools = pools;
+        this.defeatNumViewer = defeatNumViewer;
 
         DebugMessenger.NullCheckWarning(this.commonData);
         DebugMessenger.NullCheckWarning(pools.ExplosionPool, "It won't Explode");
@@ -222,6 +226,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             pools.ExplosionPool.Explode(individualData.BasicData.ExplosionPower, transform.position, individualData.BasicData.ExplosionScale);
         }
         ItemDrop(individualData.BasicData.DropsExplosion);
+        CountDefeatEnemy();
         Deactivate();
     }
 
@@ -336,6 +341,17 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         {
 
         }
+    }
+
+    /*
+        HACK:
+            簡略化のために一旦ここで行っているが明らかに他のところが請け負うべき内容
+            爆発時しかカウントしないためネーミングもイマイチ
+     */
+    private void CountDefeatEnemy()
+    {
+        if (DebugMessenger.NullCheckError(defeatNumViewer)) { return; }
+        defeatNumViewer.OnDefeatEnemy();
     }
 
     private IEnumerator GenerateAnxietyEffect()
