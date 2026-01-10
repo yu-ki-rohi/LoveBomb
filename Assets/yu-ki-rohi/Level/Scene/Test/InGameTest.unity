@@ -1768,10 +1768,10 @@ PrefabInstance:
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+      objectReference: {fileID: 11400000, guid: 4682882a12de417419a9630505935eb9, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
-      value: Anxiety
+      value: Sphere
       objectReference: {fileID: 0}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: generator
@@ -3248,10 +3248,10 @@ PrefabInstance:
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+      objectReference: {fileID: 11400000, guid: e508ace51a41965409b1ff2e6f4a4a56, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
-      value: Anxiety
+      value: Pen
       objectReference: {fileID: 0}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: generator
@@ -28883,10 +28883,10 @@ PrefabInstance:
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+      objectReference: {fileID: 11400000, guid: f519f7d4241231f4e906fbd867b96cdd, type: 2}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: enemyName
-      value: Anxiety
+      value: Bell
       objectReference: {fileID: 0}
     - target: {fileID: 5778364486490216985, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: generator
