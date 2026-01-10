@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 5ce52954d987cbc4fb88d2f8fe5fe925
+guid: ecd20e48ee0b05049ba3211802f665e4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4679567044525067704
-    second: enemy_sphere02_0
+      213: 8788630395170131069
+    second: enemy_down02_0
+  - first:
+      213: 5425939045785766372
+    second: enemy_down02_1
+  - first:
+      213: -6230738144481748648
+    second: enemy_down02_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy_sphere02_0
+      name: enemy_down02_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 19
-        width: 176
-        height: 218
+        x: 13
+        y: 50
+        width: 239
+        height: 177
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 84275700196de0fb0800000000000000
-      internalID: -4679567044525067704
+      spriteID: d7c015eb7cc77f970800000000000000
+      internalID: 8788630395170131069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_down02_1
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 10
+        width: 151
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e98bf470decc4b40800000000000000
+      internalID: 5425939045785766372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_down02_2
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 45
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85950b16ba8f789a0800000000000000
+      internalID: -6230738144481748648
       vertices: []
       indices: 
       edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      enemy_sphere02_0: -4679567044525067704
+      enemy_down02_0: 8788630395170131069
+      enemy_down02_1: 5425939045785766372
+      enemy_down02_2: -6230738144481748648
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
