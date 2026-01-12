@@ -1056,7 +1056,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -879732771
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -350735894061432474, guid: 8434ab03bb4959e45a22f6f58e2726f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000516c4d69dd5790cbbf7d60452db5c824
+  m_ApplyToSortingLayers: 00000000516c4d69dd5790cbbf7d60452db5c82415bd145b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1514,9 +1514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039f866765d9ec7479def91f8f2117f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGenerateDelay: 10
+  initialGenerateDelay: 6
   generateInterval: 3
-  generateIntervalRandomOffset: 0
+  generateIntervalRandomOffset: 1
   innerRadius: 0
   outerRadius: 4.1999946
 --- !u!114 &798626413
@@ -1534,10 +1534,10 @@ MonoBehaviour:
   generateNumAtOnce: 1
   generateNumRange: 0
   generator: {fileID: 798626412}
-  target: {fileID: 657489125}
+  target: {fileID: 1530766260}
   pool: {fileID: 1530075058}
-  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
-  enemyName: Anxiety
+  enemyData: {fileID: 11400000, guid: 990834e3921feed4a8667d0d2bd6301c, type: 2}
+  enemyName: Chase
 --- !u!1 &806857402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,6 +1833,10 @@ PrefabInstance:
     - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: m_Name
       value: EnemyGenerator (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2199,6 +2203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2421,6 +2429,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGenerator (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2625,9 +2637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039f866765d9ec7479def91f8f2117f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGenerateDelay: 10
+  initialGenerateDelay: 5
   generateInterval: 3
-  generateIntervalRandomOffset: 0
+  generateIntervalRandomOffset: 1
   innerRadius: 0
   outerRadius: 4.1999946
 --- !u!114 &1463298899
@@ -2645,10 +2657,10 @@ MonoBehaviour:
   generateNumAtOnce: 1
   generateNumRange: 0
   generator: {fileID: 1463298898}
-  target: {fileID: 657489125}
+  target: {fileID: 1530766260}
   pool: {fileID: 1530075058}
-  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
-  enemyName: Anxiety
+  enemyData: {fileID: 11400000, guid: 990834e3921feed4a8667d0d2bd6301c, type: 2}
+  enemyName: Chase
 --- !u!1 &1504189907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,7 +2951,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -879732771
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 9098762204899400466, guid: b06acf87b35782e4ba70d1bb682ec9de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3182,6 +3194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyGenerator (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3301,6 +3317,10 @@ PrefabInstance:
     - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: m_Name
       value: EnemyGenerator (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28466,9 +28486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039f866765d9ec7479def91f8f2117f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGenerateDelay: 10
+  initialGenerateDelay: 4
   generateInterval: 3
-  generateIntervalRandomOffset: 0
+  generateIntervalRandomOffset: 1
   innerRadius: 0
   outerRadius: 4.1999946
 --- !u!114 &1931540767
@@ -28486,10 +28506,10 @@ MonoBehaviour:
   generateNumAtOnce: 1
   generateNumRange: 0
   generator: {fileID: 1931540766}
-  target: {fileID: 657489125}
+  target: {fileID: 1530766260}
   pool: {fileID: 1530075058}
-  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
-  enemyName: Anxiety
+  enemyData: {fileID: 11400000, guid: 990834e3921feed4a8667d0d2bd6301c, type: 2}
+  enemyName: Chase
 --- !u!1 &1932349750
 GameObject:
   m_ObjectHideFlags: 0
@@ -28709,7 +28729,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000516c4d69dd5790cbbf7d6045
+  m_ApplyToSortingLayers: 00000000516c4d69dd5790cbbf7d604515bd145b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -28793,7 +28813,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000516c4d69dd5790cbbf7d60452db5c824
+  m_ApplyToSortingLayers: 00000000516c4d69dd5790cbbf7d60452db5c82415bd145b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -28936,6 +28956,10 @@ PrefabInstance:
     - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
       propertyPath: m_Name
       value: EnemyGenerator (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190335804324627278, guid: ba3e9aaf4b9f18f4982624aee0961917, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29529,10 +29553,10 @@ MonoBehaviour:
   generateNumAtOnce: 1
   generateNumRange: 0
   generator: {fileID: 7006878123204816083}
-  target: {fileID: 657489125}
+  target: {fileID: 1530766260}
   pool: {fileID: 1530075058}
-  enemyData: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
-  enemyName: Anxiety
+  enemyData: {fileID: 11400000, guid: 990834e3921feed4a8667d0d2bd6301c, type: 2}
+  enemyName: Chase
 --- !u!1001 &2989634910051528402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29551,7 +29575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930073316448710367, guid: 9d8efd1d9630b2d46a586f3c2716e09a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 63.71
       objectReference: {fileID: 0}
     - target: {fileID: 6930073316448710367, guid: 9d8efd1d9630b2d46a586f3c2716e09a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29821,9 +29845,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039f866765d9ec7479def91f8f2117f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGenerateDelay: 10
+  initialGenerateDelay: 3
   generateInterval: 3
-  generateIntervalRandomOffset: 0
+  generateIntervalRandomOffset: 1
   innerRadius: 0
   outerRadius: 4.1999946
 --- !u!1001 &7090173415740809709

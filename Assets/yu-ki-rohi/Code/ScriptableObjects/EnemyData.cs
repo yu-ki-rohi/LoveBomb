@@ -22,10 +22,21 @@ public class EnemyData : ScriptableObject
     public int ExplosionPower = 6;
 
     public float ExplosionScale = 1.0f;
-    [Header("攻撃エフェクト")]
+    [Header("お化け型用")]
     public Vector2 AxietyEffectOffset = Vector2.zero;
+
+    [Header("こうもり型用")]
     [Min(0.0f)]
-    public float AnxietyPropagateInterval = 5.0f;
+    public float StandbyDistance = 8.0f;
+    [Min(0.0f)]
+    public float StandbyDistanceBaffar = 0.0f;
+    [Min(0.0f)]
+    public float PrepareRushTime = 0.5f;
+    [Min(1.0f)]
+    public float RushInterval = 5.0f;
+    [Min(1.0f)]
+    public float RushSpeedMultiplier = 2.0f;
+
     [Header("報酬")]
     public Enemy.Drops DropsNomal;
     public Enemy.Drops DropsExplosion;
