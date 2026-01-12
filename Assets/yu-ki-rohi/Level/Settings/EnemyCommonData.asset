@@ -15,3 +15,4 @@ MonoBehaviour:
   DelayToDisapeear: 1
   DelayToExplosion: 0.242
   AnxietyPropagateSpeed: 30
+  AnxietyPropagateInterval: 2

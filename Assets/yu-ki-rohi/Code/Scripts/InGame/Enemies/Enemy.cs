@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 {
     public enum Type
     {
-        GoToCore
+        GoToCore,
+        ChasePlayer
     }
 
     [Flags]
@@ -92,19 +93,43 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
         transform.position = position;
 
-        // 動き
-        var movement = new EnemyMovementToHeartCoreByAddForce(transform, GetComponent<Rigidbody2D>(), target, individualData);
-        OnAttack += movement.OnAttack;
-        OnMove += movement.OnMove;
-        OnDie += movement.OnDie;
-        enemyComponents.Add(movement);
-
         // アニメーション
         individualData.Animator.runtimeAnimatorController = data.Controller;
-        var animationController = new EnemyAnimationController(individualData.Animator);
-        OnAttack += animationController.OnAttack;
-        OnMove += animationController.OnMove;
-        OnDie += animationController.OnDie;
+
+        // HACK: ここの初期化の場合分けはもっと上手くまとめたい
+        if (data.Type == Type.GoToCore)
+        {
+            // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定
+            // 7: PassThroughStageAndEnemy
+            gameObject.layer = 7;
+
+            // 動き
+            var movement = new EnemyMovementToHeartCoreByAddForce(transform, GetComponent<Rigidbody2D>(), target, individualData);
+            OnAttack += movement.OnAttack;
+            OnMove += movement.OnMove;
+            OnDie += movement.OnDie;
+            enemyComponents.Add(movement);
+
+            // アニメーション
+            var animationController = new EnemyAnimationController(individualData.Animator);
+            OnAttack += animationController.OnAttack;
+            OnMove += animationController.OnMove;
+            OnDie += animationController.OnDie;
+        }
+        else if(data.Type == Type.ChasePlayer)
+        {
+            // 9: PassThroughStageAndEnemy
+            gameObject.layer = 9;
+
+            // 動き
+            var movement = new EnemyMovementChasePlayer(transform, GetComponent<Rigidbody2D>(), target, individualData);
+            OnAttack += movement.OnAttack;
+            OnMove += movement.OnMove;
+            OnDie += movement.OnDie;
+            enemyComponents.Add(movement);
+
+        }
+
 
         individualData.BasicData = data;
         transform.localScale = new Vector3(data.Scale,data.Scale, 1.0f);
@@ -236,6 +261,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         if (individualData.HeartCore != null &&
             individualData.HoldingHandsEnemy != null)
         {
+            // コアに繋いでいるエネミーが消えていたら解除
             if(individualData.HoldingHandsEnemy.IsAttacking == false)
             {
                 DebugMessenger.Log("Holding Enemy has gone");
@@ -252,13 +278,14 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
                 return;
             }
 
+            // 自分の後ろに誰かが繋がったら自身は攻撃を行わない
             if( anxietyEffectGenerator != null && 
                 individualData.ConcatenatingNum > 0)
             {
                 StopCoroutine(anxietyEffectGenerator);
                 anxietyEffectGenerator = null;
             }
-
+            // 自身の後ろに誰もつながっていなければ攻撃開始
             else if (anxietyEffectGenerator == null &&
                 individualData.ConcatenatingNum == 0)
             {
@@ -279,8 +306,10 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private void AttackHeartCore(Collider2D collision)
     {
-        if (individualData.CurrentHitPoint <= 0 ||
+        if (individualData.BasicData.Type != Type.GoToCore || 
+            individualData.CurrentHitPoint <= 0 ||
             IsAttacking) { return; }
+
         // タグが"HeartCore"ならば<HeartCore>コンポーネントを取得し、近づいたことをコアへ通知
         if (collision.gameObject.tag =="HeartCore" &&
            collision.TryGetComponent<HeartCore>(out var heartCore))
@@ -291,7 +320,19 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             anxietyEffectGenerator = StartCoroutine("GenerateAnxietyEffect");
 
         }
+
         // 攻撃中のエネミーに近づいたら加勢
+        /*
+            NOTE:
+                条件がやたら複雑なのは
+                「コアにつながっていない状態なのに、エネミー同士のつながりが循環して攻撃状態が解除されない」
+                という事態をさけるため
+
+                確実に上の事態を避けるのには、
+                再帰呼び出しして「循環していないか」と「コアにつながっているか」を確認する
+                という手が考えられるが、攻撃中の全てのエネミーが毎フレーム行う処理であることから、
+                それなりに時間がかさむかもしれないという予測により採用していない
+        */
         else if (isBlockedHoldingHands == false &&
                  collision.gameObject.tag == "Enemy" &&
                  Vector3.Dot(collision.transform.position - transform.position, individualData.MoveDir ) > 0 && // 進行方向側に限定
@@ -314,7 +355,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     private void BlockHoldingHands()
     {
-        // 循環してしまう不具合への対処
+        // 循環してしまう問題への対処
         // 30f間があれば大丈夫やろの精神
         isBlockedHoldingHands = true;
         Invoke("UnlockHoldingHands", 0.5f);
@@ -345,7 +386,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
 
     /*
         HACK:
-            簡略化のために一旦ここで行っているが明らかに他のところが請け負うべき内容
+            簡略化のために一旦ここで行っているができれば他のところが請け負うべき内容
             爆発時しかカウントしないためネーミングもイマイチ
      */
     private void CountDefeatEnemy()
@@ -358,7 +399,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     {
         while (true)
         {
-            yield return new WaitForSeconds(individualData.BasicData.AnxietyPropagateInterval);
+            yield return new WaitForSeconds(commonData.AnxietyPropagateInterval);
             pools.AnxietyPropagationEffectPool?.AnxietyPopagate(individualData.HoldingHandsEnemy, AnxietyEffectPos, individualData.BasicData.Strength);
         }
     }
