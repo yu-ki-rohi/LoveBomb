@@ -98,14 +98,6 @@ public class Player : MonoBehaviour, IDamageable
             playerComoponent.OnShoot(context);
         }
 
-        // âüÇµÇΩèuä‘
-        if (context.performed)
-        {
-            if (data.IsShooting) { return; }
-            data.ChangeState(State.Aim);
-          
-        }
-
     }
 
     private void OnShootDir(InputAction.CallbackContext context)

@@ -6,10 +6,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerAnimation : NormalPlayerComponent
 {
+    public enum ShootStage
+    {
+        IDLE,
+        LEAD_IN,
+        STANDBY,
+        FALLOW_THROUGH
+    }
     private PlayerAnimationParameters parameters;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private CancellationTokenSource blinkCts;
+    private CancellationTokenSource damagedCts;
 
     public PlayerAnimation(PlayerIndividualData player, PlayerAnimationParameters parameters, SpriteRenderer spriteRenderer, Animator animator) :
         base(player)
@@ -19,9 +26,9 @@ public class PlayerAnimation : NormalPlayerComponent
         this.animator = animator;
     }
 
-    public void FinishAction()
+    public void SetShootStage(int index)
     {
-        animator.SetTrigger("FinishAction");
+        animator.SetInteger("ShootStage", index);
     }
 
     // IUpdatableによって保証されているメソッド
@@ -66,9 +73,9 @@ public class PlayerAnimation : NormalPlayerComponent
         // 押した瞬間
         if (context.performed)
         { 
-            if (!player.IsShooting)
+            if (player.IsIdle)
             {
-                animator.SetBool("Shoot", true);
+                animator.SetInteger("ShootStage", (int)ShootStage.LEAD_IN);
 #if UNITY_EDITOR
                 // 調整するときのために、Editor実行のときのみ毎回スピードを設定しなおす
                 SetAnimationSpeed();
@@ -79,8 +86,7 @@ public class PlayerAnimation : NormalPlayerComponent
         // 離した瞬間
         else if (context.canceled)
         {
-            if(player.State != Player.State.Aim) { return; }
-            animator.SetBool("Shoot", false);
+            
         }
     }
 
@@ -98,13 +104,13 @@ public class PlayerAnimation : NormalPlayerComponent
 
     public override void OnDamaged()
     {
-        animator.SetTrigger("Damaged");
-        animator.SetBool("Shoot", false);
+        animator.SetBool("IsDamaged", true);
+        animator.SetInteger("ShootStage", (int)ShootStage.IDLE);
 
-        blinkCts?.Cancel();
-        blinkCts?.Dispose();
-        blinkCts = new CancellationTokenSource();
-        BlinkAsync(blinkCts.Token).Forget();
+        damagedCts?.Cancel();
+        damagedCts?.Dispose();
+        damagedCts = new CancellationTokenSource();
+        RigidAsync(damagedCts.Token).Forget();
 #if UNITY_EDITOR
         // 調整するときのために、Editor実行のときのみ毎回スピードを設定しなおす
         SetAnimationSpeed();
@@ -138,11 +144,10 @@ public class PlayerAnimation : NormalPlayerComponent
 
     }
 
-    private async UniTaskVoid BlinkAsync(CancellationToken token)
+    private async UniTaskVoid RigidAsync(CancellationToken token)
     {
         try
         {
-            ChaildBlinkAsync(token).Forget();
             /* 
              * NOTE:
              * 名前付き引数
@@ -156,13 +161,31 @@ public class PlayerAnimation : NormalPlayerComponent
              * )
              * 
              */
+            await UniTask.Delay(TimeSpan.FromSeconds(parameters.DamagedRigidTime), cancellationToken: token);
+            animator.SetBool("IsDamaged", false);
+            BlinkAsync(token).Forget();
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.Log("Release stiffness");
+            // CTSの破棄 ヌルチェック + 実行
+            damagedCts?.Dispose();
+            damagedCts = null;
+        }
+    }
+
+    private async UniTaskVoid BlinkAsync(CancellationToken token)
+    {
+        try
+        {
+            ChaildBlinkAsync(token).Forget();
             await UniTask.Delay(TimeSpan.FromSeconds(parameters.DamagedInvincibleTime), cancellationToken: token);
 
             // HACK: 役割を考えると、あまりここでやるべき内容でないが一旦簡略化のためここで
             // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
             // 0: default
             player.Transform.gameObject.layer = 0;
-            blinkCts.Cancel();
+            damagedCts.Cancel();
         }
         catch (OperationCanceledException)
         {
@@ -171,8 +194,8 @@ public class PlayerAnimation : NormalPlayerComponent
         finally
         {
             // CTSの破棄 ヌルチェック + 実行
-            blinkCts?.Dispose();
-            blinkCts = null;
+            damagedCts?.Dispose();
+            damagedCts = null;
         }
     }
 
