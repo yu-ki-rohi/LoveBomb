@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6548070645206827222}
   - component: {fileID: 2554252566319190223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cushion
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

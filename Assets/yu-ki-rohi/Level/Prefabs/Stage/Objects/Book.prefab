@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6930073316448710367}
   - component: {fileID: 1415473247977921575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Book
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

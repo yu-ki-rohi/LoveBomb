@@ -52,5 +52,9 @@ public abstract class NormalPlayerComponent : PlayerComponentBase, IUpdatable, I
 
     #endregion
 
+    public virtual void OnDamaged()
+    {
+
+    }
 
 }

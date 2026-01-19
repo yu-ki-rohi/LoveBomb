@@ -1,3 +1,6 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +9,7 @@ public class PlayerAnimation : NormalPlayerComponent
     private PlayerAnimationParameters parameters;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private CancellationTokenSource blinkCts;
 
     public PlayerAnimation(PlayerIndividualData player, PlayerAnimationParameters parameters, SpriteRenderer spriteRenderer, Animator animator) :
         base(player)
@@ -92,6 +96,22 @@ public class PlayerAnimation : NormalPlayerComponent
 
     #endregion
 
+    public override void OnDamaged()
+    {
+        animator.SetTrigger("Damaged");
+        animator.SetBool("Shoot", false);
+
+        blinkCts?.Cancel();
+        blinkCts?.Dispose();
+        blinkCts = new CancellationTokenSource();
+        BlinkAsync(blinkCts.Token).Forget();
+#if UNITY_EDITOR
+        // 調整するときのために、Editor実行のときのみ毎回スピードを設定しなおす
+        SetAnimationSpeed();
+#endif
+
+    }
+
     private void FlipX(float horizontalValue)
     {
         if (horizontalValue > 0)
@@ -110,9 +130,74 @@ public class PlayerAnimation : NormalPlayerComponent
         // 現状は1.0秒で作っているので直入
         float leadInanimationTime = 1.0f;
         float followThroughanimationTime = 1.0f;
+        float damagedTime = 1.0f;
 
         animator.SetFloat("LeadInSpeed", leadInanimationTime / parameters.LeadInTime);
         animator.SetFloat("FollowThroughSpeed", followThroughanimationTime / parameters.FollowThroughTime);
+        animator.SetFloat("DamagedSpeed", damagedTime / parameters.DamagedRigidTime);
 
+    }
+
+    private async UniTaskVoid BlinkAsync(CancellationToken token)
+    {
+        try
+        {
+            ChaildBlinkAsync(token).Forget();
+            /* 
+             * NOTE:
+             * 名前付き引数
+             * cancellationToken: token
+             * 
+             * public static UniTask Delay(
+             *     TimeSpan delayTime,
+             *     bool ignoreTimeScale = false,
+             *     PlayerLoopTiming timing = PlayerLoopTiming.Update,
+             *     CancellationToken cancellationToken = default
+             * )
+             * 
+             */
+            await UniTask.Delay(TimeSpan.FromSeconds(parameters.DamagedInvincibleTime), cancellationToken: token);
+
+            // HACK: 役割を考えると、あまりここでやるべき内容でないが一旦簡略化のためここで
+            // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
+            // 0: default
+            player.Transform.gameObject.layer = 0;
+            blinkCts.Cancel();
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.Log("Blinking is canceled");
+        }
+        finally
+        {
+            // CTSの破棄 ヌルチェック + 実行
+            blinkCts?.Dispose();
+            blinkCts = null;
+        }
+    }
+
+    private async UniTaskVoid ChaildBlinkAsync(CancellationToken token)
+    {
+        try
+        {
+            while (true)
+            {
+                // HACK: 点滅間隔は外に出すべきだが一旦マジックナンバー
+                await UniTask.Delay(TimeSpan.FromSeconds(0.15f), cancellationToken: token);
+                spriteRenderer.enabled = false;
+
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: token);
+                spriteRenderer.enabled = true;
+            }
+
+        }
+        catch (OperationCanceledException)
+        {
+            DebugMessenger.Log("Finish Blink");
+        }
+        finally
+        {
+            spriteRenderer.enabled = true;
+        }
     }
 }
