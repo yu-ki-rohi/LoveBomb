@@ -41,8 +41,9 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
     {
         if (context.performed)
         {
-            if (player.IsShooting) { return; }
+            if (player.IsIdle == false) { return; }
 
+            player.ChangeState(Player.State.Aim);
             chargeCts = new CancellationTokenSource();
             ChargeAsync(chargeCts.Token).Forget(); // チャージ処理開始
 
@@ -83,6 +84,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
     {
         chargeEffect?.Deactivate();
         chargeEffect = null;
+        type = Arrow.Type.Normal;
 
         chargeCts?.Cancel();
         chargeCts?.Dispose();
@@ -154,7 +156,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         type = Arrow.Type.Normal;
 
         player?.ChangeState(Player.State.Shoot);
-        playerAnimation?.FinishAction();
+        playerAnimation?.SetShootStage((int)PlayerAnimation.ShootStage.FALLOW_THROUGH);
         isPreparedToShoot = false;
     }
 
@@ -162,12 +164,13 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
     {
         try
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(animParameters.LeadInTime), cancellationToken: token);
+            playerAnimation?.SetShootStage((int)PlayerAnimation.ShootStage.STANDBY);
 
-            float currentCharge = 0f;
             int cost = poolManager.GetCost(Arrow.Type.Explosion);
             while (player.HeartEnergy < cost)
             {
-                if (isPreparedToShoot && currentCharge > animParameters.LeadInTime)
+                if (isPreparedToShoot)
                 {
                     Shoot();
                     FollowThroughAsync(token).Forget();
@@ -176,16 +179,14 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
                 // フレーム待ち（Updateタイミング）
                 await UniTask.Yield(PlayerLoopTiming.Update, token);
 
-                // 経過時間加算
-                currentCharge += Time.deltaTime;
             }
 
-            currentCharge = 0f;
+            float currentCharge = 0f;
             chargeEffect = effectPoolManager.PlayEffect(player.Transform.position, EffectData.EffectType.Charge, 1.0f / parameters.ChargeTime);
             
             while (currentCharge < parameters.ChargeTime)
             {
-                if (isPreparedToShoot && currentCharge > animParameters.LeadInTime)
+                if (isPreparedToShoot)
                 {
                     Shoot();
                     FollowThroughAsync(token).Forget();
@@ -246,7 +247,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         finally
         {
             player?.ChangeState(Player.State.Idle);
-            playerAnimation?.FinishAction();
+            playerAnimation?.SetShootStage((int)PlayerAnimation.ShootStage.IDLE);
             // CTSの破棄 ヌルチェック + 実行
             chargeCts?.Dispose();
             chargeCts = null;

@@ -25,6 +25,7 @@ public class PlayerIndividualData
 
     public int HeartEnergy { get => heartEnergy; }
 
+    public bool IsIdle { get => State == Player.State.Idle; }
     public bool IsShooting { get => State == Player.State.Aim || State == Player.State.Shoot; }
 
     public CameraOffsetByCinemachineParameters CameraOffsetByCinemachineParameters { get => parameters.CameraOffsetParameters; }

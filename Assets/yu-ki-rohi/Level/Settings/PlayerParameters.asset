@@ -24,7 +24,7 @@ MonoBehaviour:
   PlayerAnimationParameters:
     LeadInTime: 0.1
     FollowThroughTime: 0.208
-    DamagedRigidTime: 0.3
+    DamagedRigidTime: 0.2
     DamagedInvincibleTime: 2
   CameraOffsetParameters:
     Distance: 4
