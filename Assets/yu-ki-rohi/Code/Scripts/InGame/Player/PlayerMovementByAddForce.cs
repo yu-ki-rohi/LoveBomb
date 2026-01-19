@@ -12,6 +12,11 @@ public class PlayerMovementByAddForce : PlayerMovementBase
         this.rigidbody = rigidbody;
     }
 
+    public override void OnDamaged()
+    {
+        rigidbody.linearVelocity = Vector3.zero;
+    }
+
     public override void Start()
     {
         
@@ -24,6 +29,7 @@ public class PlayerMovementByAddForce : PlayerMovementBase
 
     public override void FixedUpdate(float fixedDeltaTime)
     {
+        if(player.State == Player.State.Damaged) { return; }
         Vector2 addedForce = player.MoveDir * parameters.AccelerationForce;
 
         // ç≈çÇë¨ìxÇê›íË

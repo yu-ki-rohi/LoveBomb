@@ -24,7 +24,6 @@ public class PlayerMovementParameters
     [Range(0.5f, 5.0f)]
     public float BurstCoolTime = 1.0f;
 
-
     [Header("画面端に行った時のバッファ"), Min(0.0f)]
     public float PlayerRadius = 0.5f;
 
@@ -38,6 +37,12 @@ public class PlayerAnimationParameters
     public float LeadInTime = 0.1f;
     [Range(0.01f, 0.5f)]
     public float FollowThroughTime = 0.3f;
+
+    [Header("ダメージ関連")]
+    [Min(0.01f)]
+    public float DamagedRigidTime = 0.3f;
+    [Min(0.01f)]
+    public float DamagedInvincibleTime = 1.0f;
 }
 
 [Serializable]

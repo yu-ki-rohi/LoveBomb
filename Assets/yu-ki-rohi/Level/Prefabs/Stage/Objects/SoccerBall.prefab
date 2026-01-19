@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2036577044104125602}
   - component: {fileID: 2495082372997036557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SoccerBall
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

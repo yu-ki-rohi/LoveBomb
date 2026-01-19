@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5508849902046295270}
   - component: {fileID: 3006985766935279173}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Toy
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

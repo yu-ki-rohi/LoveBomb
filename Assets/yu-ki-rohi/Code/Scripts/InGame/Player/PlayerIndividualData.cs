@@ -53,6 +53,12 @@ public class PlayerIndividualData
         return true;
     }
 
+    public void LoseHeartEnergy(int amount)
+    {
+        heartEnergy = Mathf.Max(heartEnergy - amount, 0);
+        ReflectUI();
+    }
+
     public void ReflectUI()
     {
         HeartGauge.fillAmount = (float)heartEnergy / parameters.PlayerShootParameters.HeartEnergyMax;

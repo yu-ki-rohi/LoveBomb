@@ -35,7 +35,7 @@ public class Explosion : MonoBehaviour, IPooledObject<Explosion>
 
             var damageable = collision.GetComponent<IDamageable>();
             if(DebugMessenger.NullCheckError(damageable)) { return; }
-            damageable.TakeDamage(power, DamageType.Explosion, 1.0f);
+            damageable.TakeDamage(power, DamageType.Explosion);
         }
     }
 }

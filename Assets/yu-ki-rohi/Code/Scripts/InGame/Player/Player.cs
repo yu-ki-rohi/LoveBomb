@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,14 +12,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent (typeof(SpriteRenderer))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     #region 列挙型
     public enum State
     {
         Idle,
         Aim,
-        Shoot
+        Shoot,
+        Damaged
     }
 
     // 提案用に挙動パターンを複数個用意するとき、
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
 
     private List<NormalPlayerComponent> playerComponents = new();
 
+    private event Action OnDamaged;
     
 
     #endregion
@@ -142,6 +145,20 @@ public class Player : MonoBehaviour
         data.AddHeartEnergy(energy);
     }
 
+    public void TakeDamage(int attack, DamageType damageType)
+    {
+        if (damageType != DamageType.Scaring ||
+            data.State == State.Damaged) { return; }
+        // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
+        // 10: PlayerInvincible
+        gameObject.layer = 10;
+        OnDamaged.Invoke();
+        data.LoseHeartEnergy(attack);
+        data.ChangeState(State.Damaged);
+        StartCoroutine(RigidCoroutine());
+        
+    }
+
     #region Enable, Disable, Destroyの際のふるまい
     private void OnEnable()
     {
@@ -169,6 +186,7 @@ public class Player : MonoBehaviour
 
         // Player Inputのメソッドを解除
         SetInputEnabled(false);
+        OnDamaged = null;
     }
 
     private void OnDestroy()
@@ -195,6 +213,7 @@ public class Player : MonoBehaviour
                     followCamera.StageRange,
                     followCamera.StageCenter
             );
+
 
         switch (movePattern)
         {
@@ -229,6 +248,11 @@ public class Player : MonoBehaviour
         // 射撃コンポーネント
         var arrowShooter = new ArrowShooter(data, arrowPoolManager, effectPoolManager, parameters.PlayerShootParameters, parameters.PlayerAnimationParameters, playerAnimation);
         playerComponents.Add(arrowShooter);
+
+        foreach (var component in playerComponents)
+        {
+            OnDamaged += component.OnDamaged;
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -343,4 +367,16 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    #region コルーチン
+
+    private IEnumerator RigidCoroutine()
+    {
+        yield return new WaitForSeconds(parameters.PlayerAnimationParameters.DamagedRigidTime);
+        if(data.State == State.Damaged)
+        {
+            data.ChangeState(State.Idle);
+        }
+    }
+
+    #endregion
 }

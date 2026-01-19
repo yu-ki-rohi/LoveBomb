@@ -182,7 +182,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         }
     }
 
-    public void TakeDamage(int attack, DamageType damageType, float bonus)
+    public void TakeDamage(int attack, DamageType damageType)
     {
         // Šù‚É‘Ì—Í‚ª‚È‚¢ê‡‚Í”»’è‚ğs‚í‚È‚¢
         if (individualData.CurrentHitPoint <= 0) { return; }
@@ -297,11 +297,26 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         AttackHeartCore(collision);
+        if (individualData.BasicData.Type == Type.ChasePlayer &&
+            collision.gameObject.tag == "Player" &&
+            collision.TryGetComponent<IDamageable>(out var player))
+        {
+            player.TakeDamage(individualData.BasicData.Power, DamageType.Scaring);
+        }
     }
 
     protected void OnTriggerStay2D(Collider2D collision)
     {
         AttackHeartCore(collision);
+    }
+
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.CompareTag("Player")  &&
+            collision.collider.TryGetComponent<IDamageable>(out var player))
+        {
+            player.TakeDamage(individualData.BasicData.Power, DamageType.Scaring);
+        }
     }
 
     private void AttackHeartCore(Collider2D collision)

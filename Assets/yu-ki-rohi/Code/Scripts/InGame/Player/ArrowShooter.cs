@@ -79,11 +79,22 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
         }
     }
 
+    public override void OnDamaged()
+    {
+        chargeEffect?.Deactivate();
+        chargeEffect = null;
+
+        chargeCts?.Cancel();
+        chargeCts?.Dispose();
+        chargeCts = null;
+    }
+
     public override void OnDisable()
     {
         // オブジェクト破棄時に安全にキャンセル
         chargeCts?.Cancel();
         chargeCts?.Dispose();
+        chargeCts = null;
     }
 
     public override void Start()
@@ -159,6 +170,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
                 if (isPreparedToShoot && currentCharge > animParameters.LeadInTime)
                 {
                     Shoot();
+                    FollowThroughAsync(token).Forget();
                     return;
                 }
                 // フレーム待ち（Updateタイミング）
@@ -176,6 +188,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
                 if (isPreparedToShoot && currentCharge > animParameters.LeadInTime)
                 {
                     Shoot();
+                    FollowThroughAsync(token).Forget();
                     return;
                 }
 
@@ -200,15 +213,14 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             }
 
             Shoot();
-
+            FollowThroughAsync(token).Forget();
         }
         catch (OperationCanceledException)
         {
             DebugMessenger.Log("Charge canceled");
-        }
-        finally
-        {
-            FollowThroughAsync(token).Forget();
+            // CTSの破棄 ヌルチェック + 実行
+            chargeCts?.Dispose();
+            chargeCts = null;
         }
     }
 
