@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bell
   m_EditorClassIdentifier: 
   Name: Bell
-  Image: {fileID: 478778902486151627, guid: 55d5dc8dde292fa45981c6307c81c6c8, type: 3}
+  Image: {fileID: 21300000, guid: 55d5dc8dde292fa45981c6307c81c6c8, type: 3}
   Controller: {fileID: 9100000, guid: 195e09cf66de88d439071c95a40b3057, type: 2}
   Type: 0
   Scale: 0.8

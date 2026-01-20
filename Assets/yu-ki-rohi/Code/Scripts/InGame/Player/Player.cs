@@ -52,6 +52,8 @@ public class Player : MonoBehaviour, IDamageable
 
     [SerializeField] private EffectPoolManager effectPoolManager;
 
+    [SerializeField] private ItemDataBase itemData;
+
     // 一旦プレイヤーから操作
     [SerializeField] private Image heartGauge;
 
@@ -130,11 +132,46 @@ public class Player : MonoBehaviour, IDamageable
 
     }
 
+    private void OnUseItem(InputAction.CallbackContext context)
+    {
+        // UseItem以外では処理しない
+        if (context.action.name != "UseItem") { return; }
+
+        //foreach (var playerComoponent in playerComponents)
+        //{
+        //    playerComoponent.OnDash(context);
+        //}
+
+    }
+
+    private void OnSelectItem(InputAction.CallbackContext context)
+    {
+        // SelectItem以外では処理しない
+        if (context.action.name != "SelectItem") { return; }
+
+        DebugMessenger.Log(context.ReadValue<float>().ToString());
+
+        //foreach (var playerComoponent in playerComponents)
+        //{
+        //    playerComoponent.OnDash(context);
+        //}
+
+    }
+
     #endregion
 
     public void AddHeartEnergy(int energy)
     {
         data.AddHeartEnergy(energy);
+    }
+
+    public void AddItem(int id)
+    {
+        // 不正なidの場合か、所持上限をこえる場合はスキップ
+        if( id < 0 || 
+            id > itemData.Items.Count ||
+            itemData.Items[id].NumberOfPossessions >= itemData.Items[id].MaxNum) { return; }
+        itemData.Items[id].NumberOfPossessions++;
     }
 
     public void TakeDamage(int attack, DamageType damageType)
@@ -337,6 +374,7 @@ public class Player : MonoBehaviour, IDamageable
             OnShoot,
             OnShootDir,
             OnDash,
+            OnSelectItem
         };
         // 登録処理
         if (enabled)

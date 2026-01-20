@@ -25,8 +25,29 @@ public class ItemCommonData
 [CreateAssetMenu(fileName = "ItemDataBase", menuName = "ItemData/DataBase")]
 public class ItemDataBase : ScriptableObject
 {
+    public enum ItemKind
+    {
+        Bell,
+        Pen,
+        Sphere
+    }
 
     public ItemCommonData CommonData;
+
+
+    [Header("ベル")]
+    public float VacuumPower = 10.0f;
+    public float Interval = 3.0f;
+
+    [Header("スフィア")]
+    public float PushPower = 3.0f;
+
+    [Header("ペン")]
+    public int ExplosionPower = 6;
+    public float ExplosionScale = 5.0f;
+    public int NumOfIgnit = 10;
+
+
 
     public List<ItemData> Items;
 }
