@@ -5,8 +5,19 @@ using UnityEngine.UI;
 public class ItemData : ScriptableObject
 {
     public string Name;
-    public Image Icon;
+    public int id;
+    public int MaxNum = 9;
+
+    [Header("ドロップ時")]
+    public Sprite Icon;
     public float LifeTime = 10.0f;
+
+    [Header("使用時")]
+    public float Duration = 10.0f;
+    public float radius = 10.0f;
+
+    [Space(10)]
+    [Header("インゲーム中に変更するもの")]
     public int NumberOfPossessions = 0;
 
 }

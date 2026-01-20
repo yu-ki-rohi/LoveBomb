@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sphere
   m_EditorClassIdentifier: 
   Name: Sphere
-  Image: {fileID: 1812769062175639368, guid: 73e554ebebdfa4e49bb17cf36f7af739, type: 3}
+  Image: {fileID: 21300000, guid: 73e554ebebdfa4e49bb17cf36f7af739, type: 3}
   Controller: {fileID: 9100000, guid: 23f2769ec1e5646429a136bfdb656039, type: 2}
   Type: 0
   Scale: 0.8

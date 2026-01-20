@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: HeartEnergy
   m_EditorClassIdentifier: 
   Name: HeartEnergy
-  Icon: {fileID: 0}
+  id: 0
+  MaxNum: 9
+  Icon: {fileID: -4518482364727943313, guid: 51675fa9ee1e5fa488354415ac636156, type: 3}
   LifeTime: 10
+  Duration: 10
+  radius: 10
   NumberOfPossessions: 0
