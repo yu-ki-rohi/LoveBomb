@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      angel_rough_damage_0: -1804820395931902201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

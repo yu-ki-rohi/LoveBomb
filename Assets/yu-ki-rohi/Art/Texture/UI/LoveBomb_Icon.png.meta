@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LoveBomb_Icon_0: -6890253233949997354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
