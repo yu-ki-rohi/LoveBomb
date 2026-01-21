@@ -1,23 +1,14 @@
-public abstract class GameResult
-{
-    public bool IsClear { get; }
-    protected GameResult(bool isClear)
-    {
-        IsClear = isClear;
-    }
-}
+public abstract record GameResult(bool IsClear);
 
-public class ClearResult : GameResult
-{
-    public ClearResult() : base(isClear: true)
-    {
+public record ClearResult(
 
-    }
-}
-public class FailedResult : GameResult
-{
-    public FailedResult() : base(isClear: false)
-    {
+    Score Score
+    // Ç±Ç±Ç…ÉfÅ[É^
 
-    }
-}
+    ) : GameResult(IsClear: true);
+
+public record FailedResult(
+    
+    //
+
+    ) : GameResult(IsClear: false);
