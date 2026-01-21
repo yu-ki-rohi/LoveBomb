@@ -8,4 +8,5 @@ public class PoolsEnemyUse
     public EnemyDropsPoolManager EnemyDropsPool;
     public HeartEnergyPoolManager HeartEnergyPool;
     public EffectPoolManager EffectPool;
+    public CommonDropItemPoolManger DropItemPool;
 }

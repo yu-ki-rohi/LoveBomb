@@ -8,6 +8,7 @@ TagManager:
   - HeartCore
   - HeartEnergy
   - Stage
+  - Item
   layers:
   - Default
   - TransparentFX

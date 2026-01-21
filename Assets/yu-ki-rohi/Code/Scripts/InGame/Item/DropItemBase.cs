@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class DropItemBase : MonoBehaviour
 {
-    [SerializeField] private ItemData data;
+    [SerializeField] protected ItemData data;
     private ItemCommonData commonData;
 
     protected SpriteRenderer spriteRenderer;
