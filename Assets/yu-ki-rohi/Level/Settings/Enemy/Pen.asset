@@ -29,7 +29,7 @@ MonoBehaviour:
   PrepareRushTime: 0.5
   RushInterval: 5
   RushSpeedMultiplier: 2
-  DropsNomal: 1
-  DropsExplosion: 2
+  DropsNomal: 8
+  DropsExplosion: 8
   BaseScore: 10
   Enegy: 10

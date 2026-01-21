@@ -6,7 +6,6 @@ public class CommonDropItem : DropItemBase, IPooledObject<CommonDropItem>
 {
     private IObjectPool<CommonDropItem> pool;
     private int id;
-    private ItemData data;
 
     public IObjectPool<CommonDropItem> ObjectPool { set { pool = value; } }
 

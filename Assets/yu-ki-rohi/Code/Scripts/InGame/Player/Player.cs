@@ -56,6 +56,7 @@ public class Player : MonoBehaviour, IDamageable
 
     // 一旦プレイヤーから操作
     [SerializeField] private Image heartGauge;
+    [SerializeField] private Image selectedItem;
 
     #endregion
 
@@ -66,7 +67,10 @@ public class Player : MonoBehaviour, IDamageable
     private List<NormalPlayerComponent> playerComponents = new();
 
     private event Action OnDamaged;
-    
+
+    private float itemSelectLockTimer = 0.0f;
+
+    private int itemIndex = 0;
 
     #endregion
 
@@ -149,7 +153,14 @@ public class Player : MonoBehaviour, IDamageable
         // SelectItem以外では処理しない
         if (context.action.name != "SelectItem") { return; }
 
-        DebugMessenger.Log(context.ReadValue<float>().ToString());
+        
+        float input = context.ReadValue<float>();
+        if (itemSelectLockTimer <= 0.0f && input != 0.0f)
+        {
+            DebugMessenger.Log(input.ToString());
+            SelectItem(input);
+            itemSelectLockTimer = parameters.PlayerUseItem.SelectItemInterval;
+        }
 
         //foreach (var playerComoponent in playerComponents)
         //{
@@ -320,6 +331,11 @@ public class Player : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        if(itemSelectLockTimer > 0)
+        {
+            itemSelectLockTimer -= Time.deltaTime;
+        }
+
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.Update(Time.deltaTime);
@@ -333,6 +349,11 @@ public class Player : MonoBehaviour, IDamageable
             collision.TryGetComponent<HeartEnergy>(out var heartEnergy))
         {
             heartEnergy.Target = this;
+        }
+        else if(collision.CompareTag("Item") && 
+            collision.TryGetComponent<CommonDropItem>(out var commonDropItem))
+        {
+            commonDropItem.Target = this;
         }
     }
     #endregion
@@ -395,6 +416,38 @@ public class Player : MonoBehaviour, IDamageable
 
         }
     }
+
+    private void SelectItem(float input)
+    {
+        int delta = 0;
+        if(input > 0)
+        {
+            delta = -1;
+        }
+        else if(input < 0)
+        {
+            delta = 1;
+        }
+        itemIndex = LoopIndex(itemIndex, delta, itemData.Items.Count);
+        selectedItem.sprite = itemData.Items[itemIndex].Icon;
+    }
+
+    private int LoopIndex(int currentIndex, int delta, int ArrayLength)
+    {
+        delta %= ArrayLength;
+        int nextIndex = currentIndex + delta;
+        if(nextIndex < 0)
+        {
+            nextIndex = ArrayLength + nextIndex;
+        }
+        else if(nextIndex > ArrayLength - 1)
+        { 
+            nextIndex = nextIndex - ArrayLength;
+        }
+        nextIndex %= ArrayLength;
+        return nextIndex;
+    }
+
     #endregion
 
     #region コルーチン

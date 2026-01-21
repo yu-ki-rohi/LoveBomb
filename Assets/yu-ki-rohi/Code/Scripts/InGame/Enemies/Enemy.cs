@@ -23,7 +23,9 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         None = 0,
         HeartEnergy = 1 << 0,
         LoveScore = 1 << 1,
-        Item = 1 << 2
+        Bell = 1 << 2,
+        Pen = 1 << 3,
+        Sphere = 1 << 4,
     }
 
     private IObjectPool<Enemy> pool;
@@ -393,9 +395,18 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         {
             pools.EnemyDropsPool.DropEnergy(individualData.BasicData.BaseScore, transform.position);
         }
-        if ((drops & Drops.Item) != 0)
+        // HACK: id‚ÌŽw’è•û–@‚Í—vŒŸ“¢
+        if ((drops & Drops.Bell) != 0)
         {
-
+            pools.DropItemPool.DropItem(0, transform.position);
+        }
+        if ((drops & Drops.Pen) != 0)
+        {
+            pools.DropItemPool.DropItem(1, transform.position);
+        }
+        if ((drops & Drops.Sphere) != 0)
+        {
+            pools.DropItemPool.DropItem(2, transform.position);
         }
     }
 

@@ -105,6 +105,14 @@ public class PlayerShootParameters
     public int InitialHeartEnergy = 1;
 }
 
+[Serializable]
+public class PlayerUseItem
+{
+    [Range(0.0f, 1.0f)]
+    public float SelectItemInterval = 0.1f;
+    [Range(0.0f, 1.0f)]
+    public float UseItemRigid = 0.1f;
+}
 
 [CreateAssetMenu(fileName = "PlayerParameters", menuName = "CharacterData/PlayerParameters")]
 public class PlayerParameters : ScriptableObject
@@ -121,4 +129,6 @@ public class PlayerParameters : ScriptableObject
     [Header("射撃関連設定")]
     public PlayerShootParameters PlayerShootParameters;
 
+    [Header("アイテム関係")]
+    public PlayerUseItem PlayerUseItem;
 }
