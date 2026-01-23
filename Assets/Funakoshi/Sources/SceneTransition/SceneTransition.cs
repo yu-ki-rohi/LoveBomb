@@ -6,6 +6,6 @@ public class SceneTransition
     {
         ResultDataHub.HoldData(result);
 
-        SceneManager.LoadScene("ResultScene");
+        SceneManagerWithFade.LoadScene("ResultScene");
     }
 }

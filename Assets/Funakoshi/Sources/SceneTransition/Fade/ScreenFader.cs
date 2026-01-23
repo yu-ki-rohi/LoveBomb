@@ -1,11 +1,16 @@
+using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using System;
 using System.Threading;
 
+[RequireComponent(typeof(Canvas))]
 public class ScreenFader : MonoBehaviour
 {
-    [SerializeField] private FadeComponent fade;
+    [SerializeField]
+    private TransparentImage screenPanel;
+
+    [SerializeField]
+    private FadeSetting fadeSetting;
 
     #region シングルトン
 
@@ -36,23 +41,42 @@ public class ScreenFader : MonoBehaviour
 
     #endregion
 
+    void Start()
+    {
+        if (!fadeSetting)
+            throw new NullReferenceException("fadeSettingがアタッチされていません");
+    }
+
     /// <summary>
     /// 画面全体をフェードアウトします
     /// </summary>
     public async UniTask FadeOutAsync(CancellationToken cancellationToken = default)
     {
-        if (fade == null)
-            throw new NullReferenceException("FadeComponentがアタッチされていません");
+        float elapsedTime = 0f;
 
-        fade.Animator.SetTrigger(fade.FadeOutTrigger);
+        // フェードの進行度を計算します
+        float FadeProgression()
+        {
+            return Mathf.Clamp01(elapsedTime / fadeSetting.FadeDuration);
+        }
 
-        await UniTask.WaitUntil(
-            () => fade.Animator.GetCurrentAnimatorStateInfo(0).IsName("FadeOutState"),
-            cancellationToken: cancellationToken);
+        while (FadeProgression() < 1)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
 
-        AnimatorStateInfo stateInfo = fade.Animator.GetCurrentAnimatorStateInfo(0);
+            float t = FadeProgression();
 
-        await UniTask.Delay(TimeSpan.FromSeconds(stateInfo.length), cancellationToken: cancellationToken);
+            float alpha = fadeSetting.FadeCurve.Evaluate(t);
+
+            // 透明度を設定します
+            screenPanel.SetAlpha(alpha);
+
+            await UniTask.Yield(cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        // 最後に完全に黒くします
+        screenPanel.SetAlpha(1f);
     }
 
     /// <summary>
@@ -60,17 +84,30 @@ public class ScreenFader : MonoBehaviour
     /// </summary>
     public async UniTask FadeInAsync(CancellationToken cancellationToken = default)
     {
-        if (fade == null)
-            throw new NullReferenceException("FadeComponentがアタッチされていません");
+        float elapsedTime = 0f;
 
-        fade.Animator.SetTrigger(fade.FadeInTrigger);
+        // フェードの進行度を計算します
+        float FadeProgression()
+        {
+            return Mathf.Clamp01(elapsedTime / fadeSetting.FadeDuration);
+        }
 
-        await UniTask.WaitUntil(
-            () => fade.Animator.GetCurrentAnimatorStateInfo(0).IsName("FadeInState"),
-            cancellationToken: cancellationToken);
+        while (FadeProgression() < 1)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
 
-        AnimatorStateInfo stateInfo = fade.Animator.GetCurrentAnimatorStateInfo(0);
+            float t = FadeProgression();
 
-        await UniTask.Delay(TimeSpan.FromSeconds(stateInfo.length), cancellationToken: cancellationToken);
+            float alpha = fadeSetting.FadeCurve.Evaluate(1 - t);
+
+            // 透明度を設定します
+            screenPanel.SetAlpha(alpha);
+
+            await UniTask.Yield(cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        // 最後に完全に透明にします
+        screenPanel.SetAlpha(0f);
     }
 }
