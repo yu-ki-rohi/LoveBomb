@@ -2,13 +2,19 @@ public abstract record GameResult(bool IsClear);
 
 public record ClearResult(
 
-    Score Score
-    // ここにデータ
+    int Score,
+    int KillCount
+    // ここにClearResultのデータを追加
 
     ) : GameResult(IsClear: true);
 
-public record FailedResult(
-    
-    //
+public abstract record FailedResult() : GameResult(IsClear: false);
 
-    ) : GameResult(IsClear: false);
+public record DeadFailedResult(
+    
+    ) : FailedResult();
+
+public record TimeOverFailedResult(
+    
+    ) : FailedResult();
+
