@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EffectList", menuName = "EffectList")]
+[CreateAssetMenu(fileName = "FadeComponent", menuName = "ScriptableObjects/FadeComponent")]
 public class FadeComponent : ScriptableObject
 {
     public Animator Animator;

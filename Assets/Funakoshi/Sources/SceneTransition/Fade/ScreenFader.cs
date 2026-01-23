@@ -33,9 +33,12 @@ public class ScreenFader : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    
+
     #endregion
 
+    /// <summary>
+    /// 画面全体をフェードアウトします
+    /// </summary>
     public async UniTask FadeOutAsync(CancellationToken cancellationToken = default)
     {
         if (fade == null)
@@ -52,6 +55,9 @@ public class ScreenFader : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(stateInfo.length), cancellationToken: cancellationToken);
     }
 
+    /// <summary>
+    /// 画面全体をフェードインします
+    /// </summary>
     public async UniTask FadeInAsync(CancellationToken cancellationToken = default)
     {
         if (fade == null)
