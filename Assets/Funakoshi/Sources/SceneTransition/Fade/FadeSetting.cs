@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "FadeSetting", menuName = "Scriptable Objects/FadeSetting")]
+[CreateAssetMenu(fileName = "FadeSetting", menuName = "Scene Transition/FadeSetting")]
 public class FadeSetting : ScriptableObject
 {
     [Header("フェードにかかる時間 (秒)")]

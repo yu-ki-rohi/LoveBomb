@@ -24,9 +24,7 @@ public class ContentsRunner
     public void Update()
     {
         if (!isTargetSet)
-        {
             throw new NullReferenceException("ContentsRunnerにContentManagerが設定されていません");
-        }
 
         // マウスを押すと次の停止点までスキップします
         if (Input.GetMouseButtonDown(0))
