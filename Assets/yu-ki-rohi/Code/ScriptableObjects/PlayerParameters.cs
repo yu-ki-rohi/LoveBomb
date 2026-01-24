@@ -110,8 +110,8 @@ public class PlayerUseItem
 {
     [Range(0.0f, 1.0f)]
     public float SelectItemInterval = 0.1f;
-    [Range(0.0f, 1.0f)]
-    public float UseItemRigid = 0.1f;
+
+    public float UseItemDistance = 3.0f;
 }
 
 [CreateAssetMenu(fileName = "PlayerParameters", menuName = "CharacterData/PlayerParameters")]

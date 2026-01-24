@@ -17,6 +17,8 @@ MonoBehaviour:
   MaxNum: 9
   Icon: {fileID: 3884694186848090751, guid: a8502b4f5e05c2545a1dd8f617212ba5, type: 3}
   LifeTime: 10
+  Controller: {fileID: 9100000, guid: 964b8643da4cb534ab98ae19073a3a1a, type: 2}
+  ItemType: 0
   Duration: 10
-  radius: 10
-  NumberOfPossessions: 0
+  Radius: 10
+  NumberOfPossessions: 9
