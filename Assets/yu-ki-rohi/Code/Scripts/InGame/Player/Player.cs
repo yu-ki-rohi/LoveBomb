@@ -52,6 +52,8 @@ public class Player : MonoBehaviour, IDamageable
 
     [SerializeField] private EffectPoolManager effectPoolManager;
 
+    [SerializeField] private UsedItemPoolManager usedItemPoolManager;
+
     [SerializeField] private ItemDataBase itemData;
 
     // ˆê’UƒvƒŒƒCƒ„[‚©‚ç‘€ì
@@ -140,12 +142,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         // UseItemˆÈŠO‚Å‚Íˆ—‚µ‚È‚¢
         if (context.action.name != "UseItem") { return; }
-
-        //foreach (var playerComoponent in playerComponents)
-        //{
-        //    playerComoponent.OnDash(context);
-        //}
-
+        if(data.State != State.Idle && data.State != State.Aim) { return; }
+        
+        if(context.performed)
+        {
+            UseItem();
+        }
     }
 
     private void OnSelectItem(InputAction.CallbackContext context)
@@ -157,16 +159,9 @@ public class Player : MonoBehaviour, IDamageable
         float input = context.ReadValue<float>();
         if (itemSelectLockTimer <= 0.0f && input != 0.0f)
         {
-            DebugMessenger.Log(input.ToString());
             SelectItem(input);
             itemSelectLockTimer = parameters.PlayerUseItem.SelectItemInterval;
         }
-
-        //foreach (var playerComoponent in playerComponents)
-        //{
-        //    playerComoponent.OnDash(context);
-        //}
-
     }
 
     #endregion
@@ -395,7 +390,8 @@ public class Player : MonoBehaviour, IDamageable
             OnShoot,
             OnShootDir,
             OnDash,
-            OnSelectItem
+            OnSelectItem,
+            OnUseItem
         };
         // “o˜^ˆ—
         if (enabled)
@@ -446,6 +442,28 @@ public class Player : MonoBehaviour, IDamageable
         }
         nextIndex %= ArrayLength;
         return nextIndex;
+    }
+
+    private void UseItem()
+    {
+        ItemData item = itemData.Items[itemIndex];
+
+        //if (item.NumberOfPossessions < 1) { return; }
+
+        Vector3 position = transform.position;
+
+        if (data.State == State.Idle)
+        {
+            position += (Vector3)data.MoveDir * parameters.PlayerUseItem.UseItemDistance;
+        }
+        else if (data.State == State.Aim)
+        {
+            position += (Vector3)data.ShootDir * parameters.PlayerUseItem.UseItemDistance;
+        }
+
+        usedItemPoolManager.UseItem(item, position,item.Radius);
+
+        //item.NumberOfPossessions--;
     }
 
     #endregion

@@ -14,4 +14,5 @@ public class EnemyIndividualData
     // 自身につながっているエネミーの数
     public int ConcatenatingNum = 0;
     public Animator Animator;
+    public Rigidbody2D Rigidbody;
 }
