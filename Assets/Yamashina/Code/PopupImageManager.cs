@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,12 +9,14 @@ public class PopupImageManager : MonoBehaviour
     [SerializeField] private GameObject canvasPrefab;
     [SerializeField] private GameObject imagePrefab;
     [SerializeField] private Sprite[] images;
-
+    [SerializeField] private string[] stageNames; // images と同じ長さ
     private GameObject canvasObject;
     private GameObject imageObject;
     private PopupCanvasView canvasView;
+    [SerializeField] private float fadeDuration = 0.5f; // フェード時間
 
     private int currentImageIndex = 0;
+    private Coroutine fadeCoroutine;
 
     private void Start()
     {
@@ -47,8 +51,9 @@ public class PopupImageManager : MonoBehaviour
         if (image != null)
         {
             image.sprite = sprite;
+            image.color = new Color(1, 1, 1, 1); // 初期は不透明
         }
-
+      
         EventTrigger eventTrigger = imageObject.gameObject.AddComponent<EventTrigger>();
         if (eventTrigger != null)
         {
@@ -76,6 +81,9 @@ public class PopupImageManager : MonoBehaviour
             prevButton.onClick.RemoveAllListeners();
             prevButton.onClick.AddListener(ShowPreviousImage);
         }
+
+
+        UpdateStageText();
     }
 
     public void ShowNextImage()
@@ -83,7 +91,8 @@ public class PopupImageManager : MonoBehaviour
         if (currentImageIndex < images.Length - 1)
         {
             currentImageIndex++;
-            ChangeImage(images[currentImageIndex]);
+            StartFadeChange(images[currentImageIndex]);
+
         }
     }
 
@@ -92,10 +101,102 @@ public class PopupImageManager : MonoBehaviour
         if (currentImageIndex > 0)
         {
             currentImageIndex--;
-            ChangeImage(images[currentImageIndex]);
+            StartFadeChange(images[currentImageIndex]);
         }
     }
+    private void StartFadeChange(Sprite newSprite)
+    {
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
 
+        fadeCoroutine = StartCoroutine(FadeImageCoroutine(newSprite));
+    }
+
+    //アニメーション違和感あり（でも言語化できない）
+    private IEnumerator FadeImageCoroutine(Sprite newSprite)
+    {
+        if (imageObject == null) yield break;
+
+        Image image = imageObject.GetComponentInChildren<Image>();
+        if (image == null) yield break;
+
+        // フェードアウト
+        float elapsed = 0f;
+        Color originalColor = image.color;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            image.color = new Color(1, 1, 1, Mathf.Lerp(1, 0, elapsed / fadeDuration));
+            yield return null;
+        }
+
+        // 画像を切り替え
+        image.sprite = newSprite;
+
+        // ステージ名も更新
+        UpdateStageText();
+
+        // フェードイン
+        elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            image.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, elapsed / fadeDuration));
+            yield return null;
+        }
+
+        image.color = Color.white; // 完全不透明に戻す
+    }
+    private void UpdateStageText()
+    {
+        if (canvasView == null) return;
+
+        TextMeshProUGUI stage = canvasView.GetStageText();
+        if (stage != null && stageNames.Length > currentImageIndex)
+        {
+            stage.text = stageNames[currentImageIndex];
+        }
+        // ボタン表示/非表示制御
+        Button nextButton = canvasView.controlRoot.Find("NextButton")?.GetComponent<Button>();
+        Button prevButton = canvasView.controlRoot.Find("ChangeImage_Return")?.GetComponent<Button>();
+
+        if (nextButton != null)
+        {
+            CanvasGroup nextCg = nextButton.GetComponent<CanvasGroup>();
+            if (nextCg == null) nextCg = nextButton.gameObject.AddComponent<CanvasGroup>();
+
+            // 最後ならフェードアウト、それ以外はフェードイン
+            StartCoroutine(FadeButton(nextCg, currentImageIndex < images.Length - 1));
+        }
+
+        if (prevButton != null)
+        {
+            CanvasGroup prevCg = prevButton.GetComponent<CanvasGroup>();
+            if (prevCg == null) prevCg = prevButton.gameObject.AddComponent<CanvasGroup>();
+
+            // 最初ならフェードアウト、それ以外はフェードイン
+            StartCoroutine(FadeButton(prevCg, currentImageIndex > 0));
+        }
+    }
+    private IEnumerator FadeButton(CanvasGroup cg, bool show)
+    {
+        float duration = 0.3f; // フェード時間
+        float start = cg.alpha;
+        float end = show ? 1f : 0f;
+        float elapsed = 0f;
+
+        cg.interactable = show; // 透明でも操作可能にならないように
+        cg.blocksRaycasts = show;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(start, end, elapsed / duration);
+            yield return null;
+        }
+
+        cg.alpha = end;
+    }
     public void ChangeImage(Sprite sprite)
     {
         if (imageObject == null) return;
@@ -105,6 +206,7 @@ public class PopupImageManager : MonoBehaviour
         {
             image.sprite = sprite;
         }
+        UpdateStageText();
     }
 
     public void DestroyCanvasWithImage()
