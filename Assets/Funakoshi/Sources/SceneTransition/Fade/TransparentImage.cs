@@ -7,10 +7,15 @@ public class TransparentImage
 {
     public Image image;
 
-    public void SetAlpha(float alpha)
+    public void NullCheck()
     {
         if (image == null)
             throw new NullReferenceException("Imageがアタッチされていません");
+    }
+
+    public void SetAlpha(float alpha)
+    {
+        NullCheck();
 
         alpha = Mathf.Clamp01(alpha);
 

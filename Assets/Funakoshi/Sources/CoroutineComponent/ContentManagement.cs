@@ -32,7 +32,7 @@ public class ContentManagement : MonoBehaviour
             NextContent();
         }
     }
-    public void SkipContent()
+    public void SkipToNextStop()
     {
         if (!IsValidIndex)
         {

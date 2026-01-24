@@ -7,7 +7,7 @@ using System.Threading;
 public class ScreenFader : MonoBehaviour
 {
     [SerializeField]
-    private TransparentImage screenPanel;
+    private TransparentImage screenPanel = new();
 
     [SerializeField]
     private FadeSetting fadeSetting;
@@ -24,7 +24,7 @@ public class ScreenFader : MonoBehaviour
         return singleton.Current();
     }
 
-    void Awake()
+    private void SetSingleton()
     {
         if (singleton.IsAlreadySet())
         {
@@ -41,10 +41,19 @@ public class ScreenFader : MonoBehaviour
 
     #endregion
 
-    void Start()
+    private void NullCheck()
     {
+        screenPanel.NullCheck();
+
         if (!fadeSetting)
             throw new NullReferenceException("fadeSettingがアタッチされていません");
+    }
+
+    void Awake()
+    {
+        NullCheck();
+
+        SetSingleton();
     }
 
     /// <summary>

@@ -5,6 +5,7 @@ public class EndingScene : MonoBehaviour
     [SerializeField] ContentManagement contentManagement;
 
     private readonly EndingSceneBGM bgm = new();
+    private readonly ContentsRunner runner = new();
 
     void Start()
     {
@@ -12,25 +13,10 @@ public class EndingScene : MonoBehaviour
 
         bgm.PlayFor(result);
 
-        contentManagement.RunFirstContent();
+        runner.SetAndRun(contentManagement);
     }
     void Update()
     {
-        if (!contentManagement.IsAllContentEnd())
-        {
-            contentManagement.ContentUpdate();
-        }
-
-        PressMouseToSkip();
-    }
-    void PressMouseToSkip()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!contentManagement.IsAllContentEnd())
-            {
-                contentManagement.SkipContent();
-            }
-        }
+        runner.Update();
     }
 }
