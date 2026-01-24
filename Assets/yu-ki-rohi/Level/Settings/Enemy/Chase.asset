@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chase
   m_EditorClassIdentifier: 
   Name: Chase
-  Image: {fileID: 21300000, guid: 3a4c07e2984d86343878178d1c43431b, type: 3}
+  Image: {fileID: 21300000, guid: f0b58a1709876394e8e4807d124d6bb0, type: 3}
   Controller: {fileID: 9100000, guid: ad63da632d9651f4480c7a8a66025016, type: 2}
   Type: 1
   Scale: 1.2
