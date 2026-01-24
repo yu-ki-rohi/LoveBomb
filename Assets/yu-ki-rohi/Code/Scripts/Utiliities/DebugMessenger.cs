@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
+// Debug.Log関係のラップクラス
 public static class DebugMessenger
 {
     private static bool enableMessage = true;

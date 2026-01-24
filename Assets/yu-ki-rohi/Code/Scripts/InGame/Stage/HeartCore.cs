@@ -63,7 +63,6 @@ public class HeartCore : MonoBehaviour
         int sub = playerScore - enemyScore;
         float ratio = Mathf.Clamp01((maxSub + sub) / (maxSub * 2.0f));
         playerScoreUI.fillAmount = ratio;
-        enemyScoreUI.fillAmount = 1.0f - ratio;
     }
 
     private void ReflectLight()
