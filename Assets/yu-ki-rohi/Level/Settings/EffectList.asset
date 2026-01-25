@@ -18,8 +18,13 @@ MonoBehaviour:
     Controller: {fileID: 9100000, guid: d40aa8a5d70767f44b6baac9a2f32dbe, type: 2}
     IsLoop: 0
     Scale: 2
-  - Name: Hit Effect
+  - Name: ChargeEnd
     Type: 1
+    Controller: {fileID: 9100000, guid: 2db7d588653d6834e81818561bf15c74, type: 2}
+    IsLoop: 0
+    Scale: 1.8
+  - Name: Hit Effect
+    Type: 2
     Controller: {fileID: 9100000, guid: 5cd6bb7112f1be545bea05b51aab73a2, type: 2}
     IsLoop: 0
     Scale: 1

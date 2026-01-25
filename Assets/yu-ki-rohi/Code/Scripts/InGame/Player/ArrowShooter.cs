@@ -151,6 +151,12 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             Vector3 firePosition = transform.position + (Vector3)player.ShootDir * parameters.ShootPositionDistance;
             // オブジェクトプールから取り出し
             poolManager?.Shoot(firePosition, player.ShootDir, type);
+
+            // TODO: 矢を射る音
+        }
+        else
+        {
+            // TODO: 弦を弾く音
         }
         // 矢を溜め無し状態に戻す
         type = Arrow.Type.Normal;
@@ -204,8 +210,11 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             chargeEffect = null;
             if (player.ConsumeHeartEnergy(poolManager.GetCost(type)))
             {
+                // TODO: チャージ完了音
                 type = Arrow.Type.Explosion;
                 DebugMessenger.Log("Fully Charged!");
+                // HACK: アニメーション速度の指定の仕方
+                effectPoolManager.PlayEffect(player.Transform.position, EffectData.EffectType.ChargeEnd, 1.0f);
             }
             while (isPreparedToShoot == false) 
             {
