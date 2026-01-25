@@ -3,6 +3,7 @@ using UnityEngine;
 
 // GeneratorBaseがあるがあちらで出現範囲の指定と出現位置の決定
 // こちらで出現するオブジェクトを決定している
+// (初めからこの設計にしていれば、もっと適切な名前が付けられたのに…)
 
 public abstract class Generator : MonoBehaviour
 {

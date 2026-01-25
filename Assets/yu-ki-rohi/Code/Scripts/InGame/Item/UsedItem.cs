@@ -108,7 +108,7 @@ public class UsedItem : MonoBehaviour, IPooledObject<UsedItem>
 
         if (data.ItemType == ItemData.Type.Barrier)
         {
-            enemy.AddForce((collision.transform.position - transform.position).normalized, dataBase.PushPower);
+            enemy.AddForce((collision.transform.position - transform.position).normalized, dataBase.KnockPower);
         }
         else if (data.ItemType == ItemData.Type.Attract)
         {
@@ -122,7 +122,7 @@ public class UsedItem : MonoBehaviour, IPooledObject<UsedItem>
         if (data.ItemType == ItemData.Type.Barrier &&
             collision.TryGetComponent<Enemy>(out var enemy))
         {
-            enemy.AddForce((collision.transform.position - transform.position).normalized, dataBase.PushPower);
+            enemy.AddForce((collision.transform.position - transform.position).normalized, dataBase.PushPower, ForceMode2D.Force);
         }
     }
 

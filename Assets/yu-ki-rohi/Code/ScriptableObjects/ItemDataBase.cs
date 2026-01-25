@@ -41,6 +41,7 @@ public class ItemDataBase : ScriptableObject
 
     [Header("スフィア")]
     public float PushPower = 3.0f;
+    public float KnockPower = 3.0f;
     public float BlinkTime = 3.0f;
 
     [Header("ペン")]

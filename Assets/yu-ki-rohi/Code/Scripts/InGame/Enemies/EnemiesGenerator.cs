@@ -52,6 +52,9 @@ public class EnemiesGenerator : Generator
 
     #endregion
 
+    public EnemyData EnemyData { get { return enemyData; } }
+
+    public Transform Target { get { return transform; } set { target = value; } }
 
     void Start()
     {

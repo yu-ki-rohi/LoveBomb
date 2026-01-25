@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: LoveBomb
-  defaultCursor: {fileID: 2800000, guid: 110446d6e5c22354e9f726db4b1ef7c3, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 4287b08ded629444786abf47dadf4b3f, type: 3}
   cursorHotspot: {x: 28, y: 28}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1

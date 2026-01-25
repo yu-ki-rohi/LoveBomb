@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 478778902486151627
     second: enemy_bell01_0
+  - first:
+      213: -3808547880111749039
+    second: enemy_bell01_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,10 +106,10 @@ TextureImporter:
       name: enemy_bell01_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 32
-        width: 234
-        height: 193
+        x: 18
+        y: 52
+        width: 222
+        height: 183
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +120,28 @@ TextureImporter:
       bones: []
       spriteID: bc173a800e6f4a600800000000000000
       internalID: 478778902486151627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bell01_1
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 151
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1584fdfa1e1552bc0800000000000000
+      internalID: -3808547880111749039
       vertices: []
       indices: 
       edges: []
@@ -136,6 +161,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       enemy_bell01_0: 478778902486151627
+      enemy_bell01_1: -3808547880111749039
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
