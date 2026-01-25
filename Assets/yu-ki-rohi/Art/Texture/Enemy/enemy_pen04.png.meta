@@ -103,10 +103,10 @@ TextureImporter:
       name: enemy_pen04_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 256
-        height: 255
+        x: 6
+        y: 0
+        width: 246
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

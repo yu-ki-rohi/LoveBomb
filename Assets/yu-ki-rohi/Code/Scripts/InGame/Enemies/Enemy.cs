@@ -154,9 +154,9 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         pool?.Release(this);
     }
 
-    public void AddForce(Vector3 dir, float power)
+    public void AddForce(Vector3 dir, float power, ForceMode2D forceMode2D = ForceMode2D.Impulse)
     {
-        individualData.Rigidbody.AddForce(dir * power, ForceMode2D.Impulse);
+        individualData.Rigidbody.AddForce(dir * power, forceMode2D);
         if(HeartCore != null || HoldingHandsEnemy != null)
         {
             FinishAttack();

@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class InGameManager : MonoBehaviour
 {
+    [SerializeField] private Player player;
+    [SerializeField] private StageData stageData;
+
+    private StageManager stageManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

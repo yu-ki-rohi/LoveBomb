@@ -52,4 +52,4 @@ MonoBehaviour:
     InitialHeartEnergy: 100
   PlayerUseItem:
     SelectItemInterval: 0.1
-    UseItemDistance: 3
+    UseItemDistance: 8

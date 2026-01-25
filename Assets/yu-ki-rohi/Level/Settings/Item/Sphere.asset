@@ -20,5 +20,5 @@ MonoBehaviour:
   Controller: {fileID: 9100000, guid: a504732b4a80b004e9a584bcbad04f2e, type: 2}
   ItemType: 2
   Duration: 10
-  Radius: 4
-  NumberOfPossessions: 7
+  Radius: 8
+  NumberOfPossessions: 9

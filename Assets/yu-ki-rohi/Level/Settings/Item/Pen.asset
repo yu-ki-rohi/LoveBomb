@@ -19,6 +19,6 @@ MonoBehaviour:
   LifeTime: 10
   Controller: {fileID: 9100000, guid: c69aef7bb9909bf4bab5ec663a583d95, type: 2}
   ItemType: 1
-  Duration: 10
-  Radius: 6
+  Duration: 15
+  Radius: 8
   NumberOfPossessions: 9

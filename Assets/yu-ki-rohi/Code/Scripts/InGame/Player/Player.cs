@@ -452,14 +452,27 @@ public class Player : MonoBehaviour, IDamageable
 
         Vector3 position = transform.position;
 
-        if (data.State == State.Idle)
+        if (data.IsGamePadConnected == false)
         {
-            position += (Vector3)data.MoveDir * parameters.PlayerUseItem.UseItemDistance;
+            // マウスポインターの座標を取得し、ワールド座標系に変換
+            Vector2 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 dir = (Vector3)mousePosition - position;
+            float distanceMax = parameters.PlayerUseItem.UseItemDistance;
+            if (dir.sqrMagnitude <= distanceMax * distanceMax)
+            {
+                position = (Vector3)mousePosition;
+            }
+            else
+            {
+                position = position + dir.normalized * distanceMax;
+            }
         }
-        else if (data.State == State.Aim)
+        else
         {
             position += (Vector3)data.ShootDir * parameters.PlayerUseItem.UseItemDistance;
         }
+
 
         usedItemPoolManager.UseItem(item, position,item.Radius);
 
