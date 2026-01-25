@@ -52,6 +52,8 @@ public class Player : MonoBehaviour, IDamageable
 
     [SerializeField] private EffectPoolManager effectPoolManager;
 
+    [SerializeField] private UsedItemPoolManager usedItemPoolManager;
+
     [SerializeField] private ItemDataBase itemData;
 
     // 一旦プレイヤーから操作
@@ -140,12 +142,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         // UseItem以外では処理しない
         if (context.action.name != "UseItem") { return; }
-
-        //foreach (var playerComoponent in playerComponents)
-        //{
-        //    playerComoponent.OnDash(context);
-        //}
-
+        if(data.State != State.Idle && data.State != State.Aim) { return; }
+        
+        if(context.performed)
+        {
+            UseItem();
+        }
     }
 
     private void OnSelectItem(InputAction.CallbackContext context)
@@ -157,16 +159,9 @@ public class Player : MonoBehaviour, IDamageable
         float input = context.ReadValue<float>();
         if (itemSelectLockTimer <= 0.0f && input != 0.0f)
         {
-            DebugMessenger.Log(input.ToString());
             SelectItem(input);
             itemSelectLockTimer = parameters.PlayerUseItem.SelectItemInterval;
         }
-
-        //foreach (var playerComoponent in playerComponents)
-        //{
-        //    playerComoponent.OnDash(context);
-        //}
-
     }
 
     #endregion
@@ -395,7 +390,8 @@ public class Player : MonoBehaviour, IDamageable
             OnShoot,
             OnShootDir,
             OnDash,
-            OnSelectItem
+            OnSelectItem,
+            OnUseItem
         };
         // 登録処理
         if (enabled)
@@ -446,6 +442,41 @@ public class Player : MonoBehaviour, IDamageable
         }
         nextIndex %= ArrayLength;
         return nextIndex;
+    }
+
+    private void UseItem()
+    {
+        ItemData item = itemData.Items[itemIndex];
+
+        //if (item.NumberOfPossessions < 1) { return; }
+
+        Vector3 position = transform.position;
+
+        if (data.IsGamePadConnected == false)
+        {
+            // マウスポインターの座標を取得し、ワールド座標系に変換
+            Vector2 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 dir = (Vector3)mousePosition - position;
+            float distanceMax = parameters.PlayerUseItem.UseItemDistance;
+            if (dir.sqrMagnitude <= distanceMax * distanceMax)
+            {
+                position = (Vector3)mousePosition;
+            }
+            else
+            {
+                position = position + dir.normalized * distanceMax;
+            }
+        }
+        else
+        {
+            position += (Vector3)data.ShootDir * parameters.PlayerUseItem.UseItemDistance;
+        }
+
+
+        usedItemPoolManager.UseItem(item, position,item.Radius);
+
+        //item.NumberOfPossessions--;
     }
 
     #endregion

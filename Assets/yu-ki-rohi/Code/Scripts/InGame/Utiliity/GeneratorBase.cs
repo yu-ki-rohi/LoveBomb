@@ -4,7 +4,8 @@ using Cysharp.Threading.Tasks;
 using System;
 
 
-// 設計の変更からGeneratorBaseを名乗りつつ、出現範囲を取得することとSceneビュー上に描画することが主な役割になっている
+// Generatorとは継承関係ではない
+// あちらは生成するオブジェクトの決定、こちらは生成範囲及び頻度を担っている
 public abstract class GeneratorBase : MonoBehaviour
 {
     public enum Type
@@ -16,9 +17,11 @@ public abstract class GeneratorBase : MonoBehaviour
     [SerializeField, Min(0.0f)] private float initialGenerateDelay = 5.0f;
     [SerializeField, Min(0.1f)] private float generateInterval = 3.0f;
     [SerializeField, Min(0.0f)] private float generateIntervalRandomOffset = 0.0f;
+    [SerializeField] bool isBootOnStart = true;
     private CancellationTokenSource generateCts;
     private event Action onGenerate;
 
+    public bool IsBootOnStart { get => isBootOnStart; set => isBootOnStart = value; }
     
     #region Unity Editor
 #if UNITY_EDITOR
@@ -54,18 +57,33 @@ public abstract class GeneratorBase : MonoBehaviour
 
     public abstract Vector3 DecideGeneratePosition();
 
+    public void BootGenerateAsync()
+    {
+        CancelGenrateAsync();
+
+        generateCts = new CancellationTokenSource();
+        GenerateAsync(generateCts.Token).Forget();
+    }
+
+    public void CancelGenrateAsync()
+    {
+        generateCts?.Cancel();
+        generateCts?.Dispose();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        generateCts = new CancellationTokenSource();
-        GenerateAsync(generateCts.Token).Forget();
+        if(isActiveAndEnabled)
+        {
+            BootGenerateAsync();
+        }
     }
 
     void OnDisable()
     {
         // オブジェクト破棄時に安全にキャンセル
-        generateCts?.Cancel();
-        generateCts?.Dispose();
+        CancelGenrateAsync();
     }
 
     private void OnDestroy()

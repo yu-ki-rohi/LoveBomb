@@ -103,10 +103,10 @@ TextureImporter:
       name: enemy_sphere02_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 19
-        width: 176
-        height: 218
+        x: 45
+        y: 0
+        width: 168
+        height: 243
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

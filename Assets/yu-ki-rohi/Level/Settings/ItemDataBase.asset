@@ -20,12 +20,14 @@ MonoBehaviour:
     StartBlinkRemainingTimeSecondPhase: 2
     VisibleTimeSecondPhase: 0.2
     InvisibleTimeSecondPhase: 0.1
-  VacuumPower: 10
-  Interval: 3
-  PushPower: 3
+  VacuumPower: 30
+  Interval: 1.5
+  PushPower: 200
+  KnockPower: 20
+  BlinkTime: 3
   ExplosionPower: 6
-  ExplosionScale: 5
-  NumOfIgnit: 10
+  ExplosionScale: 10
+  NumOfIgnit: 20
   Items:
   - {fileID: 11400000, guid: 32c23d99c01a28647be304bb09a7485b, type: 2}
   - {fileID: 11400000, guid: cbe09d83d5794554d8dae267fa89a118, type: 2}

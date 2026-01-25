@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             gameObject.layer = 7;
 
             // “®‚«
-            var movement = new EnemyMovementToHeartCoreByAddForce(transform, GetComponent<Rigidbody2D>(), target, individualData);
+            var movement = new EnemyMovementToHeartCoreByAddForce(transform, target, individualData);
             OnAttack += movement.OnAttack;
             OnMove += movement.OnMove;
             OnDie += movement.OnDie;
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             gameObject.layer = 9;
 
             // “®‚«
-            var movement = new EnemyMovementChasePlayer(transform, GetComponent<Rigidbody2D>(), target, individualData);
+            var movement = new EnemyMovementChasePlayer(transform, target, individualData);
             OnAttack += movement.OnAttack;
             OnMove += movement.OnMove;
             OnDie += movement.OnDie;
@@ -154,10 +154,20 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
         pool?.Release(this);
     }
 
+    public void AddForce(Vector3 dir, float power, ForceMode2D forceMode2D = ForceMode2D.Impulse)
+    {
+        individualData.Rigidbody.AddForce(dir * power, forceMode2D);
+        if(HeartCore != null || HoldingHandsEnemy != null)
+        {
+            FinishAttack();
+        }
+    }
+
     void Awake()
     {
         individualData = new EnemyIndividualData();
         individualData.Animator = GetComponent<Animator>();
+        individualData.Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -267,16 +277,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             if(individualData.HoldingHandsEnemy.IsAttacking == false)
             {
                 DebugMessenger.Log("Holding Enemy has gone");
-                individualData.HeartCore.ReduceEnemyCount();
-                individualData.HoldingHandsEnemy.DisconnectedHands();
-                individualData.HeartCore = null;
-                individualData.HoldingHandsEnemy = null;
-                OnMove?.Invoke();
-                if(anxietyEffectGenerator != null)
-                {
-                    StopCoroutine(anxietyEffectGenerator);
-                    anxietyEffectGenerator = null;
-                }
+                FinishAttack();
                 return;
             }
 
@@ -293,6 +294,20 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             {
                 anxietyEffectGenerator = StartCoroutine("GenerateAnxietyEffect");
             }
+        }
+    }
+
+    protected void FinishAttack()
+    {
+        individualData.HeartCore?.ReduceEnemyCount();
+        individualData.HoldingHandsEnemy?.DisconnectedHands();
+        individualData.HeartCore = null;
+        individualData.HoldingHandsEnemy = null;
+        OnMove?.Invoke();
+        if (anxietyEffectGenerator != null)
+        {
+            StopCoroutine(anxietyEffectGenerator);
+            anxietyEffectGenerator = null;
         }
     }
 

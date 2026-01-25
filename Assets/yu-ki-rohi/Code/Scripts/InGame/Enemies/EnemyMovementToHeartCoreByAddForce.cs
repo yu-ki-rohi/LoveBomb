@@ -3,15 +3,13 @@ using UnityEngine;
 public class EnemyMovementToHeartCoreByAddForce : IUpdatable
 {
     private Transform transform;
-    private Rigidbody2D rigidbody;
     private Transform target;
     private bool canMove = true;
     private EnemyIndividualData enemyIndividualData;
 
-    public EnemyMovementToHeartCoreByAddForce(Transform transform, Rigidbody2D rigidbody, Transform target, EnemyIndividualData enemyIndividualData)
+    public EnemyMovementToHeartCoreByAddForce(Transform transform, Transform target, EnemyIndividualData enemyIndividualData)
     {
         this.transform = transform;
-        this.rigidbody = rigidbody;
         this.target = target;
         this.enemyIndividualData = enemyIndividualData;
         enemyIndividualData.MoveDir = (target.position - transform.position).normalized;
@@ -20,7 +18,7 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
     public void Start()
     {
         if (DebugMessenger.NullCheckError(transform) ||
-            DebugMessenger.NullCheckError(rigidbody) ||
+            DebugMessenger.NullCheckError(enemyIndividualData.Rigidbody) ||
             DebugMessenger.NullCheckError(target))
         {
             Debug.LogWarning("Lack of Movement Info");
@@ -32,12 +30,12 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
     {
         if (canMove == false)
         {
-            rigidbody.linearVelocity = Vector2.zero;
+            enemyIndividualData.Rigidbody.linearVelocity = Vector2.zero;
             return;
         }
 
         if (DebugMessenger.NullCheckError(transform) ||
-            DebugMessenger.NullCheckError(rigidbody) ||
+            DebugMessenger.NullCheckError(enemyIndividualData.Rigidbody) ||
             DebugMessenger.NullCheckError(target))
         {
             Debug.LogWarning("Lack of Movement Info");
@@ -50,7 +48,7 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
             enemyIndividualData.MoveDir = toTargetVec.normalized;
         }
 
-        rigidbody.AddForce(enemyIndividualData.MoveDir * rigidbody.linearDamping * enemyIndividualData.BasicData.Agility, ForceMode2D.Force);
+        enemyIndividualData.Rigidbody.AddForce(enemyIndividualData.MoveDir * enemyIndividualData.Rigidbody.linearDamping * enemyIndividualData.BasicData.Agility, ForceMode2D.Force);
     }
 
     public void Update(float deltaTime)
@@ -71,7 +69,7 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
     public void OnAttack()
     {
         canMove = false;
-        rigidbody.linearVelocity = Vector2.zero;
+        enemyIndividualData.Rigidbody.linearVelocity = Vector2.zero;
     }
 
     public void OnMove()
@@ -82,6 +80,6 @@ public class EnemyMovementToHeartCoreByAddForce : IUpdatable
     public void OnDie()
     {
         canMove = false;
-        rigidbody.linearVelocity = Vector2.zero;
+        enemyIndividualData.Rigidbody.linearVelocity = Vector2.zero;
     }
 }

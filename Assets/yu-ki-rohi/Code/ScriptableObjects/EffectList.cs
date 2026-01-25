@@ -7,6 +7,7 @@ public class EffectData
     public enum EffectType
     { 
         Charge,
+        ChargeEnd,
         HitEffect
     }
 

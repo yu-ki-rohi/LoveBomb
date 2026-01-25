@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyMovementChasePlayer : IUpdatable
 {
     private Transform transform;
-    private Rigidbody2D rigidbody;
     private Transform target;
     private EnemyIndividualData enemyIndividualData;
 
@@ -22,10 +21,9 @@ public class EnemyMovementChasePlayer : IUpdatable
         Die
     }
 
-    public EnemyMovementChasePlayer(Transform transform, Rigidbody2D rigidbody, Transform target, EnemyIndividualData enemyIndividualData)
+    public EnemyMovementChasePlayer(Transform transform, Transform target, EnemyIndividualData enemyIndividualData)
     {
         this.transform = transform;
-        this.rigidbody = rigidbody;
         this.target = target;
         this.enemyIndividualData = enemyIndividualData;
         enemyIndividualData.MoveDir = (target.position - transform.position).normalized;
@@ -35,7 +33,7 @@ public class EnemyMovementChasePlayer : IUpdatable
     public void Start()
     {
         if (DebugMessenger.NullCheckError(transform) ||
-           DebugMessenger.NullCheckError(rigidbody) ||
+           DebugMessenger.NullCheckError(enemyIndividualData.Rigidbody) ||
            DebugMessenger.NullCheckError(target))
         {
             Debug.LogWarning("Lack of Movement Info");
@@ -90,7 +88,7 @@ public class EnemyMovementChasePlayer : IUpdatable
     public void OnDie()
     {
         state = State.Die;
-        rigidbody.linearVelocity = Vector3.zero;
+        enemyIndividualData.Rigidbody.linearVelocity = Vector3.zero;
         enemyIndividualData.Animator.SetTrigger("Disappear");
     }
 
@@ -98,7 +96,7 @@ public class EnemyMovementChasePlayer : IUpdatable
     private void Chase()
     {
         if (DebugMessenger.NullCheckError(transform) ||
-            DebugMessenger.NullCheckError(rigidbody) ||
+            DebugMessenger.NullCheckError(enemyIndividualData.Rigidbody) ||
             DebugMessenger.NullCheckError(target))
         {
             Debug.LogWarning("Lack of Movement Info");
@@ -111,7 +109,7 @@ public class EnemyMovementChasePlayer : IUpdatable
             enemyIndividualData.MoveDir = toTargetVec.normalized;
         }
 
-        rigidbody.AddForce(enemyIndividualData.MoveDir * rigidbody.linearDamping * enemyIndividualData.BasicData.Agility, ForceMode2D.Force);
+        enemyIndividualData.Rigidbody.AddForce(enemyIndividualData.MoveDir * enemyIndividualData.Rigidbody.linearDamping * enemyIndividualData.BasicData.Agility, ForceMode2D.Force);
 
         float borderDistance = enemyIndividualData.BasicData.StandbyDistance;
 
@@ -130,7 +128,7 @@ public class EnemyMovementChasePlayer : IUpdatable
     private void Standby(float fixedDeltaTime)
     {
         if (DebugMessenger.NullCheckError(transform) ||
-           DebugMessenger.NullCheckError(rigidbody) ||
+           DebugMessenger.NullCheckError(enemyIndividualData.Rigidbody) ||
            DebugMessenger.NullCheckError(target))
         {
             Debug.LogWarning("Lack of Movement Info");
@@ -143,7 +141,7 @@ public class EnemyMovementChasePlayer : IUpdatable
         enemyIndividualData.MoveDir = new Vector3(-toTargetVecNorm.y, toTargetVecNorm.x, 0.0f);
 
 
-        rigidbody.AddForce((enemyIndividualData.MoveDir * sign) * rigidbody.linearDamping * enemyIndividualData.BasicData.Agility, ForceMode2D.Force);
+        enemyIndividualData.Rigidbody.AddForce((enemyIndividualData.MoveDir * sign) * enemyIndividualData.Rigidbody.linearDamping * enemyIndividualData.BasicData.Agility, ForceMode2D.Force);
 
 
         // ‘JˆÚŠÖŒW
@@ -154,7 +152,7 @@ public class EnemyMovementChasePlayer : IUpdatable
         if (toTargetVec.sqrMagnitude > borderDistance * borderDistance)
         {
             state = State.Chase;
-            rigidbody.linearVelocity = Vector3.zero;
+            enemyIndividualData.Rigidbody.linearVelocity = Vector3.zero;
         }
 
         timer += fixedDeltaTime;
@@ -162,7 +160,7 @@ public class EnemyMovementChasePlayer : IUpdatable
         if(timer > enemyData.RushInterval)
         {
             timer = 0;
-            rigidbody.linearVelocity = Vector3.zero;
+            enemyIndividualData.Rigidbody.linearVelocity = Vector3.zero;
             state = State.PrepareRush;
             enemyIndividualData.Animator.SetTrigger("Attack");
         }
@@ -183,7 +181,7 @@ public class EnemyMovementChasePlayer : IUpdatable
 
     private void Rush()
     {
-        rigidbody.AddForce(enemyIndividualData.MoveDir * rigidbody.linearDamping * enemyIndividualData.BasicData.Agility * enemyIndividualData.BasicData.RushSpeedMultiplier, ForceMode2D.Force);
+        enemyIndividualData.Rigidbody.AddForce(enemyIndividualData.MoveDir * enemyIndividualData.Rigidbody.linearDamping * enemyIndividualData.BasicData.Agility * enemyIndividualData.BasicData.RushSpeedMultiplier, ForceMode2D.Force);
 
         Vector3 toTargetVec = target.position - transform.position;
 
