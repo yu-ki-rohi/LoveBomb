@@ -17,6 +17,8 @@ public class DefeatNumViewer : MonoBehaviour
 
     private Coroutine invalidationCoroutine = null;
     
+    public int DefeatNum { get =>  defeatNum; }
+
     public void OnDefeatEnemy()
     {
         defeatNum++;

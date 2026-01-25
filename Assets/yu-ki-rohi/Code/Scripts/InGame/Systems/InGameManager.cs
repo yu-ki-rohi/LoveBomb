@@ -4,8 +4,16 @@ public class InGameManager : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private StageData stageData;
+    [SerializeField] private GameTimeManager gameTimeManager;
+    [SerializeField] private ScoreManager scoreManager;
+
 
     private StageManager stageManager;
+
+    void Awake()
+    {
+        gameTimeManager.TimeInfomation = stageData.TimeInfomation;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
