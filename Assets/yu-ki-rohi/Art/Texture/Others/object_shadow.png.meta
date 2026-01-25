@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fa4f55164dd0f1c468c0f8f86dbd291c
+guid: ed8e7dd7b88767e4e9c6f270899e056c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2636250893783972063
-    second: heartkaku_04_0
+      213: -1875208279230526459
+    second: object_shadow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heartkaku_04_0
+      name: object_shadow_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 130
-        height: 123
+        x: 0
+        y: 4
+        width: 144
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 127433197c72a6bd0800000000000000
-      internalID: -2636250893783972063
+      spriteID: 50cc79c510ce9f5e0800000000000000
+      internalID: -1875208279230526459
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      heartkaku_04_0: -2636250893783972063
+      object_shadow_0: -1875208279230526459
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
