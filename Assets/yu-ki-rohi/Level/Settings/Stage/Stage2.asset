@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa42ea174a944ba43ad2b64f85c5eabb, type: 3}
+  m_Name: Stage2
+  m_EditorClassIdentifier: 
+  StageManager: {fileID: 3993928699709744191, guid: c754b968e02685e43b287557034afc47, type: 3}
+  TimeInfomation:
+    GameTime: 180
+  ScoreInfomation:
+    ScoreInitial: 100
+    ScoreBorder: 300
+    ScoreMax: 600
