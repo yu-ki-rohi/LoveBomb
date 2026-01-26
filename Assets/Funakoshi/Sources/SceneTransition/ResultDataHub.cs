@@ -1,30 +1,30 @@
 public static class ResultDataHub
 {
-    private static readonly TemporaryStorage<GameResult> storage = new();
+    private static readonly TemporaryStorage<GameResult> temporaryStorage = new();
 
     public static void HoldData(GameResult result)
     {
-        if (storage.IsAlreadySet())
+        if (temporaryStorage.IsAlreadySet())
         {
             throw new ValueAlreadySetException(
                 "GameResultは既に保持されています。" +
                 "この状態で新しいデータを保持することはできません。");
         }
 
-        storage.SetData(result);
+        temporaryStorage.SetData(result);
     }
     public static GameResult Pop()
     {
-        if (storage.IsNull())
+        if (temporaryStorage.IsNull())
         {
             throw new System.NullReferenceException(
                 "GameResultが保持されていません。" +
                 "既に取り出されているか、または保持し忘れていないかどうか確認してください。");
         }
 
-        var retval = storage.CurrentData();
+        var retval = temporaryStorage.CurrentData();
 
-        storage.Exclude();
+        temporaryStorage.Exclude();
 
         return retval;
     }
