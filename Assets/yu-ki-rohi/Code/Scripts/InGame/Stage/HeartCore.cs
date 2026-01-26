@@ -19,6 +19,8 @@ public class HeartCore : MonoBehaviour
     private IScoreFluctuate scoreFluctuate;
 
     public IScoreFluctuate ScoreFluctuate { set { scoreFluctuate = value; } }
+
+    public TextMeshProUGUI EnemyNumText { set { enemyNumText = value; } }
     
 
     public void AddEnemyCount()

@@ -13,8 +13,10 @@ public class ManagedEnemyPoolManager : PoolManager<ManagedEnemy>, IEnemyPoolMana
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private PoolsEnemyUse poolsEnemyUse;
 
-    // HACK: –{—ˆ‚Í•Ê‚Ì‚Æ‚±‚ë‚ªó‚¯‚Â‚×‚«
+    // HACK: •Ê‚Ì‚Æ‚±‚ë‚ªó‚¯‚Â‚×‚«‚©‚à
     [SerializeField] private DefeatNumViewer defeatNumViewer;
+
+    public DefeatNumViewer DefeatNumViewer { set  => defeatNumViewer = value; } 
 
 #if UNITY_EDITOR
     public EnemyDataList EnemyDataList { get => enemyDataList; }

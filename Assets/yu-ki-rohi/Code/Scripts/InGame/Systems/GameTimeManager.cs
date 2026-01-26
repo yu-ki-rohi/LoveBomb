@@ -7,12 +7,24 @@ public class GameTimeManager : MonoBehaviour
 {
     [SerializeField] private Image remainigTimeView;
 
-    private float elapsedTime = 0.0f; 
+    private float elapsedTime = 0.0f;
+    private event Action OnTimeUp;
     private TimeInfomation timeInfomation;
 
     public TimeInfomation TimeInfomation { set { timeInfomation = value; } }
 
+    public float ElapsedTime { get { return elapsedTime; } }
 
+    public float TimerStop()
+    {
+        StopAllCoroutines();
+        return elapsedTime;
+    }
+
+    public void SetTimeUpEvent(Action action)
+    {
+        OnTimeUp += action;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +36,7 @@ public class GameTimeManager : MonoBehaviour
     private void TimeOver()
     {
         StopAllCoroutines();
-        DebugMessenger.Log("Time is Over!!");
+        OnTimeUp?.Invoke();
     }
 
     private void ReflectUI()

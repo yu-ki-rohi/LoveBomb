@@ -6,6 +6,8 @@ public class ArrowPoolManager : PoolManager<Arrow>
     [SerializeField] private ExplosionPoolManager explosionPoolManager;
     private PlayerShootParameters parametersOfArrows;
 
+    public ExplosionPoolManager ExplosionPoolManager { set { explosionPoolManager = value; } }
+
     public int GetCost(Arrow.Type arrowType)
     {
         foreach (var arrowParams in parametersOfArrows.Arrows)
