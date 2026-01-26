@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529baf89a054287479d267b2fe177744, type: 3}
   m_Name: ScoreBonus
   m_EditorClassIdentifier: 
-  BonusBorder: 
-  Bonus: []
+  BonusBorder: 3200000078000000c800000040010000e0010000
+  Bonus:
+  - 1.1
+  - 1.2
+  - 1.5
+  - 1.8
+  - 2
