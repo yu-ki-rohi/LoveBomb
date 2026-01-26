@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : MonoBehaviour, IScoreFluctuate
 {
     [SerializeField] private Image playerScoreBar;
-    [SerializeField] private DefeatNumViewer defeatNumViewer;
     [SerializeField] private ScoreBonus scoreBonus;
+
+    private DefeatNumViewer defeatNumViewer;
     private ScoreInfomation scoreInfomation;
 
     private int currentScore;
@@ -13,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     private bool isLockScoreFluctuation = false;
 
     public ScoreInfomation ScoreInfomation { set { scoreInfomation = value; } }
+    public DefeatNumViewer DefeatNumViewer { set { defeatNumViewer = value; } }
     
     public void LockScoreFluctuation()
     {
@@ -67,7 +69,8 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-
+        currentScore = scoreInfomation.ScoreInitial;
+        ReflectUI();
     }
 
     private void ReflectUI()

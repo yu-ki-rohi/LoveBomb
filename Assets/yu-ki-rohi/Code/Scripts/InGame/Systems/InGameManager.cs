@@ -7,14 +7,20 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private StageData stageData;
     [SerializeField] private GameTimeManager gameTimeManager;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private DefeatNumViewer defeatNumViewer;
     [SerializeField] private CinemachineConfiner2D cinemachineConfiner2;
 
+    [SerializeField] private HeartCore heartCore;
 
     private StageManager stageManager;
 
     void Awake()
     {
         gameTimeManager.TimeInfomation = stageData.TimeInfomation;
+        scoreManager.DefeatNumViewer = defeatNumViewer;
+        scoreManager.ScoreInfomation = stageData.ScoreInfomation;
+        heartCore.ScoreFluctuate = scoreManager;
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

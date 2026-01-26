@@ -1217,6 +1217,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1195509246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &579584463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 579584465}
+  - component: {fileID: 579584464}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &579584464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579584463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a4e6eaf31451e46828bde79ce96fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScoreBar: {fileID: 877228388}
+  scoreBonus: {fileID: 11400000, guid: 5562b5fbbda93f24888b5b9892124740, type: 2}
+--- !u!4 &579584465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579584463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.9218554, y: -1.4501117, z: 0.05975035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &617160555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,11 +3557,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5e569565464bd45b3c6cffcffc4e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1530766258}
   stageData: {fileID: 11400000, guid: 675e261407173d74d8dc353eaf65d12a, type: 2}
   gameTimeManager: {fileID: 1078514857}
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 579584464}
+  defeatNumViewer: {fileID: 666280112}
   cinemachineConfiner2: {fileID: 795056635}
+  heartCore: {fileID: 657489128}
 --- !u!4 &1456657007
 Transform:
   m_ObjectHideFlags: 0
@@ -31352,6 +31400,7 @@ SceneRoots:
   - {fileID: 2073771908}
   - {fileID: 1456657007}
   - {fileID: 1078514858}
+  - {fileID: 579584465}
   - {fileID: 795056638}
   - {fileID: 1530766260}
   - {fileID: 1987853957}
