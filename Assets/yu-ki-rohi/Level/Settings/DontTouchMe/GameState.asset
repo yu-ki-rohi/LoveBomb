@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1770b4f1a276f51468eaaa6304bfc654, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
-  StageID: 0
-  Score: 0
-  ClearTime: 0
+  StageID: 2
+  Score: 1000
+  ClearTime: -0.00015544891
