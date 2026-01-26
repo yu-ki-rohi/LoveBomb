@@ -1,6 +1,4 @@
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class TimelineWindow : EditorWindow
@@ -13,26 +11,19 @@ public class TimelineWindow : EditorWindow
 
     void CreateGUI()
     {
-        var graphView = new TimelineGraphView();
-        graphView.StretchToParentSize();
-        rootVisualElement.Add(graphView);
+        var timeline = CreateTimeline();
 
-        // サンプルノードを追加
-        var startNode = graphView.CreateNewNode("Start", new Vector2(100, 100));
-        graphView.AddElement(startNode);
+        timeline.StretchToParentSize();
 
-        // もう一つ追加
-        var eventNode = graphView.CreateNewNode("Event1", new Vector2(300, 100));
-        graphView.AddElement(eventNode);
+        timeline.PlaceTheSample();
+    }
 
-        // 接続
-        var outputPort = startNode.outputContainer.Q<Port>("Out");
-        var inputPort = eventNode.inputContainer.Q<Port>("In");
+    public TimelineGraphView CreateTimeline()
+    {
+        var timeline = new TimelineGraphView();
 
-        if (outputPort != null && inputPort != null)
-        {
-            var edge = outputPort.ConnectTo(inputPort);
-            graphView.AddElement(edge);
-        }
+        rootVisualElement.Add(timeline);
+
+        return timeline;
     }
 }
