@@ -78,6 +78,8 @@ public class Player : MonoBehaviour, IDamageable
 
     #region プロパティ
     
+    public EffectPoolManager EffectPoolManager { set => effectPoolManager = value; }
+    public ExplosionPoolManager ExplosionPoolManager { set => arrowPoolManager.ExplosionPoolManager = value; }
 
     #endregion
 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 79f281a0a43a2cf4e93a701264725fc2
+guid: 4d6df473115a9d7469c48a5a26e5c8c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8744652665344700599
-    second: angel_damege_0
+      213: 8973559092661595724
+    second: reticle_7_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -57,7 +57,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 7
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: angel_damege_0
+      name: reticle_7_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 2
-        width: 209
-        height: 254
+        x: 0
+        y: 0
+        width: 55
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b03b0a944f3b5970800000000000000
-      internalID: 8744652665344700599
+      spriteID: c4e2219637c788c70800000000000000
+      internalID: 8973559092661595724
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      angel_damege_0: 8744652665344700599
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

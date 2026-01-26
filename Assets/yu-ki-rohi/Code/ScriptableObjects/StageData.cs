@@ -19,7 +19,7 @@ public class ScoreInfomation
 [CreateAssetMenu(fileName = "StageData[n]", menuName = "Data/StageData")]
 public class StageData : ScriptableObject
 {
-    public StageManager StageObject;
+    public StageManager StageManager;
 
     public TimeInfomation TimeInfomation;
 

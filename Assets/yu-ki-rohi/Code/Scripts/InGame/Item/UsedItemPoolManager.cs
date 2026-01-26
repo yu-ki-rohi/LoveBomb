@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class UsedItemPoolManager : PoolManager<UsedItem>
 {
-    [SerializeField] private ExplosionPoolManager explosionPoolManager;
+    private ExplosionPoolManager explosionPoolManager;
+    
+    public ExplosionPoolManager ExplosionPoolManager {  set {  explosionPoolManager = value; } }
+
     public void UseItem(ItemData data, Vector3 position, float Scale)
     {
         var item = objectPool.Get();

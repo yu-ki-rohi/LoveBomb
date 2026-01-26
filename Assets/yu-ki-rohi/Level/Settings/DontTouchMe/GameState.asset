@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa42ea174a944ba43ad2b64f85c5eabb, type: 3}
-  m_Name: StageData99
+  m_Script: {fileID: 11500000, guid: 1770b4f1a276f51468eaaa6304bfc654, type: 3}
+  m_Name: GameState
   m_EditorClassIdentifier: 
-  StageObject: {fileID: 0}
-  TimeInfomation:
-    GameTime: 10
-  ScoreInfomation:
-    ScoreInitial: 1000
-    ScoreBorder: 3000
-    ScoreMax: 6000
+  StageID: 0
+  Score: 0
+  ClearTime: 0

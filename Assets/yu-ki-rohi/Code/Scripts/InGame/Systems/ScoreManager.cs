@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,8 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
 {
     [SerializeField] private Image playerScoreBar;
     [SerializeField] private ScoreBonus scoreBonus;
+
+    private event Action OnTouchUp;
 
     private DefeatNumViewer defeatNumViewer;
     private ScoreInfomation scoreInfomation;
@@ -15,6 +18,13 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
 
     public ScoreInfomation ScoreInfomation { set { scoreInfomation = value; } }
     public DefeatNumViewer DefeatNumViewer { set { defeatNumViewer = value; } }
+
+    public int CurrentScore { get { return currentScore; } }
+
+    public void SetOnTouchUpEvent(Action action)
+    {
+        OnTouchUp += action;
+    }
     
     public void LockScoreFluctuation()
     {
@@ -44,8 +54,8 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
         if(currentScore < scoreInfomation.ScoreMax) { return; }
 
         currentScore = scoreInfomation.ScoreMax;
-
-        // TODO: クリア処理呼び出し
+        
+        OnTouchUp?.Invoke();
 
     }
 
@@ -62,8 +72,7 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
 
         currentScore = 0;
 
-        // TODO: ゲームオーバー処理呼び出し
-
+        OnTouchUp?.Invoke();
     }
 
 
