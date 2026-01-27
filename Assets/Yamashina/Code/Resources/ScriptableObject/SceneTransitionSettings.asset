@@ -18,10 +18,10 @@ MonoBehaviour:
   fadeOutSettings:
     startAlpha: 0
     endAlpha: 1
-    fadeSpeed: 0.5
+    fadeSpeed: 0.8
     defaultFadeMode: 0
   fadeInSettings:
     startAlpha: 1
     endAlpha: 0
-    fadeSpeed: 0.5
+    fadeSpeed: 1
     defaultFadeMode: 0
