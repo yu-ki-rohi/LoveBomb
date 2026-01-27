@@ -25,6 +25,12 @@ public partial class TimelineGraphView
 
             return this;
         }
+        public Setup NodeSelectToInspector()
+        {
+            Outer.RegisterCallback<PointerDownEvent>(evt => Outer.OnMouseDown());
+
+            return this;
+        }
         public Setup BackgroundColor()
         {
             var almostBlack = new StyleColor(new Color(0.15f, 0.15f, 0.15f));

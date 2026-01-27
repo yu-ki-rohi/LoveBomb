@@ -3,19 +3,20 @@ using UnityEngine.UIElements;
 
 public class TimelineWindow : EditorWindow
 {
-    [MenuItem("Window/Scene Timeline")]
-    public static void ShowWindow()
+    public static void OpenWithAsset(TimelineAsset asset)
     {
-        GetWindow<TimelineWindow>("Scene Timeline"); 
+        var window = GetWindow<TimelineWindow>("Timeline Editor - " + asset.name);
+
+        window.Load(asset);
     }
 
-    void CreateGUI()
+    private void Load(TimelineAsset asset)
     {
         var timeline = CreateTimeline();
 
         timeline.StretchToParentSize();
 
-        timeline.PlaceTheSample();
+        timeline.Load(asset.Contents);
     }
 
     public TimelineGraphView CreateTimeline()

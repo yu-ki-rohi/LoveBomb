@@ -1,48 +1,39 @@
-using UnityEngine;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.UIElements;
 
+// TODO : ノードの位置が変わるタイミングの処理を追加
+// Content.ActionStartTime = TimelineLane.CalculateNodeTime(nodePosition)
 public class TimelineNode : Node
 {
     // 定数
-    private const float NODE_HEIGHT = 140f;
-    private const float MIN_WIDTH = 50f;
-    private const float WIDTH_PER_SECOND = 100f;
+    public const float NODE_HEIGHT = 140f;
+    public const float MIN_WIDTH = 50f;
+    public const float WIDTH_PER_SECOND = 100f;
 
     // メンバー
     private readonly TimelineNode.NodeSize nodeSize;
-    private readonly DurationField actionDuration;
+    private readonly TimelineContent content;
 
     // 公開
-    public float ActionDuration
-    {
-        get => actionDuration.GetValue();
-        set => actionDuration.SetValue(value);
-    }
+    public TimelineContent Content => content;
+    public float ActionDuration => Content.Duration();
     public Vector2 InitialNodeSize => new(100, NODE_HEIGHT);
     public float Width => GetPosition().width;
 
     // コンストラクタ
-    public TimelineNode(string title)
+    public TimelineNode(string title, TimelineContent content)
     {
         // メンバー初期化
         nodeSize = new NodeSize(this);
-        actionDuration = new DurationField();
+        this.content = content;
 
+        // セットアップ
         new NodeSetup(this)
             .Title(title)
             .NodeContents();
 
-        // イベント登録
-        SpecifyUpdateCallTiming();
-
         UpdateNode();
-    }
-
-    private void SpecifyUpdateCallTiming()
-    {
-        // 値が書き換えられた時
-        actionDuration.OnValueChanged += UpdateNode;
-
     }
 
     public void UpdateNode()
@@ -67,9 +58,17 @@ public class TimelineNode : Node
             Outer.title = title;
             return this;
         }
+        public NodeSetup IgnoreLabel()
+        {
+            var titleLabel = Outer.Q<Label>("title-label");
+            if (titleLabel != null)
+            {
+                titleLabel.pickingMode = PickingMode.Ignore;
+            }
+            return this;
+        }
         public NodeSetup NodeContents()
         {
-            Outer.extensionContainer.Add(Outer.actionDuration);
             return this;
         }
     }
@@ -78,7 +77,7 @@ public class TimelineNode : Node
     {
         public void Update()
         {
-            // 1秒 = 100pxとして幅を設定
+            // ActionDurationに基づいてノードの幅を設定
             var newWidth = Mathf.Max(MIN_WIDTH, Outer.ActionDuration * WIDTH_PER_SECOND);
 
             SetSize(newWidth, NODE_HEIGHT);

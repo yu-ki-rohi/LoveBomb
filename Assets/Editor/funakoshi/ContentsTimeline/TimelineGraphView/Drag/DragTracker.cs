@@ -3,10 +3,11 @@ using UnityEngine.UIElements;
 
 public class DragTracker<TElement> where TElement : VisualElement
 {
-    private readonly DraggingState<TElement> dragging;
+    private readonly DraggingState<TElement> dragging = new();
 
     public event Action<TElement> OnDragStarted;
     public event Action<TElement> OnDragEnded;
+    public event Action<TElement, PointerMoveEvent> WhileDragging;
 
     public bool NowDragging(out TElement target) => dragging.NowSomethingDragging(out target);
 
@@ -19,12 +20,21 @@ public class DragTracker<TElement> where TElement : VisualElement
             // ÉNÉäÉbÉNÇ≥ÇÍÇΩëŒè€Ç™TElementÇ©Ç«Ç§Ç©ÇîªíËÇµÇ‹Ç∑
             var picked = click.TargetElement();
 
+            if (picked != null) UnityEngine.Debug.Log("pickedElement : " + picked.GetType());
+
             if (picked is TElement node)
             {
                 dragging.StartDragging(node);
 
                 OnDragStarted?.Invoke(node);
             }
+        }
+    }
+    public void OnPointerMove(PointerMoveEvent evt)
+    {
+        if (dragging.NowSomethingDragging(out TElement draggedTarget))
+        {
+            WhileDragging?.Invoke(draggedTarget, evt);
         }
     }
     public void OnPointerUp()
@@ -43,6 +53,6 @@ public class DragTracker<TElement> where TElement : VisualElement
 
         public bool PickedSomething() => Evt.target is VisualElement;
 
-        public VisualElement TargetElement() => Evt.target as VisualElement;
+        public VisualElement TargetElement() => (Evt.target as VisualElement)?.GetFirstAncestorOfType<TElement>();
     }
 }
