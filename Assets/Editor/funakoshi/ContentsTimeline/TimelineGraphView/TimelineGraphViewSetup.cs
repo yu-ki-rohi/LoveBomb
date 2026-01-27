@@ -14,7 +14,7 @@ public partial class TimelineGraphView
         {
             Outer.SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale); // ズーム
             Outer.AddManipulator(new ContentDragger()); // ドラッグ
-            Outer.AddManipulator(new RectangleSelector()); // ドラッグで範囲選択
+            //Outer.AddManipulator(new RectangleSelector()); // ドラッグで範囲選択
             Outer.AddManipulator(new SelectionDragger()); // 複数選択したノードを一括で移動
 
             return this;

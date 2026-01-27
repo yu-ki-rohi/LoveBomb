@@ -9,10 +9,8 @@ public class TimelineNode : Node
     private const float WIDTH_PER_SECOND = 100f;
 
     // メンバー
-    private readonly NodeSize nodeSize;
+    private readonly TimelineNode.NodeSize nodeSize;
     private readonly DurationField actionDuration;
-    private readonly Port inputPort;
-    private readonly Port outputPort;
 
     // 公開
     public float ActionDuration
@@ -21,8 +19,6 @@ public class TimelineNode : Node
         set => actionDuration.SetValue(value);
     }
     public Vector2 InitialNodeSize => new(100, NODE_HEIGHT);
-    public Port InputPort => inputPort;
-    public Port OutputPort => outputPort;
     public float Width => GetPosition().width;
 
     // コンストラクタ
@@ -31,8 +27,6 @@ public class TimelineNode : Node
         // メンバー初期化
         nodeSize = new NodeSize(this);
         actionDuration = new DurationField();
-        inputPort = CreateInputPort();
-        outputPort = CreateOutputPort();
 
         new NodeSetup(this)
             .Title(title)

@@ -1,12 +1,10 @@
 using UnityEditor.Experimental.GraphView;
-
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public partial class TimelineGraphView : GraphView
 {
-    private readonly CreateElement createNew;
-    private readonly MenuOparation menuOparation;
+    private readonly TimelineGraphView.CreateElement createNew;
+    private readonly TimelineGraphView.MenuOparation menuOparation;
 
     public TimelineGraphView()
     {
@@ -28,13 +26,12 @@ public partial class TimelineGraphView : GraphView
     public void PlaceTheSample()
     {
         // サンプルノードを追加
-        var node01 = createNew.Node("Start", new Vector2(100, 100));
+        createNew.Node("Start", new(100, 100));
 
-        // もう一つ追加
-        var node02 = createNew.Node("Event1", new Vector2(300, 100));
-
-        // 接続
-        createNew.Edge(node01.OutputPort, node02.InputPort);
+        // もっと追加
+        createNew.Node("Event1", new(300, 100));
+        createNew.Node("Event2", new(400, 100));
+        createNew.Node("Event3", new(600, 100));
     }
 
     private GraphViewChange OnGraphViewChanged(GraphViewChange change)
