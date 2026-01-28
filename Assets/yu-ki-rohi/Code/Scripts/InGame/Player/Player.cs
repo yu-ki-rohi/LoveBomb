@@ -74,10 +74,17 @@ public class Player : MonoBehaviour, IDamageable
 
     private int itemIndex = 0;
 
+    private InputAction move;
+    private InputAction shoot;
+    private InputAction shootDir;
+    private InputAction dash;
+    private InputAction selectItem;
+    private InputAction useItem;
+
     #endregion
 
     #region プロパティ
-    
+
     public EffectPoolManager EffectPoolManager { set => effectPoolManager = value; }
     public ExplosionPoolManager ExplosionPoolManager { set => arrowPoolManager.ExplosionPoolManager = value; }
 
@@ -100,9 +107,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnShoot(InputAction.CallbackContext context)
     {
-        // Shoot以外では処理しない
-        if (context.action.name != "Shoot") { return; }
-
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.OnShoot(context);
@@ -113,9 +117,6 @@ public class Player : MonoBehaviour, IDamageable
     private void OnShootDir(InputAction.CallbackContext context)
     {
         //HACK:要リファクタリング
-
-        // ShootDir以外では処理しない
-        if (context.action.name != "ShootDir") { return; }
 
         Vector3 input = context.ReadValue<Vector2>();
         if (!data.IsGamePadConnected)
@@ -130,9 +131,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnDash(InputAction.CallbackContext context)
     {
-        // Dash以外では処理しない
-        if (context.action.name != "Dash") { return; }
-
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.OnDash(context);
@@ -142,8 +140,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnUseItem(InputAction.CallbackContext context)
     {
-        // UseItem以外では処理しない
-        if (context.action.name != "UseItem") { return; }
         if(data.State != State.Idle && data.State != State.Aim) { return; }
         
         if(context.performed)
@@ -154,9 +150,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnSelectItem(InputAction.CallbackContext context)
     {
-        // SelectItem以外では処理しない
-        if (context.action.name != "SelectItem") { return; }
-
         
         float input = context.ReadValue<float>();
         if (itemSelectLockTimer <= 0.0f && input != 0.0f)
@@ -386,7 +379,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void SetInputEnabled(bool enabled)
     {
-        Action<InputAction.CallbackContext>[] actions =
+        const int Length = 6;
+        Action<InputAction.CallbackContext>[] actions = new Action<InputAction.CallbackContext>[Length]
         {
             OnMove,
             OnShoot,
@@ -395,21 +389,49 @@ public class Player : MonoBehaviour, IDamageable
             OnSelectItem,
             OnUseItem
         };
+
+        InputAction[] inputActions = new InputAction[Length]
+        {
+            move,
+            shoot,
+            shootDir,
+            dash,
+            selectItem,
+            useItem
+        };
+
+        var gameplayMap = playerInput.actions.FindActionMap("InGame");
+
         // 登録処理
         if (enabled)
         {
-            foreach (var action in actions)
+
+            string[] actionName = new string[Length]
             {
-                playerInput.onActionTriggered += action;
+            "Move",
+            "Shoot",
+            "ShootDir",
+            "Dash",
+            "SelectItem",
+            "UseItem"
+            };
+
+            var inGame = playerInput.actions.FindActionMap("InGame");
+            for (int i = 0; i < Length; i++)
+            {
+                inputActions[i] = inGame.FindAction(actionName[i]);
+                inputActions[i].performed += actions[i];
+                inputActions[i].canceled += actions[i];
             }
 
         }
         // 解除処理
         else
         {
-            foreach (var action in actions)
+            for (int i = 0; i < Length; i++)
             {
-                playerInput.onActionTriggered -= action;
+                inputActions[i].performed -= actions[i];
+                inputActions[i].canceled -= actions[i];
             }
 
         }
