@@ -1,7 +1,9 @@
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InGameManager : MonoBehaviour
 {
@@ -14,6 +16,14 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private CinemachineConfiner2D cinemachineConfiner2;
     [SerializeField] private GameState gameState;
     [SerializeField] private UsedItemPoolManager usedItemPoolManager;
+    [SerializeField] private Canvas pauseCanvas;
+    [SerializeField] private Button continueButton;
+    [SerializeField] private Button retryButton;
+    [SerializeField] private Button returnButton;
+    [SerializeField] private PlayerInput playerInput;
+
+    private InputAction ingamePause;
+    private InputAction menuPause;
 
 #if UNITY_EDITOR
     [SerializeField] private StageManager stageManager;
@@ -22,6 +32,22 @@ public class InGameManager : MonoBehaviour
 
 
 
+    private void OnPause(InputAction.CallbackContext context)
+    {
+        Debug.Log("Pause is Called");
+        if(pauseCanvas.enabled)
+        {
+            playerInput.SwitchCurrentActionMap("InGame");
+            Time.timeScale = 1.0f;
+            pauseCanvas.enabled = false;
+        }
+        else
+        {
+            playerInput.SwitchCurrentActionMap("Menu");
+            Time.timeScale = 0.0f;
+            pauseCanvas.enabled = true;
+        }
+    }
 
     void Awake()
     {
@@ -69,6 +95,23 @@ public class InGameManager : MonoBehaviour
 
         cinemachineConfiner2.BoundingShape2D = stageManager.VisibleArea;
 
+        
+        ingamePause = playerInput.actions.FindActionMap("InGame").FindAction("Pause");
+        menuPause = playerInput.actions.FindActionMap("Menu").FindAction("Pause");
+
+
+    }
+
+    private void OnEnable()
+    {
+        ingamePause.performed += OnPause;
+        menuPause.performed += OnPause;
+    }
+
+    private void OnDisable()
+    {
+        ingamePause.performed -= OnPause;
+        menuPause.performed -= OnPause;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameState", menuName = "GameState")]
 public class GameState : ScriptableObject
 {
+    [SerializeField] private StageDataBase stageDataBase;
     private int stageID;
     private int score;
     private float clearTime;
@@ -16,6 +17,14 @@ public class GameState : ScriptableObject
         set
         {
             if(stageID == value) { return; }
+
+            if(stageDataBase != null && 
+               (value < 0 || value >= stageDataBase.Stages.Count)) 
+            {
+                DebugMessenger.LogError("Blocked access to out of array bounds. Access : " + value +" StageId : " + stageID);
+                return;
+            }
+
             DebugMessenger.Log("Change StageID : " + stageID + " Å® " + value);
             stageID = value;
         }
