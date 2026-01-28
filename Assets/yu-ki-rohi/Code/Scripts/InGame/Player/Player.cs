@@ -137,7 +137,13 @@ public class Player : MonoBehaviour, IDamageable
         {
             playerComoponent.OnDash(context);
         }
-
+        // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
+        // 10: PlayerInvincible
+        if (gameObject.layer != 10)
+        {
+            gameObject.layer = 10;
+            StartCoroutine(InvincibleCroutine());
+        }
     }
 
     private void OnUseItem(InputAction.CallbackContext context)
@@ -175,6 +181,8 @@ public class Player : MonoBehaviour, IDamageable
             id > itemData.Items.Count ||
             itemData.Items[id].NumberOfPossessions >= itemData.Items[id].MaxNum) { return; }
         itemData.Items[id].NumberOfPossessions++;
+        ReflectSelectedItemUI();
+        
     }
 
     public void TakeDamage(int attack, DamageType damageType)
@@ -548,6 +556,12 @@ public class Player : MonoBehaviour, IDamageable
         {
             data.ChangeState(State.Idle);
         }
+    }
+
+    private IEnumerator InvincibleCroutine()
+    {
+        yield return new WaitForSeconds(parameters.PlayerMovementParameters.InvincibleTime);
+        gameObject.layer = 0;
     }
 
     #endregion
