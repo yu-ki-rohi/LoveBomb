@@ -1,17 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PopupCanvasView : MonoBehaviour
 {
     public Transform backgroundRoot;
     public Transform controlRoot;
 
-    [SerializeField] private TextMeshProUGUI stageText;
-
-    public TextMeshProUGUI GetStageText()
-    {
-        return stageText;   
-    }
+    public Button Return;
 
 }
 
