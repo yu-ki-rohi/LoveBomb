@@ -6,7 +6,10 @@ internal enum BGMName
 {
     None,
     Title,
-    Battle,
+    StageSelect,
+    Stage1,
+    Stage2,
+    Stage3,
     Finish,
     Succeed,
     Failed,
