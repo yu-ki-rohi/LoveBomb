@@ -36,6 +36,7 @@ public class GameTimeManager : MonoBehaviour
     private void TimeOver()
     {
         StopAllCoroutines();
+        DebugMessenger.Log("Time Up!!");
         OnTimeUp?.Invoke();
     }
 
