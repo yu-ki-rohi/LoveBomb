@@ -14,8 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StageManager: {fileID: 6679768437812172155, guid: a2361e53f74bedd4c9ac48489b75eb84, type: 3}
   TimeInfomation:
-    GameTime: 10
+    GameTime: 90
   ScoreInfomation:
     ScoreInitial: 1000
     ScoreBorder: 3000
     ScoreMax: 6000
+  LightInfomation:
+    minLightRadius: 0.1
+    maxLightRadius: 10
+    lightOuterRadiusMaltiplier: 10
+    minGrobalLight: {r: 0.2830189, g: 0.2042542, b: 0.2042542, a: 0}
+    maxGrobalLight: {r: 0.6981132, g: 0.503827, b: 0.5983482, a: 0}
+    playerLightBorder: 0.7

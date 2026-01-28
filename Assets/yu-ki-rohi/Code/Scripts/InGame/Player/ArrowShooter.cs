@@ -148,7 +148,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             }
 
             // 矢の生成位置を決定
-            Vector3 firePosition = transform.position + (Vector3)player.ShootDir * parameters.ShootPositionDistance;
+            Vector3 firePosition = transform.position + (Vector3)player.ShootDir * parameters.ShootPositionDistance + (Vector3)parameters.ShootPosAdjust;
             // オブジェクトプールから取り出し
             poolManager?.Shoot(firePosition, player.ShootDir, type);
 
