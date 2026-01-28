@@ -92,6 +92,9 @@ public class PlayerShootParameters
     public float ShootPositionDistance = 0.5f;
     [Range(0.1f, 3.0f)]
     public float ChargeTime = 1.0f;
+
+    public Vector2 ShootPosAdjust = Vector2.zero;
+
     [Header("Šeí–î‚Ìİ’è")]
     public List<ArrowParams> Arrows;
 

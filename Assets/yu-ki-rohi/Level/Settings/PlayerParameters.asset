@@ -32,6 +32,7 @@ MonoBehaviour:
   PlayerShootParameters:
     ShootPositionDistance: 1.01
     ChargeTime: 0.93
+    ShootPosAdjust: {x: 0, y: 1}
     Arrows:
     - Name: Normal
       ArrowType: 0

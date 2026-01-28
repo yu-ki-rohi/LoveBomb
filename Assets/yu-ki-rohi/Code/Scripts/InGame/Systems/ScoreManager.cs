@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
 
     private DefeatNumViewer defeatNumViewer;
     private ScoreInfomation scoreInfomation;
+    private LightManager lightManager;
 
     private int currentScore;
 
@@ -18,6 +19,7 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
 
     public ScoreInfomation ScoreInfomation { set { scoreInfomation = value; } }
     public DefeatNumViewer DefeatNumViewer { set { defeatNumViewer = value; } }
+    public LightManager LightManager { set { lightManager = value; } }
 
     public int CurrentScore { get { return currentScore; } }
 
@@ -96,5 +98,7 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
         }
 
         playerScoreBar.fillAmount = fillAmount;
+
+        lightManager?.ChangeLight(fillAmount);
     }
 }

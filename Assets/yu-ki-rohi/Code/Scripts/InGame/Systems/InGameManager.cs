@@ -11,6 +11,7 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private StageDataBase stageDataBase;
     [SerializeField] private GameTimeManager gameTimeManager;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private LightManager lightManager;
     [SerializeField] private DefeatNumViewer defeatNumViewer;
     [SerializeField] private TextMeshProUGUI enemyNumText;
     [SerializeField] private CinemachineConfiner2D cinemachineConfiner2;
@@ -80,8 +81,12 @@ public class InGameManager : MonoBehaviour
         gameTimeManager.TimeInfomation = stageData.TimeInfomation;
         gameTimeManager.SetTimeUpEvent(OnTimeUp);
 
+        lightManager.LightInfomation = stageData.LightInfomation;
+        lightManager.HeartCoreLight = stageManager.HeartCoreLight;
+
         scoreManager.DefeatNumViewer = defeatNumViewer;
         scoreManager.ScoreInfomation = stageData.ScoreInfomation;
+        scoreManager.LightManager = lightManager;
         scoreManager.SetOnTouchUpEvent(OnTouchUp);
 
         stageManager.HeartCore.ScoreFluctuate = scoreManager;
