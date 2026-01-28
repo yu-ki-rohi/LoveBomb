@@ -307,14 +307,15 @@ MonoBehaviour:
   canvasPrefab: {fileID: 3534291732663280354, guid: 3c5d5488452f5a2448087462c2588c46, type: 3}
   imagePrefab: {fileID: 2713970402184899656, guid: 0ce59d1eceba09045a76cb60f468967e, type: 3}
   images:
-  - {fileID: 21300000, guid: 83049527034744a408609b90f4da4e32, type: 3}
-  - {fileID: 21300000, guid: 83049527034744a408609b90f4da4e32, type: 3}
-  - {fileID: 21300000, guid: 83049527034744a408609b90f4da4e32, type: 3}
+  - {fileID: -4606491398156688180, guid: 493c82cbf96a58047a4fe6dad4f70cdb, type: 3}
+  - {fileID: -2635620883868439099, guid: 307533cb93524024e8c946573b44a153, type: 3}
+  - {fileID: -155883427912321911, guid: 892748fa153f45c40a6dafaf2b356a60, type: 3}
   stageNames:
   - stage1
   - stage2
   - stage3
   fadeDuration: 0.5
+  gameState: {fileID: 11400000, guid: 38e86691ce278484ca7011a242cf6f33, type: 2}
 --- !u!114 &2018643033
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,13 +14,21 @@ public class PopupImageManager : MonoBehaviour
     private GameObject imageObject;
     private PopupCanvasView canvasView;
     [SerializeField] private float fadeDuration = 0.5f; // フェード時間
+    [SerializeField] private GameState gameState;
 
     private int currentImageIndex = 0;
     private Coroutine fadeCoroutine;
 
     private void Start()
     {
+        // GameState に保存されている StageID を反映
+        currentImageIndex = Mathf.Clamp(
+            gameState.StageID,
+            0,
+            images.Length - 1
+        );
         SpawnTutorial();
+
     }
 
     public void SpawnTutorial()
@@ -47,17 +55,17 @@ public class PopupImageManager : MonoBehaviour
         // 画像生成（レイヤー固定）
         imageObject = Instantiate(imagePrefab, canvasView.backgroundRoot);
 
-        Image image = imageObject.GetComponentInChildren<Image>();
+        Image image = imageObject.transform.Find("MapImage").gameObject.GetComponent<Image>();
         if (image != null)
         {
             image.sprite = sprite;
             image.color = new Color(1, 1, 1, 1); // 初期は不透明
         }
       
-        EventTrigger eventTrigger = imageObject.gameObject.AddComponent<EventTrigger>();
+        EventTrigger eventTrigger = imageObject.transform.Find("MapImage").gameObject.AddComponent<EventTrigger>();
         if (eventTrigger != null)
         {
-            eventTrigger.triggers.Add(new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter });
+            eventTrigger.triggers.Add(new EventTrigger.Entry { eventID = EventTriggerType.PointerClick });
             eventTrigger.triggers[0].callback.AddListener((data) => { Scene(); });
 
 
@@ -81,8 +89,12 @@ public class PopupImageManager : MonoBehaviour
             prevButton.onClick.RemoveAllListeners();
             prevButton.onClick.AddListener(ShowPreviousImage);
         }
-
-
+        Button returnButton = canvasView.Return;
+        if (returnButton != null)
+        {
+            returnButton.onClick.RemoveAllListeners();
+            returnButton.onClick.AddListener(() => SceneTransitionManager.Instance.TransitionToPreviousScene());
+        }
         UpdateStageText();
     }
 
@@ -117,7 +129,7 @@ public class PopupImageManager : MonoBehaviour
     {
         if (imageObject == null) yield break;
 
-        Image image = imageObject.GetComponentInChildren<Image>();
+        Image image = imageObject.transform.Find("MapImage").gameObject.GetComponent<Image>();
         if (image == null) yield break;
 
         // フェードアウト
@@ -151,11 +163,7 @@ public class PopupImageManager : MonoBehaviour
     {
         if (canvasView == null) return;
 
-        TextMeshProUGUI stage = canvasView.GetStageText();
-        if (stage != null && stageNames.Length > currentImageIndex)
-        {
-            stage.text = stageNames[currentImageIndex];
-        }
+      
         // ボタン表示/非表示制御
         Button nextButton = canvasView.controlRoot.Find("NextButton")?.GetComponent<Button>();
         Button prevButton = canvasView.controlRoot.Find("ChangeImage_Return")?.GetComponent<Button>();
@@ -201,7 +209,7 @@ public class PopupImageManager : MonoBehaviour
     {
         if (imageObject == null) return;
 
-        Image image = imageObject.GetComponentInChildren<Image>();
+        Image image = imageObject.transform.Find("MapImage").gameObject.GetComponent<Image>();
         if (image != null)
         {
             image.sprite = sprite;
@@ -220,6 +228,7 @@ public class PopupImageManager : MonoBehaviour
 
     private void Scene()
     {
+       gameState.StageID= currentImageIndex;    
         // TODO: ここでGameStateのStageIDの書き換えを行う必要があるがstageDataBase側でどのステージデータがどのステージＩＤに対応してるかが取得できないと書き換えられない＋ゲームステートのリストがそもそも必要？
         SceneTransitionManager.Instance.TransitionToNextScene(FadeMode.SimpleColor);
     }
