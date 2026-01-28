@@ -14,13 +14,21 @@ public class PopupImageManager : MonoBehaviour
     private GameObject imageObject;
     private PopupCanvasView canvasView;
     [SerializeField] private float fadeDuration = 0.5f; // フェード時間
+    [SerializeField] private GameState gameState;
 
     private int currentImageIndex = 0;
     private Coroutine fadeCoroutine;
 
     private void Start()
     {
+        // GameState に保存されている StageID を反映
+        currentImageIndex = Mathf.Clamp(
+            gameState.StageID,
+            0,
+            images.Length - 1
+        );
         SpawnTutorial();
+
     }
 
     public void SpawnTutorial()
@@ -220,6 +228,7 @@ public class PopupImageManager : MonoBehaviour
 
     private void Scene()
     {
+       gameState.StageID= currentImageIndex;    
         // TODO: ここでGameStateのStageIDの書き換えを行う必要があるがstageDataBase側でどのステージデータがどのステージＩＤに対応してるかが取得できないと書き換えられない＋ゲームステートのリストがそもそも必要？
         SceneTransitionManager.Instance.TransitionToNextScene(FadeMode.SimpleColor);
     }

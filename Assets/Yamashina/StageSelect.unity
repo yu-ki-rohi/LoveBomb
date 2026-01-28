@@ -315,6 +315,7 @@ MonoBehaviour:
   - stage2
   - stage3
   fadeDuration: 0.5
+  gameState: {fileID: 11400000, guid: 38e86691ce278484ca7011a242cf6f33, type: 2}
 --- !u!114 &2018643033
 MonoBehaviour:
   m_ObjectHideFlags: 0
