@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa42ea174a944ba43ad2b64f85c5eabb, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  StageManager: {fileID: 6679768437812172155, guid: a2361e53f74bedd4c9ac48489b75eb84, type: 3}
+  StageManager: {fileID: 7106883993323020692, guid: 28d85aa4da634ab4da135b436d30d06e, type: 3}
   TimeInfomation:
-    GameTime: 90
+    GameTime: 120
   ScoreInfomation:
-    ScoreInitial: 1000
-    ScoreBorder: 1500
-    ScoreMax: 2000
+    ScoreInitial: 10000
+    ScoreBorder: 13000
+    ScoreMax: 18000
   LightInfomation:
     minLightRadius: 0.1
     maxLightRadius: 10
     lightOuterRadiusMaltiplier: 10
-    minGrobalLight: {r: 0.20518868, g: 0.26503536, b: 0.2735849, a: 0}
-    maxGrobalLight: {r: 0.09055714, g: 0.18994434, b: 0.3490566, a: 0}
+    minGrobalLight: {r: 0.018066933, g: 0.030734558, b: 0.13207549, a: 0}
+    maxGrobalLight: {r: 0.45120937, g: 0.40032038, b: 0.49056602, a: 0}
     playerLightBorder: 0.74

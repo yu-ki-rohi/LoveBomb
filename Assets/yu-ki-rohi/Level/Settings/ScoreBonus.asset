@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BonusBorder: 3200000078000000c800000040010000e0010000
   Bonus:
-  - 1.1
   - 1.2
   - 1.5
-  - 1.8
-  - 2
+  - 2.5
+  - 3.8
+  - 4

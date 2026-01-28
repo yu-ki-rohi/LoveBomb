@@ -31,11 +31,25 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private StageData stageData;
 #endif
 
+    public void Continue()
+    {
+        playerInput.SwitchCurrentActionMap("InGame");
+        Time.timeScale = 1.0f;
+        pauseCanvas.enabled = false;
+    }
 
+    public void Retry()
+    {
+        SceneManager.LoadScene("InGameTest");
+    }
+
+    public void Return()
+    {
+        SceneManager.LoadScene("StageSelect");
+    }
 
     private void OnPause(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause is Called");
         if(pauseCanvas.enabled)
         {
             playerInput.SwitchCurrentActionMap("InGame");
@@ -104,6 +118,8 @@ public class InGameManager : MonoBehaviour
         ingamePause = playerInput.actions.FindActionMap("InGame").FindAction("Pause");
         menuPause = playerInput.actions.FindActionMap("Menu").FindAction("Pause");
 
+        playerInput.SwitchCurrentActionMap("InGame");
+        Time.timeScale = 1.0f;
 
     }
 
