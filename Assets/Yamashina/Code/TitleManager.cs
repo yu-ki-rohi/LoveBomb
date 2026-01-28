@@ -8,8 +8,8 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
-        start.onClick.AddListener(OnTitleButtonClicked); 
-        AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Title)
+        start.onClick.AddListener(OnTitleButtonClicked);
+        AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Title);
     }
 
     private void OnTitleButtonClicked()
