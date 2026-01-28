@@ -15,8 +15,12 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private GameState gameState;
     [SerializeField] private UsedItemPoolManager usedItemPoolManager;
 
+#if UNITY_EDITOR
+    [SerializeField] private StageManager stageManager;
+    [SerializeField] private StageData stageData;
+#endif
 
-     
+
 
 
     void Awake()
@@ -27,8 +31,24 @@ public class InGameManager : MonoBehaviour
             return;
         }
 
+
+#if UNITY_EDITOR
+        StageData stageData;
+        StageManager stageManager;
+        if (this.stageData == null || this.stageManager == null)
+        {
+            stageData = stageDataBase.Stages[gameState.StageID];
+            stageManager = Instantiate(stageData.StageManager);
+        }
+        else
+        {
+            stageData = this.stageData;
+            stageManager = this.stageManager;
+        }
+#else
         StageData stageData = stageDataBase.Stages[gameState.StageID];
         StageManager stageManager = Instantiate(stageData.StageManager);
+#endif
         stageManager.SetInitialPositionOfPlayer(player.transform);
 
         gameTimeManager.TimeInfomation = stageData.TimeInfomation;

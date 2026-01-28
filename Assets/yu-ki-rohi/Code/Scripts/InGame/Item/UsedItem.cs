@@ -34,9 +34,6 @@ public class UsedItem : MonoBehaviour, IPooledObject<UsedItem>
         this.data = data;
         animator.runtimeAnimatorController = data.Controller;
 
-        // LayerID�̕ύX
-        // 2: OnFloor
-        // 4: Effect
         if (data.ItemType == ItemData.Type.Barrier)
         {
             spriteRenderer.sortingLayerName = "Effects";
