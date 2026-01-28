@@ -541,6 +541,18 @@ public class Player : MonoBehaviour, IDamageable
 
         usedItemPoolManager.UseItem(item, position,item.Radius);
 
+        // TODO: それぞれのアイテム使用時の効果音を再生
+        switch(item.ItemType)
+        {
+            case ItemData.Type.Attract:
+                break;
+            case ItemData.Type.Barrier:
+                break;
+            case ItemData.Type.Landmines:
+                break;
+
+        }
+
         item.NumberOfPossessions--;
         ReflectSelectedItemUI();
     }

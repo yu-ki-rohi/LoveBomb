@@ -105,6 +105,7 @@ public class UsedItem : MonoBehaviour, IPooledObject<UsedItem>
 
         if (data.ItemType == ItemData.Type.Barrier)
         {
+            // TODO: ’e‚­‰¹‚Ì’Ç‰Á(?)
             enemy.AddForce((collision.transform.position - transform.position).normalized, dataBase.KnockPower);
         }
         else if (data.ItemType == ItemData.Type.Attract)
@@ -144,6 +145,7 @@ public class UsedItem : MonoBehaviour, IPooledObject<UsedItem>
         while (true)
         {
             yield return new WaitForSeconds(interval);
+            // TODO: ƒxƒ‹‚ð–Â‚ç‚·‰¹‚ð’Ç‰Á
             animator.SetTrigger("RingBell");
         }
     }

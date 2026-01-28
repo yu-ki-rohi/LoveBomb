@@ -35,18 +35,19 @@ public class HeartCore : MonoBehaviour
     public void AddPlayerScore(int score)
     {
         scoreFluctuate?.AddScore(score);
+        // TODO: スコア加算音の再生
     }
 
     public void AddEnemyScore(int score)
     {
         scoreFluctuate?.ReduceScore(score);
+        // TODO: スコア減少音の再生
     }
 
     void Start()
     {
         enemyNumText.text = enemyCount.ToString();
         light2d = GetComponent<Light2D>();
-
     }
 
    
