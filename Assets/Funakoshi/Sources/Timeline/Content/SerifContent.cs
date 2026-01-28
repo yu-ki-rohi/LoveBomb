@@ -1,12 +1,12 @@
-using System.Collections;
 using UnityEngine;
 using TMPro;
 
 public class TSerifContent : TimelineContent
 {
     public TextMeshProUGUI textComponent;
-    public string serif;
-    public int framesForChar;
+
+    [SerializeField] string serif = string.Empty;
+    [SerializeField] int framesForChar = 1;
 
     private TextUseCase text;
 

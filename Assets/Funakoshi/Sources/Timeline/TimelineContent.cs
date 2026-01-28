@@ -2,25 +2,28 @@ using UnityEngine;
 
 public abstract class TimelineContent : MonoBehaviour
 {
+    [Header("これをアタッチするオブジェクトはTimelineAssetから生成してください")]
+
+    [HideInInspector]
     public float ActionStartTime;
 
     public abstract float Duration();
 
     public void Animation(float globalTime)
     {
-        if (globalTime < ActionStartTime) // localTimeが小さい時
+        if (globalTime < ActionStartTime) // durationの前
         {
             BeforeBegin();
         }
-        else if (Duration() + ActionStartTime < globalTime) // localTimeが大きい時
-        {
-            AfterFinished();
-        }
-        else // localTimeがdurationの範囲に収まっている時
+        else if (globalTime < ActionStartTime + Duration()) // localTimeがdurationの範囲に収まっている時
         {
             float localTime = globalTime - ActionStartTime;
 
             Evalute(localTime);
+        }
+        else // durationの後
+        {
+            AfterFinished();
         }
     }
 
