@@ -28,7 +28,8 @@ public class PlayerAnimation : NormalPlayerComponent
 
     public void SetShootStage(int index)
     {
-        animator?.SetInteger("ShootStage", index);
+        if (DebugMessenger.NullCheckError(animator)) { return; }
+        animator.SetInteger("ShootStage", index);
     }
 
     // IUpdatable‚É‚æ‚Á‚Ä•ÛØ‚³‚ê‚Ä‚¢‚éƒƒ\ƒbƒh
@@ -220,7 +221,10 @@ public class PlayerAnimation : NormalPlayerComponent
         }
         finally
         {
-            spriteRenderer.enabled = true;
+            if(!DebugMessenger.NullCheckError(spriteRenderer)) 
+            {
+                spriteRenderer.enabled = true;
+            }
         }
     }
 }
