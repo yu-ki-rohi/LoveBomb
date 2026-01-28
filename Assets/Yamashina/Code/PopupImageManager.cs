@@ -229,7 +229,6 @@ public class PopupImageManager : MonoBehaviour
     private void Scene()
     {
        gameState.StageID= currentImageIndex;    
-        // TODO: ここでGameStateのStageIDの書き換えを行う必要があるがstageDataBase側でどのステージデータがどのステージＩＤに対応してるかが取得できないと書き換えられない＋ゲームステートのリストがそもそも必要？
         SceneTransitionManager.Instance.TransitionToNextScene(FadeMode.SimpleColor);
     }
 }
