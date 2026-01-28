@@ -56,7 +56,9 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
         if(currentScore < scoreInfomation.ScoreMax) { return; }
 
         currentScore = scoreInfomation.ScoreMax;
-        
+
+        DebugMessenger.Log("Touch Up!! Winner : Player!");
+
         OnTouchUp?.Invoke();
 
     }
@@ -73,7 +75,7 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
         if(currentScore > 0) { return; }
 
         currentScore = 0;
-
+        DebugMessenger.Log("Touch Up!! Winner : Enemy!");
         OnTouchUp?.Invoke();
     }
 

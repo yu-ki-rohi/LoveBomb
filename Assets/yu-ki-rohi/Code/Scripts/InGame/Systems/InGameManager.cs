@@ -31,11 +31,29 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private StageData stageData;
 #endif
 
+    public void Continue()
+    {
+        playerInput.SwitchCurrentActionMap("InGame");
+        Time.timeScale = 1.0f;
+        pauseCanvas.enabled = false;
+    }
 
+    public void Retry()
+    {
+        Time.timeScale = 1.0f;
+        // TODO: フェード付きのものに差し替え
+        SceneManager.LoadScene("InGameTest");
+    }
+
+    public void Return()
+    {
+        Time.timeScale = 1.0f;
+        // TODO: フェード付きのものに差し替え
+        SceneManager.LoadScene("StageSelect");
+    }
 
     private void OnPause(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause is Called");
         if(pauseCanvas.enabled)
         {
             playerInput.SwitchCurrentActionMap("InGame");
@@ -54,7 +72,7 @@ public class InGameManager : MonoBehaviour
     {
         if(gameState.StageID < 0 || gameState.StageID >= stageDataBase.Stages.Count)
         {
-            // TODO: ステージ選択に引き換えさせる処理の追加
+            // TODO: ステージ選択に引き返させる処理の追加　※StageID側を変更したので不要になるかも
             return;
         }
 
@@ -104,6 +122,8 @@ public class InGameManager : MonoBehaviour
         ingamePause = playerInput.actions.FindActionMap("InGame").FindAction("Pause");
         menuPause = playerInput.actions.FindActionMap("Menu").FindAction("Pause");
 
+        playerInput.SwitchCurrentActionMap("InGame");
+        Time.timeScale = 1.0f;
 
     }
 
@@ -128,6 +148,7 @@ public class InGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: 当日版では消す
         //Escが押された時
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -143,6 +164,7 @@ public class InGameManager : MonoBehaviour
     private void OnTimeUp()
     {
         scoreManager.LockScoreFluctuation();
+        // TODO: 演出追加
         GameSet();
     }
 
@@ -150,6 +172,7 @@ public class InGameManager : MonoBehaviour
     {
         scoreManager.LockScoreFluctuation();
         gameTimeManager.TimerStop();
+        // TODO: 演出追加
         GameSet();
     }
 
@@ -158,6 +181,8 @@ public class InGameManager : MonoBehaviour
         gameState.Score = scoreManager.CurrentScore;
         gameState.ClearTime = stageDataBase.Stages[gameState.StageID].TimeInfomation.GameTime - gameTimeManager.ElapsedTime;
 
+        Time.timeScale = 1.0f;
+        // TODO: フェード付きのものに差し替え
         SceneManager.LoadScene("InGameTest");
     }
 }

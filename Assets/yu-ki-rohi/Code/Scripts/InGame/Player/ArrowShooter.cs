@@ -108,7 +108,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
     {
         if(chargeEffect != null)
         {
-            chargeEffect.transform.position = player.Transform.position;
+            chargeEffect.transform.position = player.Transform.position + (Vector3)parameters.ShootPosAdjust;
         }
 
         if (player.State == Player.State.Aim &&
@@ -188,7 +188,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             }
 
             float currentCharge = 0f;
-            chargeEffect = effectPoolManager.PlayEffect(player.Transform.position, EffectData.EffectType.Charge, 1.0f / parameters.ChargeTime);
+            chargeEffect = effectPoolManager.PlayEffect(player.Transform.position + (Vector3)parameters.ShootPosAdjust, EffectData.EffectType.Charge, 1.0f / parameters.ChargeTime);
             
             while (currentCharge < parameters.ChargeTime)
             {
@@ -214,7 +214,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
                 type = Arrow.Type.Explosion;
                 DebugMessenger.Log("Fully Charged!");
                 // HACK: アニメーション速度の指定の仕方
-                effectPoolManager.PlayEffect(player.Transform.position, EffectData.EffectType.ChargeEnd, 1.0f);
+                effectPoolManager.PlayEffect(player.Transform.position + (Vector3)parameters.ShootPosAdjust, EffectData.EffectType.ChargeEnd, 1.0f);
             }
             while (isPreparedToShoot == false) 
             {

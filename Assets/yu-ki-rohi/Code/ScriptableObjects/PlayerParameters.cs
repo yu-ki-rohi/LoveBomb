@@ -23,6 +23,8 @@ public class PlayerMovementParameters
     public float BurstForce = 50.0f;
     [Range(0.5f, 5.0f)]
     public float BurstCoolTime = 1.0f;
+    [Range(0.5f, 1.0f)]
+    public float InvincibleTime = 0.5f;
 
     [Header("画面端に行った時のバッファ"), Min(0.0f)]
     public float PlayerRadius = 0.5f;

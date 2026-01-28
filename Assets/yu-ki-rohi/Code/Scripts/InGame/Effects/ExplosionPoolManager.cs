@@ -20,5 +20,7 @@ public class ExplosionPoolManager : PoolManager<Explosion>
         explosion.transform.position = position;
         explosion.transform.localScale = new Vector3 (scaleMultiplier, scaleMultiplier, 1.0f);  // zÇÕä÷åWÇ»Ç¢ÇÃÇ≈ÅAÇ∆ÇËÇ†Ç¶Ç∏1Ç≈
         explosion.Initialize(power);
+
+        //TODO: îöî≠âπÇÃçƒê∂
     }
 }

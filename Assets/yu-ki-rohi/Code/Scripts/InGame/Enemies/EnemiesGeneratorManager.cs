@@ -40,6 +40,9 @@ public class EnemiesGeneratorManager : MonoBehaviour
 #if UNITY_EDITOR
     public void SetGenerators()
     {
+        enemyGenerators.Clear();
+        generators.Clear();
+
         var enemiesGeneratorArray = FindObjectsByType<EnemiesGenerator>(FindObjectsSortMode.None);
 
         foreach(var enemiesGenerator  in enemiesGeneratorArray)

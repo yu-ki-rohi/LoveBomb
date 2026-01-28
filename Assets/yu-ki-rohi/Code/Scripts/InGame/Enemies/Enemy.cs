@@ -205,6 +205,8 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             var data = individualData.BasicData;
             var position = transform.position + new Vector3(data.AxietyEffectOffset.x, data.AxietyEffectOffset.y, 0.0f);
             pools.EffectPool.PlayEffect(position, EffectData.EffectType.HitEffect);
+
+            // TODO: ’Êí”í’e‰¹‚ÌÄ¶
         }
         // ‘Ì—Í‚ğŒ¸‚ç‚·
         individualData.CurrentHitPoint -= attack;
