@@ -28,7 +28,7 @@ public class PlayerAnimation : NormalPlayerComponent
 
     public void SetShootStage(int index)
     {
-        animator.SetInteger("ShootStage", index);
+        animator?.SetInteger("ShootStage", index);
     }
 
     // IUpdatable‚É‚æ‚Á‚Ä•ÛØ‚³‚ê‚Ä‚¢‚éƒƒ\ƒbƒh
