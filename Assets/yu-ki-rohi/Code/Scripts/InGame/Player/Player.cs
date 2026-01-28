@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -58,7 +59,8 @@ public class Player : MonoBehaviour, IDamageable
 
     // 一旦プレイヤーから操作
     [SerializeField] private Image heartGauge;
-    [SerializeField] private Image selectedItem;
+    [SerializeField] private List<Image> selectedItems;
+    [SerializeField] private List<TextMeshProUGUI> itemNumTexts;
 
     #endregion
 
@@ -283,6 +285,13 @@ public class Player : MonoBehaviour, IDamageable
         {
             OnDamaged += component.OnDamaged;
         }
+
+        int length = Mathf.Min(selectedItems.Count, itemData.Items.Count);
+        for(int i = 0;i<length;i++)
+        {
+            selectedItems[i].sprite = itemData.Items[i].Icon;
+        }
+        ReflectSelectedItemUI();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -400,8 +409,6 @@ public class Player : MonoBehaviour, IDamageable
             useItem
         };
 
-        var gameplayMap = playerInput.actions.FindActionMap("InGame");
-
         // 登録処理
         if (enabled)
         {
@@ -430,6 +437,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             for (int i = 0; i < Length; i++)
             {
+                if (DebugMessenger.NullCheckWarning(inputActions[i])) { continue; }
                 inputActions[i].performed -= actions[i];
                 inputActions[i].canceled -= actions[i];
             }
@@ -449,7 +457,7 @@ public class Player : MonoBehaviour, IDamageable
             delta = 1;
         }
         itemIndex = LoopIndex(itemIndex, delta, itemData.Items.Count);
-        selectedItem.sprite = itemData.Items[itemIndex].Icon;
+        ReflectSelectedItemUI();
     }
 
     private int LoopIndex(int currentIndex, int delta, int ArrayLength)
@@ -468,11 +476,36 @@ public class Player : MonoBehaviour, IDamageable
         return nextIndex;
     }
 
+    private void ReflectSelectedItemUI()
+    {
+        for(int i = 0; i < selectedItems.Count; i++)
+        {
+
+            // HACK: パラメーターの外だしなど
+            if (i == itemIndex)
+            {
+                if(itemData.Items[i].NumberOfPossessions > 0)
+                {
+                    selectedItems[i].color = Color.white;
+                }
+                else
+                {
+                    selectedItems[i].color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                }
+            }
+            else
+            {
+                selectedItems[i].color = new Color(1.0f,1.0f, 1.0f, 0.2f);
+            }
+            itemNumTexts[i].text = "× "+ itemData.Items[i].NumberOfPossessions.ToString();
+        }
+    }
+
     private void UseItem()
     {
         ItemData item = itemData.Items[itemIndex];
 
-        //if (item.NumberOfPossessions < 1) { return; }
+        if (item.NumberOfPossessions < 1) { return; }
 
         Vector3 position = transform.position;
 
@@ -500,7 +533,8 @@ public class Player : MonoBehaviour, IDamageable
 
         usedItemPoolManager.UseItem(item, position,item.Radius);
 
-        //item.NumberOfPossessions--;
+        item.NumberOfPossessions--;
+        ReflectSelectedItemUI();
     }
 
     #endregion

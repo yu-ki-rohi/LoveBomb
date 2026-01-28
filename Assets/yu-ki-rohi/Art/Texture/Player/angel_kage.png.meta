@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 4eec3a23f379c8844a6cd270e14ac144
+guid: c110d5e5b3770c44f9c235c88fcd627b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8298695175322103256
-    second: angel_up_0
-  - first:
-      213: 2280544640805726588
-    second: angel_up_1
+      213: -2452944166530907511
+    second: angel_kage_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: angel_up_0
+      name: angel_kage_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 84
-        width: 10
-        height: 6
+        x: 59
+        y: 0
+        width: 152
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8229da7d4bc15dc80800000000000000
-      internalID: -8298695175322103256
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: angel_up_1
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 7
-        width: 187
-        height: 249
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7965a9944f16af10800000000000000
-      internalID: 2280544640805726588
+      spriteID: 9820f0cd64465fdd0800000000000000
+      internalID: -2452944166530907511
       vertices: []
       indices: 
       edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      angel_up_0: -8298695175322103256
-      angel_up_1: 2280544640805726588
+      angel_kage_0: -2452944166530907511
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
