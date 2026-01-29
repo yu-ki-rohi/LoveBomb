@@ -12,7 +12,7 @@ public class EnemyDrops : MonoBehaviour, ICoreChargable
 
     public void ChargeExecute()
     {
-        AudioManager.Instance.PlaySEById(SEName.Charge);
+        //AudioManager.Instance.PlaySEById(SEName.Charge);
     }
 
     public void SetTarget(Transform target)
