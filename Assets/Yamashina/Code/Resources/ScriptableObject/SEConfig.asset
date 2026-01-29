@@ -79,9 +79,6 @@ MonoBehaviour:
   - seId: 21
     seAudioClip: {fileID: 8300000, guid: 4011a54e183384b43a997a2306d74703, type: 3}
     description: 
-  - seId: 22
-    seAudioClip: {fileID: 8300000, guid: 025a0558ea8211e4d9dbf3ec7495cadf, type: 3}
-    description: 
   - seId: 23
     seAudioClip: {fileID: 8300000, guid: f1ad9b12bbd943e44b6cc82a427f4266, type: 3}
     description: 
@@ -98,7 +95,7 @@ MonoBehaviour:
     seAudioClip: {fileID: 8300000, guid: 4011a54e183384b43a997a2306d74703, type: 3}
     description: 
   - seId: 28
-    seAudioClip: {fileID: 8300000, guid: 9bc978cf10f1ad948ab8b25358e761b6, type: 3}
+    seAudioClip: {fileID: 8300000, guid: d4437412e8b486f41b4708f1a6a50ebc, type: 3}
     description: 
   - seId: 29
     seAudioClip: {fileID: 8300000, guid: d4437412e8b486f41b4708f1a6a50ebc, type: 3}
