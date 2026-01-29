@@ -175,6 +175,8 @@ public class EnemyMovementChasePlayer : IUpdatable
             timer = 0;
             enemyIndividualData.MoveDir = (target.position - transform.position).normalized;
             state = State.Rush;
+            AudioManager.Instance.PlaySEById(SEName.BatChargePrepare);
+
             enemyIndividualData.Animator.SetTrigger("Attack");
         }
     }
@@ -182,7 +184,6 @@ public class EnemyMovementChasePlayer : IUpdatable
     private void Rush()
     {
         enemyIndividualData.Rigidbody.AddForce(enemyIndividualData.MoveDir * enemyIndividualData.Rigidbody.linearDamping * enemyIndividualData.BasicData.Agility * enemyIndividualData.BasicData.RushSpeedMultiplier, ForceMode2D.Force);
-
         Vector3 toTargetVec = target.position - transform.position;
 
         // èIóπîªíËÇÃíl
@@ -192,6 +193,8 @@ public class EnemyMovementChasePlayer : IUpdatable
         if (Vector3.Dot(toTargetVec, enemyIndividualData.MoveDir) <= judgeValue)
         {
             state = State.Chase;
+            AudioManager.Instance.PlaySEById(SEName.BatCharge);
+
             enemyIndividualData.Animator.SetTrigger("Attack");
         }
     }
