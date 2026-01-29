@@ -260,15 +260,17 @@ public class InGameManager : MonoBehaviour
 
     private void OnTimeUp()
     {
-        scoreManager.LockScoreFluctuation();
-        // TODO:
-        GameSet();
+        LockEveryThing();
+        timeUp.SetActive(true);
+        Time.timeScale = 1.0f;
+        StartCoroutine(TimeUpCoroutine());
     }
 
     private void OnTouchUp()
     {
         scoreManager.LockScoreFluctuation();
         gameTimeManager.TimerStop();
+        Time.timeScale = 1.0f;
         // TODO: 
         GameSet();
     }
@@ -278,7 +280,6 @@ public class InGameManager : MonoBehaviour
         gameState.Score = scoreManager.CurrentScore;
         gameState.ClearTime = stageDataBase.Stages[gameState.StageID].TimeInfomation.GameTime - gameTimeManager.ElapsedTime;
 
-        Time.timeScale = 1.0f;
         // TODO: 
         SceneTransitionManager.Instance.TransitionToNextScene();
     }
@@ -292,10 +293,17 @@ public class InGameManager : MonoBehaviour
         
     }
 
+    private IEnumerator TimeUpCoroutine()
+    {
+        yield return new WaitForSeconds(demoDirectionData.TimeUpTime);
+
+        GameSet();
+    }
+
     private void LockEveryThing()
     {
-        player.CanMove = true;
-        canPause = true;
+        player.CanMove = false;
+        canPause = false;
         scoreManager.LockScoreFluctuation();
         gameTimeManager.TimerStop();
     }
