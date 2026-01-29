@@ -172,6 +172,8 @@ public class Player : MonoBehaviour, IDamageable
     public void AddHeartEnergy(int energy)
     {
         data.AddHeartEnergy(energy);
+        AudioManager.Instance.PlaySEById(SEName.PickupHeart);
+
     }
 
     public void AddItem(int id)
