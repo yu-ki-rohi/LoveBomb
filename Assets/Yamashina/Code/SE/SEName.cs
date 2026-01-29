@@ -61,7 +61,6 @@ internal enum SEName
 
     #region タイムアップ関連
 
-    TimeUpWarning,//タイムアップギリギリ前のSE 
 
     TimeUp,//タイムアップのSE
 

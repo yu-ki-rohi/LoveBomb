@@ -7,6 +7,8 @@ internal enum BGMName
     None,
     Title,
     StageSelect,
+    TimeUpWarning,//タイムアップギリギリ前のSE 
+
     Stage1,
     Stage2,
     Stage3,
