@@ -14,7 +14,6 @@ public class UIButtonSE : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData e)
     {
-        AudioManager.Instance.PlaySEById(SEName.MouseOver);
     }
 }
 
