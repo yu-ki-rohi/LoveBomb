@@ -53,13 +53,13 @@ MonoBehaviour:
     seAudioClip: {fileID: 8300000, guid: 603d1ef1d6d6e9d47953370489726df6, type: 3}
     description: 
   - seId: 13
-    seAudioClip: {fileID: 8300000, guid: 86286ffa839eb11428f9bcfa3596355a, type: 3}
+    seAudioClip: {fileID: 8300000, guid: 603d1ef1d6d6e9d47953370489726df6, type: 3}
     description: 
   - seId: 14
-    seAudioClip: {fileID: 8300000, guid: 86286ffa839eb11428f9bcfa3596355a, type: 3}
+    seAudioClip: {fileID: 8300000, guid: 603d1ef1d6d6e9d47953370489726df6, type: 3}
     description: 
   - seId: 15
-    seAudioClip: {fileID: 8300000, guid: 86286ffa839eb11428f9bcfa3596355a, type: 3}
+    seAudioClip: {fileID: 8300000, guid: 603d1ef1d6d6e9d47953370489726df6, type: 3}
     description: 
   - seId: 16
     seAudioClip: {fileID: 8300000, guid: 64bf3428264308940a95b8878530d938, type: 3}
@@ -74,10 +74,10 @@ MonoBehaviour:
     seAudioClip: {fileID: 8300000, guid: 69edaf40e8d20fc408708935c2987c93, type: 3}
     description: 
   - seId: 20
-    seAudioClip: {fileID: 8300000, guid: 86286ffa839eb11428f9bcfa3596355a, type: 3}
+    seAudioClip: {fileID: 8300000, guid: dba814b7c7cab4a4182d700ecacfccda, type: 3}
     description: 
   - seId: 21
-    seAudioClip: {fileID: 8300000, guid: 86286ffa839eb11428f9bcfa3596355a, type: 3}
+    seAudioClip: {fileID: 8300000, guid: dba814b7c7cab4a4182d700ecacfccda, type: 3}
     description: 
   - seId: 22
     seAudioClip: {fileID: 8300000, guid: 86286ffa839eb11428f9bcfa3596355a, type: 3}
