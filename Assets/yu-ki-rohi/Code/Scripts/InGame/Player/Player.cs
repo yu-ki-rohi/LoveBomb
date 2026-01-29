@@ -192,6 +192,7 @@ public class Player : MonoBehaviour, IDamageable
         // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
         // 10: PlayerInvincible
         gameObject.layer = 10;
+        AudioManager.Instance.PlaySEById(SEName.Damage);
         OnDamaged.Invoke();
         data.LoseHeartEnergy(attack);
         data.ChangeState(State.Damaged);
