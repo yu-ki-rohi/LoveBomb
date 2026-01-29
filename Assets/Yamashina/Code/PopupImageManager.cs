@@ -31,6 +31,19 @@ public class PopupImageManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        //TODO：InputSystemに差し替えたいけどスピード重視で一旦旧システムで実装
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            ShowPreviousImage();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            ShowNextImage();    
+        }
+    }
+
     public void SpawnTutorial()
     {
         SpawnCanvasWithImage(images[currentImageIndex]);
