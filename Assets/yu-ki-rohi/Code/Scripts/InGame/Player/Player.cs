@@ -136,6 +136,8 @@ public class Player : MonoBehaviour, IDamageable
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.OnDash(context);
+            AudioManager.Instance.PlaySEById(SEName.DashMove);
+
         }
         // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
         // 10: PlayerInvincible
