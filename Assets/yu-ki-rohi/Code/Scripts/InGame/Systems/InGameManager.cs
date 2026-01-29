@@ -293,6 +293,7 @@ public class InGameManager : MonoBehaviour
         player.CanMove = true;
         enemiesGeneratorManager.BootGenerators();
         canPause = true;
+        gameTimeManager.TimerStart();
         
     }
 

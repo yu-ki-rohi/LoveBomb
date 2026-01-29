@@ -9,6 +9,7 @@ public class DefeatNumViewer : MonoBehaviour
 
     [SerializeField] private Image[] numViewers;
     [SerializeField] private Image exclamationViewer;
+    [SerializeField] private ScoreBonus scoreBonus;
 
     // HACK: ˆê’U‚±‚±‚Å
     [SerializeField, Min(0.1f)] private float validityTime = 5.0f;
@@ -21,7 +22,18 @@ public class DefeatNumViewer : MonoBehaviour
 
     public void OnDefeatEnemy()
     {
+        int tmp = defeatNum;
         defeatNum++;
+
+        for(int i = 0; i < scoreBonus.Length; i++)
+        {
+            if(tmp < scoreBonus.BonusBorder[i] && defeatNum >= scoreBonus.BonusBorder[i])
+            {
+                //TODO: ƒRƒ“ƒ{”ˆê’è’l‚ğ‰z‚¦‚½‰¹
+
+                break;
+            }
+        }
 
         if(invalidationCoroutine != null)
         {
