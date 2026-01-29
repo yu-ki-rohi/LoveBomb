@@ -16,6 +16,13 @@ MonoBehaviour:
   TimeInfomation:
     GameTime: 180
   ScoreInfomation:
-    ScoreInitial: 100
-    ScoreBorder: 300
-    ScoreMax: 600
+    ScoreInitial: 8000
+    ScoreBorder: 15000
+    ScoreMax: 22000
+  LightInfomation:
+    minLightRadius: 0.1
+    maxLightRadius: 10
+    lightOuterRadiusMaltiplier: 10
+    minGrobalLight: {r: 0.05660379, g: 0.006140978, b: 0.0413998, a: 0}
+    maxGrobalLight: {r: 0.1981132, g: 0.1728818, b: 0.18970273, a: 0}
+    playerLightBorder: 0.7
