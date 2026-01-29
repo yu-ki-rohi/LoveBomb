@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -19,17 +18,13 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private GameState gameState;
     [SerializeField] private UsedItemPoolManager usedItemPoolManager;
     [SerializeField] private Canvas pauseCanvas;
-    [SerializeField] private List<Image> pauseButtons;
+    [SerializeField] private Button continueButton;
+    [SerializeField] private Button retryButton;
+    [SerializeField] private Button returnButton;
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private List<Sprite> pauseNorm;
-    [SerializeField] private List<Sprite> pauseSelected;
 
     private InputAction ingamePause;
     private InputAction menuPause;
-    private InputAction upInPause;
-    private InputAction downInPause;
-
-    private int pauseIndex = 0;
 
 #if UNITY_EDITOR
     [SerializeField] private StageManager stageManager;
@@ -41,7 +36,6 @@ public class InGameManager : MonoBehaviour
         playerInput.SwitchCurrentActionMap("InGame");
         Time.timeScale = 1.0f;
         pauseCanvas.enabled = false;
-        pauseIndex = 0;
     }
 
     public void Retry()
@@ -62,66 +56,15 @@ public class InGameManager : MonoBehaviour
     {
         if(pauseCanvas.enabled)
         {
-            switch(pauseIndex)
-            {
-                case 0:
-                    Continue();
-                    break;
-                    
-                case 1:
-                    Retry();
-                    break;
-                    
-                case 2:
-                    Return();
-                    break;
-            }
+            playerInput.SwitchCurrentActionMap("InGame");
+            Time.timeScale = 1.0f;
+            pauseCanvas.enabled = false;
         }
         else
         {
-            pauseIndex = 0;
-            ReflectPauseUI();
             playerInput.SwitchCurrentActionMap("Menu");
             Time.timeScale = 0.0f;
             pauseCanvas.enabled = true;
-        }
-    }
-
-    private void OnUp(InputAction.CallbackContext context)
-    {
-        pauseIndex--;
-        if(pauseIndex < 0) { pauseIndex = 0; }
-        ReflectPauseUI();
-    }
-
-    private void OnDown(InputAction.CallbackContext context)
-    {
-        pauseIndex++;
-        if(pauseIndex > 2) { pauseIndex = 2; }
-        ReflectPauseUI();
-    }
-
-    private void OnPointEnter(int index)
-    {
-        pauseIndex = index;
-        ReflectPauseUI();
-    }
-
-    private void ReflectPauseUI()
-    {
-        int length = Mathf.Min(pauseNorm.Count, pauseSelected.Count);
-        length = Mathf.Min(pauseButtons.Count, length);
-
-        for(int i = 0; i < length; i++)
-        {
-            if(i == pauseIndex)
-            {
-                pauseButtons[i].sprite = pauseSelected[i];
-            }
-            else
-            {
-                pauseButtons[i].sprite = pauseNorm[i];
-            }
         }
     }
 
@@ -178,19 +121,8 @@ public class InGameManager : MonoBehaviour
         
         ingamePause = playerInput.actions.FindActionMap("InGame").FindAction("Pause");
         menuPause = playerInput.actions.FindActionMap("Menu").FindAction("Pause");
-        upInPause = playerInput.actions.FindActionMap("Menu").FindAction("Up");
-        downInPause = playerInput.actions.FindActionMap("Menu").FindAction("Down");
 
         playerInput.SwitchCurrentActionMap("InGame");
-
-        for(int i = 0; i < pauseButtons.Count; i++)
-        {
-            var buttonHover = pauseButtons[i].gameObject.GetComponent<ButtonHover>();
-            if(buttonHover == null ) { continue; }
-            buttonHover.Index = i;
-            buttonHover.SetOnPointerEnter(OnPointEnter);
-        }
-
         Time.timeScale = 1.0f;
 
     }
@@ -199,16 +131,12 @@ public class InGameManager : MonoBehaviour
     {
         ingamePause.performed += OnPause;
         menuPause.performed += OnPause;
-        upInPause.performed += OnUp;
-        downInPause.performed += OnDown;
     }
 
     private void OnDisable()
     {
         ingamePause.performed -= OnPause;
         menuPause.performed -= OnPause;
-        upInPause.performed -= OnUp;
-        downInPause.performed -= OnDown;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
