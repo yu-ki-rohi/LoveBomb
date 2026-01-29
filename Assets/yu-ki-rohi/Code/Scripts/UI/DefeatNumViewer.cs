@@ -30,7 +30,7 @@ public class DefeatNumViewer : MonoBehaviour
             if(tmp < scoreBonus.BonusBorder[i] && defeatNum >= scoreBonus.BonusBorder[i])
             {
                 //TODO: ƒRƒ“ƒ{”ˆê’è’l‚ğ‰z‚¦‚½‰¹
-
+                AudioManager.Instance.PlaySEById(SEName.ComboThresholdReached);
                 break;
             }
         }
