@@ -27164,9 +27164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyNumText: {fileID: 0}
-  minLightRadius: 0.1
-  maxLightRadius: 10
-  lightOuterRadiusMaltiplier: 10
 --- !u!114 &5892740973045627170
 MonoBehaviour:
   m_ObjectHideFlags: 0
