@@ -4,32 +4,25 @@ using UnityEngine.SceneManagement;
 public class EndingScene : MonoBehaviour
 {
     [SerializeField] ContentManagement contentManagement;
+    [SerializeField] GameState gameState;
+    [SerializeField] StageDataBase stageDataBase;
+
+    private bool isFinish = false;
 
     void Start()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
-        BGMName bgmName = BGMName.None;
 
-        switch (sceneName)
+        if(gameState.Score < stageDataBase.Stages[gameState.StageID].ScoreInfomation.ScoreBorder)
         {
-            case string name when name == "GameOver":
-                bgmName = BGMName.Failed; // ƒŠƒUƒ‹ƒgŽ¸”s‚ÌBGM–¼
-                break;
-
-            case string name when name == "GameClear":
-
-                bgmName = BGMName.Succeed;
-                break;
-            default:
-                Debug.LogWarning($"No BGM assigned for the scene '{sceneName}'.");
-                //return; // BGM‚ªŽw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍI—¹
-                break;
+            // TODO: Ž¸”sŽžˆ—
 
         }
-        if (!string.IsNullOrEmpty(bgmName.ToString()))
+        else
         {
-            //AudioManager.Instance.PlayBGMIfNotPlaying(bgmName); // BGM‚ðÄ¶
+            // TODO: ¬Œ÷Žžˆ—
+
         }
+
         contentManagement.RunFirstContent();
     }
     void Update()
@@ -37,6 +30,11 @@ public class EndingScene : MonoBehaviour
         if (!contentManagement.IsAllContentEnd())
         {
             contentManagement.ContentUpdate();
+        }
+        else if (isFinish == false) 
+        {
+            SceneTransitionManager.Instance.TransitionToNextScene();
+            isFinish = true;
         }
 
         InputKeys();
