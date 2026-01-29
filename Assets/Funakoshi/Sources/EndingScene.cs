@@ -14,12 +14,17 @@ public class EndingScene : MonoBehaviour
 
         if(gameState.Score < stageDataBase.Stages[gameState.StageID].ScoreInfomation.ScoreBorder)
         {
+
             // TODO: Ž¸”sŽžˆ—
+            AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Failed);
+
 
         }
         else
         {
             // TODO: ¬Œ÷Žžˆ—
+            AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Succeed);
+
 
         }
 

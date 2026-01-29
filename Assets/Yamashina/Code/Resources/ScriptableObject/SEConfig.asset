@@ -77,7 +77,7 @@ MonoBehaviour:
     seAudioClip: {fileID: 8300000, guid: dba814b7c7cab4a4182d700ecacfccda, type: 3}
     description: 
   - seId: 21
-    seAudioClip: {fileID: 8300000, guid: dba814b7c7cab4a4182d700ecacfccda, type: 3}
+    seAudioClip: {fileID: 8300000, guid: 4011a54e183384b43a997a2306d74703, type: 3}
     description: 
   - seId: 22
     seAudioClip: {fileID: 8300000, guid: 025a0558ea8211e4d9dbf3ec7495cadf, type: 3}
