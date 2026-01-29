@@ -14,11 +14,11 @@ public class NumberTextComponent : CoroutineContent
 
     public void InitalSetValue(int value)
     {
+        numberValue = value;
         if (isDisplayAtOnce)
         {
             textComponent.text = numberValue.ToString();
         }
-        numberValue = value;
     }
 
     public override void ProcessStarted()

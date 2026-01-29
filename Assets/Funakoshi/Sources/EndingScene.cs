@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EndingScene : MonoBehaviour
 {
     [SerializeField] ContentManagement contentManagement;
     [SerializeField] GameState gameState;
     [SerializeField] StageDataBase stageDataBase;
+    [SerializeField] Image backGround;
+    [SerializeField] Sprite win;
+    [SerializeField] Sprite lose;
+
 
     private bool isFinish = false;
 
@@ -17,6 +22,7 @@ public class EndingScene : MonoBehaviour
 
             // TODO: ¸”sˆ—
             AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Failed);
+            backGround.sprite = lose;
 
 
         }
@@ -24,7 +30,7 @@ public class EndingScene : MonoBehaviour
         {
             // TODO: ¬Œ÷ˆ—
             AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Succeed);
-
+            backGround.sprite = win;
 
         }
 
