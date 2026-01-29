@@ -43,6 +43,7 @@ public class GameTimeManager : MonoBehaviour
     private void CallOfAproachingFinish()
     {
         // TODO: タイムアップ30秒前通知音
+        AudioManager.Instance.PlaySEById(SEName.TimeUpWarning);
     }
 
     private void TimeOver()
