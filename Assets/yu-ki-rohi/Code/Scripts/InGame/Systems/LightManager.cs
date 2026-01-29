@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -40,6 +41,24 @@ public class LightManager : MonoBehaviour
             playerLight.enabled = true;
         }
     }
+
+    public void LightOut(float time)
+    {
+        StartCoroutine(LightOutCoroutine(time));
+    }
+
+    private IEnumerator LightOutCoroutine(float time)
+    {
+        float diff = heartCoreLight.pointLightOuterRadius - heartCoreLight.pointLightInnerRadius;
+        float rate = diff / time;
+        while(heartCoreLight.pointLightOuterRadius - heartCoreLight.pointLightInnerRadius > 0)
+        {
+            yield return null;
+            heartCoreLight.pointLightOuterRadius -= rate * Time.deltaTime;
+        }
+
+    }
+
 
 
 }

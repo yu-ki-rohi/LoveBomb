@@ -13,9 +13,12 @@ public class ValueSetter : MonoBehaviour
 
     void Start()
     {
-        int score, bonus;
+        int score, bonus = 0;
         score = gameState.Score;
-        bonus = Mathf.Max((int)(gameState.ClearTime * 1000.0f), 0);
+        if(score > 0)
+        {
+            bonus = Mathf.Max((int)(gameState.ClearTime * 1000.0f), 0);
+        }
 
         // ƒV[ƒ“‚ğŒ×‚¢‚Å‚«‚½’l‚ğ‚±‚±‚Å‘ã“ü‚µ‚Ü‚·
         clearScore.InitalSetValue(score);
