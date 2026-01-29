@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Generator
   Image: {fileID: 21300000, guid: 31b0e328f4fd956408c41b66790869ae, type: 3}
-  MaxHitPoint: 100
+  MaxHitPoint: 60
   ExplosionPower: 6
   ExplosionScale: 4
-  BaseScore: 10
+  BaseScore: 200
