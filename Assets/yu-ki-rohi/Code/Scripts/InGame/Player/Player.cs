@@ -183,6 +183,7 @@ public class Player : MonoBehaviour, IDamageable
             id > itemData.Items.Count ||
             itemData.Items[id].NumberOfPossessions >= itemData.Items[id].MaxNum) { return; }
         itemData.Items[id].NumberOfPossessions++;
+        AudioManager.Instance.PlaySEById(SEName.PickupBell);
         ReflectSelectedItemUI();
         
     }
@@ -516,7 +517,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         ItemData item = itemData.Items[itemIndex];
 
-        if (item.NumberOfPossessions < 1) { return; }
+        if (item.NumberOfPossessions < 1) { AudioManager.Instance.PlaySEById(SEName.ItemOutOfStock); return; }
 
         Vector3 position = transform.position;
 
