@@ -36,6 +36,9 @@ public class HeartCore : MonoBehaviour
     {
         scoreFluctuate?.AddScore(score);
         // TODO: ÉXÉRÉAâ¡éZâπÇÃçƒê∂
+
+        AudioManager.Instance.PlaySEById(SEName.AddScore);
+
     }
 
     public void AddEnemyScore(int score)
