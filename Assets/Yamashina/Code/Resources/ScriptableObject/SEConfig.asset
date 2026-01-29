@@ -80,7 +80,7 @@ MonoBehaviour:
     seAudioClip: {fileID: 8300000, guid: dba814b7c7cab4a4182d700ecacfccda, type: 3}
     description: 
   - seId: 22
-    seAudioClip: {fileID: 8300000, guid: 86286ffa839eb11428f9bcfa3596355a, type: 3}
+    seAudioClip: {fileID: 8300000, guid: 025a0558ea8211e4d9dbf3ec7495cadf, type: 3}
     description: 
   - seId: 23
     seAudioClip: {fileID: 8300000, guid: f1ad9b12bbd943e44b6cc82a427f4266, type: 3}

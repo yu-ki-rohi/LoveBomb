@@ -34,6 +34,6 @@ MonoBehaviour:
   - scene:
       m_SceneName: Ending
     nextScene:
-      m_SceneName: TitleScene
+      m_SceneName: StageSelect
     previousScene:
       m_SceneName: InGameTest
