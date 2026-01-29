@@ -545,10 +545,15 @@ public class Player : MonoBehaviour, IDamageable
         switch(item.ItemType)
         {
             case ItemData.Type.Attract:
+                AudioManager.Instance.PlaySEById(SEName.BellRing);
+
                 break;
             case ItemData.Type.Barrier:
+                AudioManager.Instance.PlaySEById(SEName.UseSphere);
+
                 break;
             case ItemData.Type.Landmines:
+                AudioManager.Instance.PlaySEById(SEName.UseFeatherPenWrite);
                 break;
 
         }
