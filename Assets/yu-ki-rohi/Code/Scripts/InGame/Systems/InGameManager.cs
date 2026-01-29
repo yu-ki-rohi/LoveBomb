@@ -41,6 +41,8 @@ public class InGameManager : MonoBehaviour
         playerInput.SwitchCurrentActionMap("InGame");
         Time.timeScale = 1.0f;
         pauseCanvas.enabled = false;
+        AudioManager.Instance.PlaySEById(SEName.PauseOff);
+
         pauseIndex = 0;
     }
 
@@ -79,6 +81,7 @@ public class InGameManager : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.PlaySEById(SEName.PauseOn);
             pauseIndex = 0;
             ReflectPauseUI();
             playerInput.SwitchCurrentActionMap("Menu");
