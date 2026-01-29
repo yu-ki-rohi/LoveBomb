@@ -18,7 +18,7 @@ MonoBehaviour:
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 9425e1cb493f2bd47bcfef58089d9f67, type: 3}
   - bgmId: 2
-    bgmAudioClip: {fileID: 8300000, guid: 7423974d28b13714b9a937c24dec7a3b, type: 3}
+    bgmAudioClip: {fileID: 0}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 07c1e0f78b0c2fd4f9b3e42a68622b88, type: 3}
   - bgmId: 3
