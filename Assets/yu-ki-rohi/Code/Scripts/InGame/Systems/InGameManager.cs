@@ -26,7 +26,9 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private List<Sprite> pauseSelected;
     [SerializeField] private GameObject readyGo;
     [SerializeField] private GameObject timeUp;
+    [SerializeField] private GameObject whiteOut;
     [SerializeField] private DemoDirectionData demoDirectionData;
+    [SerializeField] private CinemachineCamera subCamera;
 
     private InputAction ingamePause;
     private InputAction menuPause;
@@ -190,6 +192,8 @@ public class InGameManager : MonoBehaviour
 
         cinemachineConfiner2.BoundingShape2D = stageManager.VisibleArea;
 
+        subCamera.gameObject.transform.position = stageManager.HeartCore.gameObject.transform.position;
+        subCamera.enabled = false;
 
         ingamePause = playerInput.actions.FindActionMap("InGame").FindAction("Pause");
         menuPause = playerInput.actions.FindActionMap("Menu").FindAction("Pause");
@@ -271,11 +275,19 @@ public class InGameManager : MonoBehaviour
 
     private void OnTouchUp()
     {
-        scoreManager.LockScoreFluctuation();
-        gameTimeManager.TimerStop();
+        LockEveryThing();
         Time.timeScale = 1.0f;
         // TODO: 
-        GameSet();
+        subCamera.enabled = true;
+        if(scoreManager.CurrentScore > 0)
+        {
+            whiteOut.SetActive(true);
+        }
+        else
+        {
+            lightManager.LightOut(demoDirectionData.TouchUpTime);
+        }
+        StartCoroutine(TouchUpCoroutine());
     }
 
     private void GameSet()
@@ -300,6 +312,13 @@ public class InGameManager : MonoBehaviour
     private IEnumerator TimeUpCoroutine()
     {
         yield return new WaitForSeconds(demoDirectionData.TimeUpTime);
+
+        GameSet();
+    }
+
+    private IEnumerator TouchUpCoroutine()
+    {
+        yield return new WaitForSeconds(demoDirectionData.TouchUpTime);
 
         GameSet();
     }
