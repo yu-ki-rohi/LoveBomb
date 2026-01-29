@@ -785,8 +785,8 @@ RectTransform:
   m_GameObject: {fileID: 214511446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1623783253}
   - {fileID: 491283255}
@@ -1342,8 +1342,8 @@ RectTransform:
   m_GameObject: {fileID: 391148053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 324343196}
   - {fileID: 1956742839}
@@ -2790,6 +2790,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: abbaf46390a566b44b08d9f1a4e60d68, type: 3}
   - {fileID: 21300000, guid: 1beb219607b45d9409842c70b6593854, type: 3}
   - {fileID: 21300000, guid: a7beb538824e1c34d876f48131a033db, type: 3}
+  readyGo: {fileID: 214511446}
+  timeUp: {fileID: 391148053}
+  demoDirectionData: {fileID: 11400000, guid: a7f612069fd976d48be938ee7f561b25, type: 2}
   stageManager: {fileID: 0}
   stageData: {fileID: 11400000, guid: d764f0baea703bc4eab4f8c201c43b68, type: 2}
 --- !u!4 &1456657007

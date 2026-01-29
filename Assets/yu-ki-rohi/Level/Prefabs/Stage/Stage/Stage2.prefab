@@ -115,7 +115,7 @@ MonoBehaviour:
   initialGenerateDelay: 3
   generateInterval: 3
   generateIntervalRandomOffset: 1
-  isBootOnStart: 1
+  isBootOnStart: 0
   innerRadius: 0
   outerRadius: 4.1999946
 --- !u!1 &589270052475818180
@@ -27225,7 +27225,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -27499,7 +27499,7 @@ MonoBehaviour:
   initialGenerateDelay: 5
   generateInterval: 35
   generateIntervalRandomOffset: 3
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!1001 &277946781477291601
@@ -27713,7 +27713,7 @@ MonoBehaviour:
   initialGenerateDelay: 30
   generateInterval: 20
   generateIntervalRandomOffset: 5
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!114 &6231320528871030814 stripped
@@ -27876,7 +27876,7 @@ MonoBehaviour:
   initialGenerateDelay: 0.5
   generateInterval: 5
   generateIntervalRandomOffset: 0
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!114 &6273413888320336695 stripped
@@ -28112,7 +28112,7 @@ MonoBehaviour:
   initialGenerateDelay: 7
   generateInterval: 3
   generateIntervalRandomOffset: 0
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!1001 &1364509764677651229
@@ -28187,7 +28187,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -28528,7 +28528,7 @@ MonoBehaviour:
   initialGenerateDelay: 30
   generateInterval: 2
   generateIntervalRandomOffset: 1.5
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 1.9879782, y: 0}
   maxLength: {x: 3.075406, y: 16.661203}
 --- !u!114 &5622003327096309734 stripped
@@ -28552,7 +28552,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -28888,7 +28888,7 @@ MonoBehaviour:
   initialGenerateDelay: 15
   generateInterval: 20
   generateIntervalRandomOffset: 3
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!1001 &3230582038927388785
@@ -29087,7 +29087,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -29601,7 +29601,7 @@ MonoBehaviour:
   initialGenerateDelay: 5
   generateInterval: 40
   generateIntervalRandomOffset: 3
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!114 &1447385066704344101 stripped
@@ -29754,7 +29754,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -30020,7 +30020,7 @@ MonoBehaviour:
   initialGenerateDelay: 25
   generateInterval: 5
   generateIntervalRandomOffset: 3
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 0.8196721}
 --- !u!114 &2105931819186668542 stripped
@@ -30049,7 +30049,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -30323,7 +30323,7 @@ MonoBehaviour:
   initialGenerateDelay: 102
   generateInterval: 5
   generateIntervalRandomOffset: 3
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 12.021858}
   maxLength: {x: 2.726771, y: 22.398907}
 --- !u!114 &2228242108753319810 stripped
@@ -30556,7 +30556,7 @@ MonoBehaviour:
   initialGenerateDelay: 25
   generateInterval: 4
   generateIntervalRandomOffset: 1.5
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 1.9879782, y: 0}
   maxLength: {x: 3.075406, y: 16.661203}
 --- !u!114 &527300277767599450 stripped
@@ -30647,7 +30647,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -31037,7 +31037,7 @@ MonoBehaviour:
   initialGenerateDelay: 15
   generateInterval: 15
   generateIntervalRandomOffset: 3
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!114 &3934779600055802440 stripped
@@ -31215,7 +31215,7 @@ MonoBehaviour:
   initialGenerateDelay: 12
   generateInterval: 13
   generateIntervalRandomOffset: 0
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!4 &8540867689308450815 stripped
@@ -31375,7 +31375,7 @@ MonoBehaviour:
   initialGenerateDelay: 90
   generateInterval: 8
   generateIntervalRandomOffset: 6
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 12.021858}
   maxLength: {x: 2.726771, y: 22.398907}
 --- !u!114 &4378606565376831603 stripped
@@ -31546,7 +31546,7 @@ MonoBehaviour:
   initialGenerateDelay: 45
   generateInterval: 10
   generateIntervalRandomOffset: 5
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 4.7202187, y: 0}
   maxLength: {x: 7.720214, y: 18.573772}
 --- !u!114 &4515902764346872945 stripped
@@ -31724,7 +31724,7 @@ MonoBehaviour:
   initialGenerateDelay: 10
   generateInterval: 10
   generateIntervalRandomOffset: 0
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 2.1803298}
 --- !u!4 &8056027449938453698 stripped
@@ -31887,7 +31887,7 @@ MonoBehaviour:
   initialGenerateDelay: 5
   generateInterval: 60
   generateIntervalRandomOffset: 3
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!4 &8013472399243357280 stripped
@@ -32058,7 +32058,7 @@ MonoBehaviour:
   initialGenerateDelay: 40
   generateInterval: 10
   generateIntervalRandomOffset: 2
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 1.7147543, y: 0}
   maxLength: {x: 4.7147503, y: 18.573772}
 --- !u!4 &7957099543922436523 stripped
@@ -32076,7 +32076,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: isBootOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateInterval
@@ -32407,7 +32407,7 @@ MonoBehaviour:
   initialGenerateDelay: 3
   generateInterval: 5
   generateIntervalRandomOffset: 0
-  isBootOnStart: 1
+  isBootOnStart: 0
   minLength: {x: 0, y: 0.8196721}
   maxLength: {x: 2.9999952, y: 3.819674}
 --- !u!4 &7338830730812176582 stripped

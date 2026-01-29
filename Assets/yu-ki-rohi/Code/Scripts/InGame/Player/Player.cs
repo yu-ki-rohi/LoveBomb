@@ -83,6 +83,8 @@ public class Player : MonoBehaviour, IDamageable
     private InputAction selectItem;
     private InputAction useItem;
 
+    private bool canMove = false;
+
     #endregion
 
     #region プロパティ
@@ -90,13 +92,14 @@ public class Player : MonoBehaviour, IDamageable
     public EffectPoolManager EffectPoolManager { set => effectPoolManager = value; }
     public ExplosionPoolManager ExplosionPoolManager { set => arrowPoolManager.ExplosionPoolManager = value; }
 
+    public bool CanMove { set => canMove = value; }
+
     #endregion
 
     #region  Player Input に登録するメソッド
     private void OnMove(InputAction.CallbackContext context)
     {
-        // Move以外では処理しない
-        if (context.action.name != "Move") { return; }
+        if(canMove == false) { return; }
 
         // 入力情報の受け取り
         Vector2 input = context.ReadValue<Vector2>();
@@ -109,6 +112,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnShoot(InputAction.CallbackContext context)
     {
+        if (canMove == false) { return; }
+
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.OnShoot(context);
@@ -118,6 +123,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnShootDir(InputAction.CallbackContext context)
     {
+        if (canMove == false) { return; }
+
         //HACK:要リファクタリング
 
         Vector3 input = context.ReadValue<Vector2>();
@@ -133,6 +140,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnDash(InputAction.CallbackContext context)
     {
+        if (canMove == false) { return; }
+
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.OnDash(context);
@@ -150,7 +159,9 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnUseItem(InputAction.CallbackContext context)
     {
-        if(data.State != State.Idle && data.State != State.Aim) { return; }
+        if (canMove == false) { return; }
+
+        if (data.State != State.Idle && data.State != State.Aim) { return; }
         
         if(context.performed)
         {
@@ -160,7 +171,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnSelectItem(InputAction.CallbackContext context)
     {
-        
+        if (canMove == false) { return; }
+
         float input = context.ReadValue<float>();
         if (itemSelectLockTimer <= 0.0f && input != 0.0f)
         {
@@ -344,7 +356,9 @@ public class Player : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        if(itemSelectLockTimer > 0)
+        if (canMove == false) { return; }
+
+        if (itemSelectLockTimer > 0)
         {
             itemSelectLockTimer -= Time.deltaTime;
         }
