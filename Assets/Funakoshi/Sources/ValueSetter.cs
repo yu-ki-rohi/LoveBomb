@@ -3,11 +3,35 @@ using UnityEngine;
 
 public class ValueSetter : MonoBehaviour
 {
-    [SerializeField] private NumberTextComponent killsCount;
+    [SerializeField] private NumberTextComponent clearScore;
+    [SerializeField] private NumberTextComponent timeBonus;
+    [SerializeField] private NumberTextComponent finalResult;
+    [SerializeField] private GameState gameState;
+
+    [SerializeField] private List<NumberTextComponent> rankingText;
+    private Ranking ranking = new Ranking();
 
     void Start()
     {
-        // シーンを跨いできた値をここで代入します
+        int score, bonus;
+        score = gameState.Score;
+        bonus = Mathf.Max((int)(gameState.ClearTime * 1000.0f), 0);
 
+        // シーンを跨いできた値をここで代入します
+        clearScore.InitalSetValue(score);
+        timeBonus.InitalSetValue(bonus);
+        finalResult.InitalSetValue(score + bonus);
+
+        ranking.GetRanking(gameState.StageID);
+        ranking.SetRanking(score + bonus, gameState.StageID);
+
+        int[] rankingValue = ranking.RankingValue;
+
+        int length = Mathf.Min(rankingValue.Length, rankingText.Count);
+
+        for(int i = 0; i < length; i++)
+        {
+            rankingText[i].InitalSetValue(rankingValue[i]);
+        }
     }
 }

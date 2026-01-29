@@ -8,15 +8,29 @@ public class NumberTextComponent : CoroutineContent
 
     [SerializeField] private float displayIncreaseSpeed = 1;
 
+    [SerializeField] private bool isDisplayAtOnce = false;
+
     private int numberValue;
 
     public void InitalSetValue(int value)
     {
-        numberValue = value;
+        if (isDisplayAtOnce)
+        {
+            textComponent.text = numberValue.ToString();
+        }
     }
+
     public override void ProcessStarted()
     {
-        StartCoroutine(IncreaseAnimation());
+        if(isDisplayAtOnce)
+        {
+            textComponent.text = numberValue.ToString();
+            contentEnd = true;
+        }
+        else
+        {
+            StartCoroutine(IncreaseAnimation());
+        }
     }
     public override void ForcedEnd()
     {
