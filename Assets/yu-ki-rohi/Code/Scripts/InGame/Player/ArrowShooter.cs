@@ -197,10 +197,12 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
                 if (isPreparedToShoot)
                 {
                     Shoot();
+                    AudioManager.Instance.PlaySEById(SEName.ChargeLoop);
+
+
                     FollowThroughAsync(token).Forget();
                     return;
                 }
-
                 // フレーム待ち（Updateタイミング）
                 await UniTask.Yield(PlayerLoopTiming.Update, token);
 
@@ -214,6 +216,7 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             {
                 // TODO: チャージ完了音
                 type = Arrow.Type.Explosion;
+                AudioManager.Instance.PlaySEById(SEName.ChargeFinish);
                 DebugMessenger.Log("Fully Charged!");
                 // HACK: アニメーション速度の指定の仕方
                 effectPoolManager.PlayEffect(player.Transform.position + (Vector3)parameters.ShootPosAdjust, EffectData.EffectType.ChargeEnd, 1.0f);
