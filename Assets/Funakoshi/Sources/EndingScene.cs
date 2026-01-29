@@ -22,14 +22,15 @@ public class EndingScene : MonoBehaviour
                 break;
             default:
                 Debug.LogWarning($"No BGM assigned for the scene '{sceneName}'.");
-                return; // BGMが指定されていない場合は終了
+                //return; // BGMが指定されていない場合は終了
+                break;
 
         }
         if (!string.IsNullOrEmpty(bgmName.ToString()))
         {
-            AudioManager.Instance.PlayBGMIfNotPlaying(bgmName); // BGMを再生
-            contentManagement.RunFirstContent();
+            //AudioManager.Instance.PlayBGMIfNotPlaying(bgmName); // BGMを再生
         }
+        contentManagement.RunFirstContent();
     }
     void Update()
     {

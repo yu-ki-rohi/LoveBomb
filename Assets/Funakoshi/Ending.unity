@@ -197,17 +197,6 @@ MonoBehaviour:
   skipUnits:
   - CoroutineContents:
     - {fileID: 1213898268}
-    - {fileID: 1303162146}
-    - {fileID: 1993588221}
-  - CoroutineContents:
-    - {fileID: 875866683}
-  - CoroutineContents:
-    - {fileID: 1723036366}
-    - {fileID: 1917135306}
-  - CoroutineContents:
-    - {fileID: 105135027}
-    - {fileID: 2118138995}
-    - {fileID: 844894500}
   - CoroutineContents:
     - {fileID: 1324493548}
     - {fileID: 1595695038}
@@ -1689,7 +1678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: kill count
+  m_text: Clear Score
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
