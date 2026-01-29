@@ -112,6 +112,7 @@ public class Arrow : ProjectileBase, IPooledObject<Arrow>
         else if(collision.CompareTag("Stage"))
         {
             isAttackable = false;
+            AudioManager.Instance.PlaySEById(SEName.ArrowHitStage);
             Deactivate();
         }
     }
