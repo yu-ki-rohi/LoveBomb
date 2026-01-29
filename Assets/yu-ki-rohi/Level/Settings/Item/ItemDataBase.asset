@@ -25,7 +25,7 @@ MonoBehaviour:
   PushPower: 200
   KnockPower: 20
   BlinkTime: 3
-  ExplosionPower: 6
+  ExplosionPower: 24
   ExplosionScale: 10
   NumOfIgnit: 20
   Items:

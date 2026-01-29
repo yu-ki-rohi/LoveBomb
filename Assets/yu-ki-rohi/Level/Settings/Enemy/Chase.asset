@@ -31,5 +31,5 @@ MonoBehaviour:
   RushSpeedMultiplier: 3
   DropsNomal: 1
   DropsExplosion: 0
-  BaseScore: 10
+  BaseScore: 5
   Enegy: 10

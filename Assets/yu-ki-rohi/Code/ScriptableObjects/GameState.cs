@@ -35,7 +35,6 @@ public class GameState : ScriptableObject
         get { return score; }
         set
         {
-            if(score == value) { return; }
             score = value;
             DebugMessenger.Log("Set new score: " + score);
         }
@@ -46,7 +45,6 @@ public class GameState : ScriptableObject
         get { return clearTime; }
         set
         {
-            if (clearTime == value) { return; }
             clearTime = value;
             DebugMessenger.Log("Set Clear Time: " + clearTime);
         }

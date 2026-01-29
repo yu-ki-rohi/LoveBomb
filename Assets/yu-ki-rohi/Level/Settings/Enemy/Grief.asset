@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2ba216a86a5da44b715b9ecab6f4f0, type: 3}
-  m_Name: Terror
+  m_Name: Grief
   m_EditorClassIdentifier: 
-  Name: Terror
+  Name: Grief
   Image: {fileID: 21300000, guid: 1fcc7f3e8706834439e836a3500f1b19, type: 3}
   Controller: {fileID: 9100000, guid: 9f8754622cdfc8d4290c9ad932047176, type: 2}
   Type: 0
-  Scale: 1.2
-  MaxHitPoint: 6
-  Strength: 5
-  Power: 10
-  Agility: 2
-  ExplosionPower: 6
-  ExplosionScale: 3.5
-  AxietyEffectOffset: {x: 0, y: 1.8}
+  Scale: 5.8
+  MaxHitPoint: 120
+  Strength: 150
+  Power: 30
+  Agility: 0.92
+  ExplosionPower: 30
+  ExplosionScale: 14
+  AxietyEffectOffset: {x: 0, y: 6.22}
   StandbyDistance: 8
   StandbyDistanceBaffar: 0
   PrepareRushTime: 0.5
@@ -31,5 +31,5 @@ MonoBehaviour:
   RushSpeedMultiplier: 2
   DropsNomal: 1
   DropsExplosion: 2
-  BaseScore: 15
-  Enegy: 20
+  BaseScore: 500
+  Enegy: 100

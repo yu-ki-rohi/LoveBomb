@@ -17,4 +17,4 @@ MonoBehaviour:
   MaxHitPoint: 60
   ExplosionPower: 6
   ExplosionScale: 4
-  BaseScore: 100
+  BaseScore: 200

@@ -24,5 +24,5 @@ MonoBehaviour:
     maxLightRadius: 10
     lightOuterRadiusMaltiplier: 10
     minGrobalLight: {r: 0.013216449, g: 0.02258444, b: 0.103773594, a: 0}
-    maxGrobalLight: {r: 0.33698747, g: 0.2967693, b: 0.3679245, a: 0}
+    maxGrobalLight: {r: 0.24416746, g: 0.22352941, b: 0.27450982, a: 0}
     playerLightBorder: 0.687

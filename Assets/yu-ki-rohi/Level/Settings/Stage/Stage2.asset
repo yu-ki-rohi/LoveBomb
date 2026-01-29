@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa42ea174a944ba43ad2b64f85c5eabb, type: 3}
   m_Name: Stage2
   m_EditorClassIdentifier: 
-  StageManager: {fileID: 3993928699709744191, guid: c754b968e02685e43b287557034afc47, type: 3}
+  StageManager: {fileID: 3247335781480750082, guid: b0e20add365663b43a2ce7bebdd2e0ad, type: 3}
   TimeInfomation:
     GameTime: 180
   ScoreInfomation:
