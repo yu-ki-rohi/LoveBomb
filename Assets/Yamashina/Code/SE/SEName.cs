@@ -68,10 +68,28 @@ internal enum SEName
     #endregion
 
     BarrierBlock, //バリアが敵を弾く音
-
+    CoreEnemyWarning,//コア接近エネミー一定値以上通知音
     ClearScoreReached,//スコア一定値を知らせる音(特にクリアボーダーのところ)
-
+    ComboThresholdReached,//コンボ数一定数達成音
     DashMove,//ダッシュ(回避)音
+    GameStart,//ゲームスタート
+
+    #region 勝敗判定
+
+    PerfectClear,//完全勝利時の音
+    PerfectLose,//完全敗北時の音
+
+
+    #endregion
+
+    #region こうもり
+
+    BatChargePrepare,//こうもり型の突進準備音
+    BatCharge,//こうもり型の突進音
+    BatFlap//こうもり型の羽ばたき音
+
+    #endregion
+
 }
 
 

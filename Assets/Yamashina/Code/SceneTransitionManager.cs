@@ -65,6 +65,21 @@ public class SceneTransitionManager : SingletonMonoBehaviour<SceneTransitionMana
         TransitionToSceneAsync(next, fadeMode).Forget();
     }
 
+    public void TransitionToCurrentScene(FadeMode fadeMode = FadeMode.SimpleColor)
+    {
+        if (isTransitioning) return;
+
+        string current = SceneManager.GetActiveScene().name;
+        SceneObject next = database.GetScene(current);
+
+        if (next == null)
+        {
+            Debug.LogWarning($"Next scene not found from '{current}'");
+            return;
+        }
+
+        TransitionToSceneAsync(next, fadeMode).Forget();
+    }
     /// <summary>
     /// ‘O‚ÌƒV[ƒ“‚Ö‘JˆÚ
     /// </summary>

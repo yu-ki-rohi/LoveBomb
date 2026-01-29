@@ -9,9 +9,11 @@ public class TitleManager : MonoBehaviour
     void Start()
     {
         start.onClick.AddListener(OnTitleButtonClicked);
+        GameInitializer.Instance.SetUpGameInitialize();
         AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Title);
     }
 
+  
     private void OnTitleButtonClicked()
     {
         SceneTransitionManager.Instance.TransitionToNextScene(FadeMode.SimpleColor);
