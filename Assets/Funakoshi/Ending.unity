@@ -421,6 +421,9 @@ MonoBehaviour:
   contentManagement: {fileID: 117971233}
   gameState: {fileID: 11400000, guid: 38e86691ce278484ca7011a242cf6f33, type: 2}
   stageDataBase: {fileID: 11400000, guid: be1c7113bef1b034fa9ebedc9b3c67c8, type: 2}
+  backGround: {fileID: 897757393}
+  win: {fileID: 8533150200621533713, guid: 8596329b4df386a45ba5c21ad1e96011, type: 3}
+  lose: {fileID: -8706807791432501627, guid: 4bee8e62626b0854ba0c4d9ace856a15, type: 3}
 --- !u!4 &117971235
 Transform:
   m_ObjectHideFlags: 0
@@ -960,7 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 217017960}
-  displayIncreaseSpeed: 37
+  displayIncreaseSpeed: 3721
   isDisplayAtOnce: 0
 --- !u!1 &227487577
 GameObject:
@@ -2124,7 +2127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 641362399}
-  displayIncreaseSpeed: 37
+  displayIncreaseSpeed: 3721
   isDisplayAtOnce: 0
 --- !u!1 &643975874
 GameObject:
@@ -2613,14 +2616,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7760241, b: 0.6698113, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 8533150200621533713, guid: 8596329b4df386a45ba5c21ad1e96011, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4432,7 +4435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1549338470}
-  displayIncreaseSpeed: 37
+  displayIncreaseSpeed: 3721
   isDisplayAtOnce: 0
 --- !u!114 &1549338470
 MonoBehaviour:

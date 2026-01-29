@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a193d006b354e04b909fdd76c1afe10, type: 3}
   m_Name: DemoDirectionData
   m_EditorClassIdentifier: 
-  StartTime: 1
+  StartTime: 0.7
   TimeUpTime: 1
   TouchUpTime: 1

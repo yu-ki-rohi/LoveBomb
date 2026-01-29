@@ -32,6 +32,7 @@ public class ValueSetter : MonoBehaviour
         for(int i = 0; i < length; i++)
         {
             rankingText[i].InitalSetValue(rankingValue[i]);
+            DebugMessenger.Log(rankingValue[i].ToString());
         }
     }
 }
