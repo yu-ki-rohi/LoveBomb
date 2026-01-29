@@ -21,6 +21,7 @@ public class PopupImageManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.StageSelect);
         // GameState ‚É•Û‘¶‚³‚ê‚Ä‚¢‚é StageID ‚ð”½‰f
         currentImageIndex = Mathf.Clamp(
             gameState.StageID,
