@@ -22,5 +22,7 @@ public class ExplosionPoolManager : PoolManager<Explosion>
         explosion.Initialize(power);
 
         //TODO: îöî≠âπÇÃçƒê∂
+        AudioManager.Instance.PlaySEById(SEName.Explosion);
+
     }
 }
