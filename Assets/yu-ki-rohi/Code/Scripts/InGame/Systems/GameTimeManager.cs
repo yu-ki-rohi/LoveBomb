@@ -15,6 +15,14 @@ public class GameTimeManager : MonoBehaviour
 
     public float ElapsedTime { get { return elapsedTime; } }
 
+    public void TimerStart()
+    {
+        StartCoroutine(RemainingTimeViewCoroutine());
+        StartCoroutine(ElapsedTimeEventCoroutine(timeInfomation.GameTime, TimeOver));
+        // HACK: 前日なので速度優先
+        StartCoroutine(RemainingTimeEventCoroutine(30.0f, CallOfAproachingFinish));
+    }
+
     public float TimerStop()
     {
         StopAllCoroutines();
@@ -29,8 +37,12 @@ public class GameTimeManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(RemainingTimeViewCoroutine());
-        StartCoroutine(ElapsedTimeEventCoroutine(timeInfomation.GameTime, TimeOver)); // CS1503
+        
+    }
+
+    private void CallOfAproachingFinish()
+    {
+        // TODO: タイムアップ30秒前通知音
     }
 
     private void TimeOver()

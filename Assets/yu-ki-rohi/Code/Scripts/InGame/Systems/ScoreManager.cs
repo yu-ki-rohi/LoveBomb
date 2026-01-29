@@ -49,7 +49,15 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
             }
         }
 
+        int tmp = currentScore;
         currentScore += (int)(add * bounus);
+
+        if(tmp < scoreInfomation.ScoreBorder && currentScore >= scoreInfomation.ScoreBorder)
+        {
+            // TODO: スコアが一定値を越えたことを知らせる効果音
+
+        }
+
 
         ReflectUI();
 
