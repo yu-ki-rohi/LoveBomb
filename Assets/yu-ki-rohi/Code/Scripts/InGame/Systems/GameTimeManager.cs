@@ -37,6 +37,7 @@ public class GameTimeManager : MonoBehaviour
     {
         StopAllCoroutines();
         DebugMessenger.Log("Time Up!!");
+        AudioManager.Instance.PlaySEById(SEName.TimeUp);
         OnTimeUp?.Invoke();
     }
 
