@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -23,12 +24,18 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private List<Sprite> pauseNorm;
     [SerializeField] private List<Sprite> pauseSelected;
+    [SerializeField] private GameObject readyGo;
+    [SerializeField] private GameObject timeUp;
+    [SerializeField] private DemoDirectionData demoDirectionData;
 
     private InputAction ingamePause;
     private InputAction menuPause;
     private InputAction upInPause;
     private InputAction downInPause;
+    
+    private EnemiesGeneratorManager enemiesGeneratorManager;
 
+    private bool canPause = false;
     private int pauseIndex = 0;
 
 #if UNITY_EDITOR
@@ -49,6 +56,7 @@ public class InGameManager : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1.0f;
+        LockEveryThing();
         // TODO: 
         SceneTransitionManager.Instance.TransitionToCurrentScene();
     }
@@ -56,12 +64,14 @@ public class InGameManager : MonoBehaviour
     public void Return()
     {
         Time.timeScale = 1.0f;
+        LockEveryThing();
         // TODO:
         SceneTransitionManager.Instance.TransitionToPreviousScene();
     }
 
     private void OnPause(InputAction.CallbackContext context)
     {
+        if(canPause == false) { return; }
         if (pauseCanvas.enabled)
         {
             switch (pauseIndex)
@@ -171,6 +181,8 @@ public class InGameManager : MonoBehaviour
         stageManager.HeartCore.EnemyNumText = enemyNumText;
         stageManager.ManagedEnemyPoolManager.DefeatNumViewer = defeatNumViewer;
 
+        enemiesGeneratorManager = stageManager.EnemiesGeneratorManager;
+
         player.EffectPoolManager = stageManager.EffectPoolManager;
         player.ExplosionPoolManager = stageManager.ExpsionPoolManager;
 
@@ -238,6 +250,9 @@ public class InGameManager : MonoBehaviour
 
         }
 
+        readyGo.SetActive(true);
+        StartCoroutine(GameStartCoroutine());
+
     }
 
     // Update is called once per frame
@@ -269,6 +284,23 @@ public class InGameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         // TODO: 
         SceneTransitionManager.Instance.TransitionToNextScene();
+    }
+
+    private IEnumerator GameStartCoroutine()
+    {
+        yield return new WaitForSeconds(demoDirectionData.StartTime);
+        player.CanMove = true;
+        enemiesGeneratorManager.BootGenerators();
+        canPause = true;
+        
+    }
+
+    private void LockEveryThing()
+    {
+        player.CanMove = true;
+        canPause = true;
+        scoreManager.LockScoreFluctuation();
+        gameTimeManager.TimerStop();
     }
 }
 
