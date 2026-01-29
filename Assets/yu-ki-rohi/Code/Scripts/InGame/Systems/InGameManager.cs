@@ -218,12 +218,19 @@ public class InGameManager : MonoBehaviour
         {
             case 0:
                 // TODO: Stage1のBGM
+
+                AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Stage1);
+
                 break;
             case 1:
                 // TODO: Stage2のBGM
+                AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Stage2);
+
                 break;
             case 2:
                 // TODO: Stage3のBGM
+                AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Stage3);
+
                 break;
 
         }
