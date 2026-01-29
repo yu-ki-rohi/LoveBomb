@@ -605,7 +605,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129973321}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -914,6 +914,7 @@ GameObject:
   - component: {fileID: 271236639}
   - component: {fileID: 271236638}
   - component: {fileID: 271236637}
+  - component: {fileID: 271236640}
   m_Layer: 5
   m_Name: Return
   m_TagString: Untagged
@@ -930,15 +931,15 @@ RectTransform:
   m_GameObject: {fileID: 271236635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 129973325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -260}
-  m_SizeDelta: {x: 225, y: 300}
+  m_AnchoredPosition: {x: 0, y: -280}
+  m_SizeDelta: {x: 413, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &271236637
 MonoBehaviour:
@@ -969,7 +970,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 4edca2e6fbfe66245b080f3bda7baa76, type: 3}
+    m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -1016,7 +1017,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcd9e449ac77f124c9c861947d6b2ee7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f298e5315a707f243a2cac2a33120b9d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1034,6 +1035,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271236635}
   m_CullTransparentMesh: 1
+--- !u!114 &271236640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271236635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c325131ea70501c4b9f1660fe7f50529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &333225905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,15 +1622,15 @@ RectTransform:
   m_GameObject: {fileID: 925731361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
+  m_LocalScale: {x: 2.84, y: 2.84, z: 2.84}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 129973325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 570, y: 449}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &925731363
 MonoBehaviour:
@@ -1639,7 +1652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e4320737add42d043a7c306952572b20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9893f9542b69b344ac0ebddbe9cc066, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2019,6 +2032,7 @@ GameObject:
   - component: {fileID: 1341291576}
   - component: {fileID: 1341291575}
   - component: {fileID: 1341291574}
+  - component: {fileID: 1341291577}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -2035,15 +2049,15 @@ RectTransform:
   m_GameObject: {fileID: 1341291572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 129973325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 260}
-  m_SizeDelta: {x: 225, y: 300}
+  m_AnchoredPosition: {x: 0, y: 120}
+  m_SizeDelta: {x: 138, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1341291574
 MonoBehaviour:
@@ -2074,7 +2088,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: c08b12b763ec17946b0c223bc3bfe023, type: 3}
+    m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -2121,7 +2135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6efa9ecc1338d734d8fcf6f9c1207adb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55b57dcb761b01a4bbaae3083625dc87, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2139,6 +2153,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341291572}
   m_CullTransparentMesh: 1
+--- !u!114 &1341291577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341291572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c325131ea70501c4b9f1660fe7f50529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1452055655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,10 +2280,19 @@ MonoBehaviour:
   gameState: {fileID: 11400000, guid: 38e86691ce278484ca7011a242cf6f33, type: 2}
   usedItemPoolManager: {fileID: 98620176}
   pauseCanvas: {fileID: 129973324}
-  continueButton: {fileID: 1341291574}
-  retryButton: {fileID: 1923589641}
-  returnButton: {fileID: 271236637}
+  pauseButtons:
+  - {fileID: 1341291575}
+  - {fileID: 1923589642}
+  - {fileID: 271236638}
   playerInput: {fileID: 199177694}
+  pauseNorm:
+  - {fileID: 21300000, guid: 55b57dcb761b01a4bbaae3083625dc87, type: 3}
+  - {fileID: 21300000, guid: 761028d31ec46b443b3d011b200b842f, type: 3}
+  - {fileID: 21300000, guid: f298e5315a707f243a2cac2a33120b9d, type: 3}
+  pauseSelected:
+  - {fileID: 21300000, guid: abbaf46390a566b44b08d9f1a4e60d68, type: 3}
+  - {fileID: 21300000, guid: 1beb219607b45d9409842c70b6593854, type: 3}
+  - {fileID: 21300000, guid: a7beb538824e1c34d876f48131a033db, type: 3}
   stageManager: {fileID: 0}
   stageData: {fileID: 11400000, guid: d764f0baea703bc4eab4f8c201c43b68, type: 2}
 --- !u!4 &1456657007
@@ -2963,7 +2998,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e4320737add42d043a7c306952572b20, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3219,6 +3254,7 @@ GameObject:
   - component: {fileID: 1923589643}
   - component: {fileID: 1923589642}
   - component: {fileID: 1923589641}
+  - component: {fileID: 1923589644}
   m_Layer: 5
   m_Name: Retry
   m_TagString: Untagged
@@ -3235,15 +3271,15 @@ RectTransform:
   m_GameObject: {fileID: 1923589639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 129973325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 225, y: 300}
+  m_AnchoredPosition: {x: 0, y: -80}
+  m_SizeDelta: {x: 177, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1923589641
 MonoBehaviour:
@@ -3274,7 +3310,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: bcfb00ac3e87f8b47a85c454a5d70769, type: 3}
+    m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -3321,7 +3357,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d1ec67233fe1eb6409558dbbaf3b77f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 761028d31ec46b443b3d011b200b842f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3339,6 +3375,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923589639}
   m_CullTransparentMesh: 1
+--- !u!114 &1923589644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923589639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c325131ea70501c4b9f1660fe7f50529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1925971249
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+Ôªøusing System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -18,13 +19,17 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private GameState gameState;
     [SerializeField] private UsedItemPoolManager usedItemPoolManager;
     [SerializeField] private Canvas pauseCanvas;
-    [SerializeField] private Button continueButton;
-    [SerializeField] private Button retryButton;
-    [SerializeField] private Button returnButton;
+    [SerializeField] private List<Image> pauseButtons;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private List<Sprite> pauseNorm;
+    [SerializeField] private List<Sprite> pauseSelected;
 
     private InputAction ingamePause;
     private InputAction menuPause;
+    private InputAction upInPause;
+    private InputAction downInPause;
+
+    private int pauseIndex = 0;
 
 #if UNITY_EDITOR
     [SerializeField] private StageManager stageManager;
@@ -36,43 +41,95 @@ public class InGameManager : MonoBehaviour
         playerInput.SwitchCurrentActionMap("InGame");
         Time.timeScale = 1.0f;
         pauseCanvas.enabled = false;
+        pauseIndex = 0;
     }
 
     public void Retry()
     {
         Time.timeScale = 1.0f;
-        // TODO: ÉtÉFÅ[ÉhïtÇ´ÇÃÇ‡ÇÃÇ…ç∑Çµë÷Ç¶
+        // TODO: 
         SceneManager.LoadScene("InGameTest");
     }
 
     public void Return()
     {
         Time.timeScale = 1.0f;
-        // TODO: ÉtÉFÅ[ÉhïtÇ´ÇÃÇ‡ÇÃÇ…ç∑Çµë÷Ç¶
+        // TODO:
         SceneManager.LoadScene("StageSelect");
     }
 
     private void OnPause(InputAction.CallbackContext context)
     {
-        if(pauseCanvas.enabled)
+        if (pauseCanvas.enabled)
         {
-            playerInput.SwitchCurrentActionMap("InGame");
-            Time.timeScale = 1.0f;
-            pauseCanvas.enabled = false;
+            switch (pauseIndex)
+            {
+                case 0:
+                    Continue();
+                    break;
+
+                case 1:
+                    Retry();
+                    break;
+
+                case 2:
+                    Return();
+                    break;
+            }
         }
         else
         {
+            pauseIndex = 0;
+            ReflectPauseUI();
             playerInput.SwitchCurrentActionMap("Menu");
             Time.timeScale = 0.0f;
             pauseCanvas.enabled = true;
         }
     }
 
+    private void OnUp(InputAction.CallbackContext context)
+    {
+        pauseIndex--;
+        if (pauseIndex < 0) { pauseIndex = 0; }
+        ReflectPauseUI();
+    }
+
+    private void OnDown(InputAction.CallbackContext context)
+    {
+        pauseIndex++;
+        if (pauseIndex > 2) { pauseIndex = 2; }
+        ReflectPauseUI();
+    }
+
+    private void OnPointEnter(int index)
+    {
+        pauseIndex = index;
+        ReflectPauseUI();
+    }
+
+    private void ReflectPauseUI()
+    {
+        int length = Mathf.Min(pauseNorm.Count, pauseSelected.Count);
+        length = Mathf.Min(pauseButtons.Count, length);
+
+        for (int i = 0; i < length; i++)
+        {
+            if (i == pauseIndex)
+            {
+                pauseButtons[i].sprite = pauseSelected[i];
+            }
+            else
+            {
+                pauseButtons[i].sprite = pauseNorm[i];
+            }
+        }
+    }
+
     void Awake()
     {
-        if(gameState.StageID < 0 || gameState.StageID >= stageDataBase.Stages.Count)
+        if (gameState.StageID < 0 || gameState.StageID >= stageDataBase.Stages.Count)
         {
-            // TODO: ÉXÉeÅ[ÉWëIëÇ…à¯Ç´ï‘Ç≥ÇπÇÈèàóùÇÃí«â¡Å@Å¶StageIDë§ÇïœçXÇµÇΩÇÃÇ≈ïsóvÇ…Ç»ÇÈÇ©Ç‡
+            // TODO: 
             return;
         }
 
@@ -118,11 +175,22 @@ public class InGameManager : MonoBehaviour
 
         cinemachineConfiner2.BoundingShape2D = stageManager.VisibleArea;
 
-        
+
         ingamePause = playerInput.actions.FindActionMap("InGame").FindAction("Pause");
         menuPause = playerInput.actions.FindActionMap("Menu").FindAction("Pause");
+        upInPause = playerInput.actions.FindActionMap("Menu").FindAction("Up");
+        downInPause = playerInput.actions.FindActionMap("Menu").FindAction("Down");
 
         playerInput.SwitchCurrentActionMap("InGame");
+
+        for (int i = 0; i < pauseButtons.Count; i++)
+        {
+            var buttonHover = pauseButtons[i].gameObject.GetComponent<ButtonHover>();
+            if (buttonHover == null) { continue; }
+            buttonHover.Index = i;
+            buttonHover.SetOnPointerEnter(OnPointEnter);
+        }
+
         Time.timeScale = 1.0f;
 
     }
@@ -131,12 +199,16 @@ public class InGameManager : MonoBehaviour
     {
         ingamePause.performed += OnPause;
         menuPause.performed += OnPause;
+        upInPause.performed += OnUp;
+        downInPause.performed += OnDown;
     }
 
     private void OnDisable()
     {
         ingamePause.performed -= OnPause;
         menuPause.performed -= OnPause;
+        upInPause.performed -= OnUp;
+        downInPause.performed -= OnDown;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -148,23 +220,13 @@ public class InGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: ìñì˙î≈Ç≈ÇÕè¡Ç∑
-        //EscÇ™âüÇ≥ÇÍÇΩéû
-        if (Input.GetKey(KeyCode.Escape))
-        {
-
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;//ÉQÅ[ÉÄÉvÉåÉCèIóπ
-#else
-            Application.Quit();//ÉQÅ[ÉÄÉvÉåÉCèIóπ
-#endif
-        }
+       
     }
 
     private void OnTimeUp()
     {
         scoreManager.LockScoreFluctuation();
-        // TODO: ââèoí«â¡
+        // TODO:
         GameSet();
     }
 
@@ -172,7 +234,7 @@ public class InGameManager : MonoBehaviour
     {
         scoreManager.LockScoreFluctuation();
         gameTimeManager.TimerStop();
-        // TODO: ââèoí«â¡
+        // TODO: 
         GameSet();
     }
 
@@ -182,7 +244,8 @@ public class InGameManager : MonoBehaviour
         gameState.ClearTime = stageDataBase.Stages[gameState.StageID].TimeInfomation.GameTime - gameTimeManager.ElapsedTime;
 
         Time.timeScale = 1.0f;
-        // TODO: ÉtÉFÅ[ÉhïtÇ´ÇÃÇ‡ÇÃÇ…ç∑Çµë÷Ç¶
+        // TODO: 
         SceneManager.LoadScene("InGameTest");
     }
 }
+
