@@ -249,7 +249,7 @@ public class InGameManager : MonoBehaviour
                 break;
 
         }
-
+        AudioManager.Instance.PlaySEById(SEName.GameStart);
         readyGo.SetActive(true);
         StartCoroutine(GameStartCoroutine());
 
