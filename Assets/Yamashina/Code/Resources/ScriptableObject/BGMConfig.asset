@@ -45,3 +45,7 @@ MonoBehaviour:
     bgmAudioClip: {fileID: 8300000, guid: 944ebc3f980147343a1f068a6e371310, type: 3}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
+  - bgmId: 7
+    bgmAudioClip: {fileID: 8300000, guid: 944ebc3f980147343a1f068a6e371310, type: 3}
+    bgmDisplayName: 
+    bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
