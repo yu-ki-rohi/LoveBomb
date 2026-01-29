@@ -153,9 +153,11 @@ public class ArrowShooter : NormalPlayerComponent, IShootable
             poolManager?.Shoot(firePosition, player.ShootDir, type);
 
             // TODO: –î‚ğË‚é‰¹
+            AudioManager.Instance.PlaySEById(SEName.ArrowShot);
         }
         else
         {
+            AudioManager.Instance.PlaySEById(SEName.BowStringRelease);
             // TODO: Œ·‚ğ’e‚­‰¹
         }
         // –î‚ğ—­‚ß–³‚µó‘Ô‚É–ß‚·
