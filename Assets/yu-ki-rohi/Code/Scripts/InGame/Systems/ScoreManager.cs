@@ -55,7 +55,7 @@ public class ScoreManager : MonoBehaviour, IScoreFluctuate
         if(tmp < scoreInfomation.ScoreBorder && currentScore >= scoreInfomation.ScoreBorder)
         {
             // TODO: スコアが一定値を越えたことを知らせる効果音
-
+            AudioManager.Instance.PlaySEById(SEName.ClearScoreReached);
         }
 
 
