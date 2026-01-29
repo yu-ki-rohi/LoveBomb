@@ -172,6 +172,8 @@ public class Player : MonoBehaviour, IDamageable
     public void AddHeartEnergy(int energy)
     {
         data.AddHeartEnergy(energy);
+        AudioManager.Instance.PlaySEById(SEName.PickupHeart);
+
     }
 
     public void AddItem(int id)
@@ -181,6 +183,7 @@ public class Player : MonoBehaviour, IDamageable
             id > itemData.Items.Count ||
             itemData.Items[id].NumberOfPossessions >= itemData.Items[id].MaxNum) { return; }
         itemData.Items[id].NumberOfPossessions++;
+        AudioManager.Instance.PlaySEById(SEName.PickupBell);
         ReflectSelectedItemUI();
         
     }
@@ -192,6 +195,7 @@ public class Player : MonoBehaviour, IDamageable
         // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
         // 10: PlayerInvincible
         gameObject.layer = 10;
+        AudioManager.Instance.PlaySEById(SEName.Damage);
         OnDamaged.Invoke();
         data.LoseHeartEnergy(attack);
         data.ChangeState(State.Damaged);
@@ -513,7 +517,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         ItemData item = itemData.Items[itemIndex];
 
-        if (item.NumberOfPossessions < 1) { return; }
+        if (item.NumberOfPossessions < 1) { AudioManager.Instance.PlaySEById(SEName.ItemOutOfStock); return; }
 
         Vector3 position = transform.position;
 

@@ -207,6 +207,7 @@ public class Enemy : MonoBehaviour, IPooledObject<Enemy>, IDamageable
             pools.EffectPool.PlayEffect(position, EffectData.EffectType.HitEffect);
 
             // TODO: ’Êí”í’e‰¹‚ÌÄ¶
+            AudioManager.Instance.PlaySEById(SEName.EnemyDamage);
         }
         // ‘Ì—Í‚ğŒ¸‚ç‚·
         individualData.CurrentHitPoint -= attack;
