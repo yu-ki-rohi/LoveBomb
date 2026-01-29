@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: fcd9e449ac77f124c9c861947d6b2ee7
+guid: 81cdd3fdc1bdc6f4198d5cc4b607f248
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6191808406167323824
-    second: ReturnStageSelect_0
+      213: -7574051213409800500
+    second: Pause_Return_Norm_0
   - first:
-      213: -6423896288927078483
-    second: ReturnStageSelect_1
+      213: -6705370219272147366
+    second: Pause_Return_Norm_1
   - first:
-      213: -6776558271639434785
-    second: ReturnStageSelect_2
+      213: 8226235985356306358
+    second: Pause_Return_Norm_2
   - first:
-      213: -5315171027176627641
-    second: ReturnStageSelect_3
+      213: -517024443137220961
+    second: Pause_Return_Norm_3
   - first:
-      213: -1334674506719532951
-    second: ReturnStageSelect_4
+      213: -118741002818378204
+    second: Pause_Return_Norm_4
   - first:
-      213: 4831219892875770434
-    second: ReturnStageSelect_5
+      213: -1684705439805675007
+    second: Pause_Return_Norm_5
   - first:
-      213: 478909878993450194
-    second: ReturnStageSelect_6
+      213: -7263313298473576665
+    second: Pause_Return_Norm_6
   - first:
-      213: -4153542277443532930
-    second: ReturnStageSelect_7
+      213: 5546522684963217573
+    second: Pause_Return_Norm_7
   - first:
-      213: 8027408408956888180
-    second: ReturnStageSelect_8
+      213: -7281729889455599859
+    second: Pause_Return_Norm_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -73,10 +73,10 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.50410515, y: 0.2941469}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 84, y: 98, z: 85, w: 285}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -120,229 +120,203 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ReturnStageSelect_0
+      name: Pause_Return_Norm_0
       rect:
         serializedVersion: 2
-        x: 88
-        y: 110
+        x: 8
+        y: 10
         width: 40
         height: 41
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 05b7e196f07421aa0800000000000000
-      internalID: -6191808406167323824
+      spriteID: ccea71aec8093e690800000000000000
+      internalID: -7574051213409800500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_1
+      name: Pause_Return_Norm_1
       rect:
         serializedVersion: 2
-        x: 131
-        y: 110
+        x: 51
+        y: 10
         width: 42
         height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: da72d884c5cb9d6a0800000000000000
-      internalID: -6423896288927078483
+      spriteID: a5eecc8ef4db1f2a0800000000000000
+      internalID: -6705370219272147366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_2
+      name: Pause_Return_Norm_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 139
+        x: 54
+        y: 39
         width: 36
         height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd9423bd724d4f1a0800000000000000
-      internalID: -6776558271639434785
+      spriteID: 6b7b2b15b06792270800000000000000
+      internalID: 8226235985356306358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_3
+      name: Pause_Return_Norm_3
       rect:
         serializedVersion: 2
-        x: 220
-        y: 110
+        x: 140
+        y: 10
         width: 42
         height: 43
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 74260bc9c18bc36b0800000000000000
-      internalID: -5315171027176627641
+      spriteID: f9e9c9e120923d8f0800000000000000
+      internalID: -517024443137220961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_4
+      name: Pause_Return_Norm_4
       rect:
         serializedVersion: 2
-        x: 262
-        y: 108
+        x: 182
+        y: 8
         width: 90
         height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96866388b984a7de0800000000000000
-      internalID: -1334674506719532951
+      spriteID: 426acb2efa52a5ef0800000000000000
+      internalID: -118741002818378204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_5
+      name: Pause_Return_Norm_5
       rect:
         serializedVersion: 2
-        x: 354
-        y: 110
+        x: 274
+        y: 10
         width: 41
         height: 41
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 24a39aa45e0fb0340800000000000000
-      internalID: 4831219892875770434
+      spriteID: 10ae6351459be98e0800000000000000
+      internalID: -1684705439805675007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_6
+      name: Pause_Return_Norm_6
       rect:
         serializedVersion: 2
-        x: 396
-        y: 108
+        x: 316
+        y: 8
         width: 45
         height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d474d06ffd65a600800000000000000
-      internalID: 478909878993450194
+      spriteID: 7279c18a907833b90800000000000000
+      internalID: -7263313298473576665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_7
+      name: Pause_Return_Norm_7
       rect:
         serializedVersion: 2
-        x: 443
-        y: 110
+        x: 363
+        y: 10
         width: 40
         height: 42
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7749691e47ab56c0800000000000000
-      internalID: -4153542277443532930
+      spriteID: 5a0e0e7cef439fc40800000000000000
+      internalID: 5546522684963217573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ReturnStageSelect_8
+      name: Pause_Return_Norm_8
       rect:
         serializedVersion: 2
-        x: 176
-        y: 125
+        x: 96
+        y: 25
         width: 40
         height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 474ebdaba65176f60800000000000000
-      internalID: 8027408408956888180
+      spriteID: d0f87acee3912fa90800000000000000
+      internalID: -7281729889455599859
       vertices: []
       indices: 
       edges: []
@@ -352,7 +326,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -361,15 +335,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ReturnStageSelect_0: -6191808406167323824
-      ReturnStageSelect_1: -6423896288927078483
-      ReturnStageSelect_2: -6776558271639434785
-      ReturnStageSelect_3: -5315171027176627641
-      ReturnStageSelect_4: -1334674506719532951
-      ReturnStageSelect_5: 4831219892875770434
-      ReturnStageSelect_6: 478909878993450194
-      ReturnStageSelect_7: -4153542277443532930
-      ReturnStageSelect_8: 8027408408956888180
+      Pause_Return_Norm_0: -7574051213409800500
+      Pause_Return_Norm_1: -6705370219272147366
+      Pause_Return_Norm_2: 8226235985356306358
+      Pause_Return_Norm_3: -517024443137220961
+      Pause_Return_Norm_4: -118741002818378204
+      Pause_Return_Norm_5: -1684705439805675007
+      Pause_Return_Norm_6: -7263313298473576665
+      Pause_Return_Norm_7: 5546522684963217573
+      Pause_Return_Norm_8: -7281729889455599859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
