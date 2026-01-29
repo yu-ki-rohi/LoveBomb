@@ -18,6 +18,7 @@ public class NumberTextComponent : CoroutineContent
         {
             textComponent.text = numberValue.ToString();
         }
+        numberValue = value;
     }
 
     public override void ProcessStarted()

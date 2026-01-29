@@ -48,14 +48,14 @@ public class InGameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         // TODO: 
-        SceneManager.LoadScene("InGameTest");
+        SceneTransitionManager.Instance.TransitionToCurrentScene();
     }
 
     public void Return()
     {
         Time.timeScale = 1.0f;
         // TODO:
-        SceneManager.LoadScene("StageSelect");
+        SceneTransitionManager.Instance.TransitionToPreviousScene();
     }
 
     private void OnPause(InputAction.CallbackContext context)
@@ -214,6 +214,19 @@ public class InGameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        switch (gameState.StageID)
+        {
+            case 0:
+                // TODO: Stage1のBGM
+                break;
+            case 1:
+                // TODO: Stage2のBGM
+                break;
+            case 2:
+                // TODO: Stage3のBGM
+                break;
+
+        }
 
     }
 
@@ -245,7 +258,7 @@ public class InGameManager : MonoBehaviour
 
         Time.timeScale = 1.0f;
         // TODO: 
-        SceneManager.LoadScene("InGameTest");
+        SceneTransitionManager.Instance.TransitionToNextScene();
     }
 }
 
