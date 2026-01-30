@@ -25857,7 +25857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: initialGenerateDelay
-      value: 0.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateIntervalRandomOffset
