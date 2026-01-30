@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// ゲームの初期設定クラス
@@ -22,7 +23,7 @@ public class GameSettings : ScriptableObject
     /// 初期 BGM 音量 (0.0 - 1.0)
     /// </summary>
     [SerializeField, Tooltip("初期 BGM 音量 (0.0 - 1.0)")]
-    [Range(0f, 1f)] 
+    [Range(0f, 1f)]
     private float initialBgmVolume = 1f;
 
     [Space(15)]
@@ -34,18 +35,25 @@ public class GameSettings : ScriptableObject
     [Range(0f, 1f)]
     private float initialSeVolume = 1f;
 
+   
+
+    [SerializeField]
+    private AudioMixerGroup bgmMixerGroup;
+
+    [SerializeField]
+    private AudioMixerGroup seMixerGroup;
     #endregion
 
 
     #region ゲームのその他初期設定の内部管理用変数
 
-    [Space(15)] 
+    [Space(15)]
 
     /// <summary>
     /// フェードの速度
     /// </summary>
     [Header("ゲームのその他初期設定")]
-    [SerializeField, Tooltip("フェードの速度")] 
+    [SerializeField, Tooltip("フェードの速度")]
     private float fadeSpeed = 1f;
 
     /// <summary>
@@ -76,6 +84,9 @@ public class GameSettings : ScriptableObject
 
     #endregion
 
+    internal AudioMixerGroup BgmMixerGroup => bgmMixerGroup;
+
+    internal AudioMixerGroup SeMixerGroup => seMixerGroup;
 
     #region　読み取り専用フィールド( ゲームのその他初期設定の内部管理用変数)
 
