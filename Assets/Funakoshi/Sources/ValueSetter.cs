@@ -21,9 +21,9 @@ public class ValueSetter : MonoBehaviour
         }
 
         // ƒV[ƒ“‚ğŒ×‚¢‚Å‚«‚½’l‚ğ‚±‚±‚Å‘ã“ü‚µ‚Ü‚·
-        clearScore.InitalSetValue(score);
-        timeBonus.InitalSetValue(bonus);
-        finalResult.InitalSetValue(score + bonus);
+        clearScore.InitalSetValue(score, Color.white);
+        timeBonus.InitalSetValue(bonus, Color.white);
+        finalResult.InitalSetValue(score + bonus, Color.white);
 
         ranking.GetRanking(gameState.StageID);
         ranking.SetRanking(score + bonus, gameState.StageID);
@@ -34,7 +34,12 @@ public class ValueSetter : MonoBehaviour
 
         for(int i = 0; i < length; i++)
         {
-            rankingText[i].InitalSetValue(rankingValue[i]);
+            Color color = Color.white;
+            if(score > 0 && rankingValue[i]== score + bonus)
+            {
+                color = Color.yellow;
+            }
+            rankingText[i].InitalSetValue(rankingValue[i], color);
             DebugMessenger.Log(rankingValue[i].ToString());
         }
     }

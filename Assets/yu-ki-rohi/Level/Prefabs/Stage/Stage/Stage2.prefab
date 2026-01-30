@@ -704,8 +704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedb25b46629b124db471a33d1d85792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateNumAtOnce: 3
-  generateNumRange: 2
+  generateNumAtOnce: 2
+  generateNumRange: 1
   generator: {fileID: 5863898476358543431}
   poolManager: {fileID: 3559376078110145933}
   energyAmount: 5
@@ -722,8 +722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialGenerateDelay: 18
-  generateInterval: 12
-  generateIntervalRandomOffset: 6
+  generateInterval: 3
+  generateIntervalRandomOffset: 1
   isBootOnStart: 1
   minLength: {x: 0, y: 7.928961}
   maxLength: {x: 1.9071046, y: 12.29508}
@@ -1684,7 +1684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedb25b46629b124db471a33d1d85792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateNumAtOnce: 2
+  generateNumAtOnce: 3
   generateNumRange: 1
   generator: {fileID: 4137930844517609129}
   poolManager: {fileID: 3559376078110145933}
@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialGenerateDelay: 15
-  generateInterval: 10
+  generateInterval: 8
   generateIntervalRandomOffset: 5
   isBootOnStart: 1
   minLength: {x: 0, y: 7.928961}
