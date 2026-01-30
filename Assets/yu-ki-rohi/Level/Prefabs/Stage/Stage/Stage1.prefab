@@ -25857,7 +25857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: initialGenerateDelay
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: generateIntervalRandomOffset
@@ -25889,7 +25889,7 @@ PrefabInstance:
       objectReference: {fileID: 7026596347051818249}
     - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9
+      value: 4.21
       objectReference: {fileID: 0}
     - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: m_LocalPosition.y
