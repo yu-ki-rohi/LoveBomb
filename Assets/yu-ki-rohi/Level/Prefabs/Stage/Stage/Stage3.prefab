@@ -134738,8 +134738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedb25b46629b124db471a33d1d85792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateNumAtOnce: 2
-  generateNumRange: 1
+  generateNumAtOnce: 4
+  generateNumRange: 2
   generator: {fileID: 1445793915327262356}
   poolManager: {fileID: 5480296438962263302}
   energyAmount: 5
@@ -134756,7 +134756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialGenerateDelay: 15
-  generateInterval: 10
+  generateInterval: 8
   generateIntervalRandomOffset: 5
   isBootOnStart: 1
   innerRadius: 10.245901
@@ -134806,8 +134806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedb25b46629b124db471a33d1d85792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateNumAtOnce: 3
-  generateNumRange: 2
+  generateNumAtOnce: 2
+  generateNumRange: 1
   generator: {fileID: 6089425342986283245}
   poolManager: {fileID: 5480296438962263302}
   energyAmount: 5
@@ -134823,9 +134823,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039f866765d9ec7479def91f8f2117f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGenerateDelay: 30
-  generateInterval: 12
-  generateIntervalRandomOffset: 6
+  initialGenerateDelay: 10
+  generateInterval: 3.5
+  generateIntervalRandomOffset: 1
   isBootOnStart: 1
   innerRadius: 19.426231
   outerRadius: 22.426231

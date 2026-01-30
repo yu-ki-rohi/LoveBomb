@@ -149,7 +149,8 @@ public class Player : MonoBehaviour, IDamageable
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.OnDash(context);
-            AudioManager.Instance.PlaySEById(SEName.DashMove);
+            // ちょっとうるさすぎるので一旦抜きで
+            //AudioManager.Instance.PlaySEById(SEName.DashMove);
 
         }
         // LayerMask.NameToLayerを使う方が安全だが、一旦直接id指定     
@@ -333,6 +334,13 @@ public class Player : MonoBehaviour, IDamageable
         { return; }
 
         arrowPoolManager.SetArrowParameters(parameters.PlayerShootParameters);
+
+        // 展示会1日目の反応を見て、アイテム数の最低保証を追加
+        for(int i = 0; i <itemData.Items.Count; i++)
+        {
+            itemData.Items[i].NumberOfPossessions = Mathf.Max(itemData.Items[i].NumberOfPossessions, 3);
+        }
+        ReflectSelectedItemUI();
 
 
         // ゲームパッド接続確認

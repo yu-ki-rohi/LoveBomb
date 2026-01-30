@@ -12,9 +12,10 @@ public class NumberTextComponent : CoroutineContent
 
     private int numberValue;
 
-    public void InitalSetValue(int value)
+    public void InitalSetValue(int value, Color color)
     {
         numberValue = value;
+        textComponent.color = color;
         if (isDisplayAtOnce)
         {
             textComponent.text = numberValue.ToString();

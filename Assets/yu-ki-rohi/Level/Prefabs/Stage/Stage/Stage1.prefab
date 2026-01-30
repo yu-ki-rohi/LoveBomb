@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedb25b46629b124db471a33d1d85792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateNumAtOnce: 3
+  generateNumAtOnce: 5
   generateNumRange: 2
   generator: {fileID: 1721330937070409130}
   poolManager: {fileID: 3159291650422918806}
@@ -390,8 +390,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialGenerateDelay: 10
-  generateInterval: 5
-  generateIntervalRandomOffset: 3
+  generateInterval: 3
+  generateIntervalRandomOffset: 2
   isBootOnStart: 1
   minLength: {x: 15.928961, y: 0}
   maxLength: {x: 18.928959, y: 4.366121}
@@ -751,6 +751,7 @@ MonoBehaviour:
   - {fileID: 7669902438018374670}
   - {fileID: 8567206784809252657}
   - {fileID: 9059721315526763386}
+  - {fileID: 2364436638228700689}
   generators:
   - {fileID: 2179505881170476865}
   - {fileID: 2283392091287323000}
@@ -774,6 +775,7 @@ MonoBehaviour:
   - {fileID: 6148596255466409340}
   - {fileID: 6573973175074405639}
   - {fileID: 6810934579814012398}
+  - {fileID: 6148596255466409340}
   core: {fileID: 4197570389200792170}
   pool: {fileID: 9043096203240800698}
 --- !u!1 &4332450187629042775
@@ -22863,6 +22865,7 @@ Transform:
   - {fileID: 3247497635169654124}
   - {fileID: 1408439165857808048}
   - {fileID: 7355520228299881360}
+  - {fileID: 7294018091780182814}
   - {fileID: 3424415669458606128}
   - {fileID: 8900243103720860303}
   - {fileID: 5450451822695508980}
@@ -25758,7 +25761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.4
+      value: 25.8
       objectReference: {fileID: 0}
     - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25835,6 +25838,127 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
   m_PrefabInstance: {fileID: 6162233211180822243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6244564238222427757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 626176934559398075}
+    m_Modifications:
+    - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: isBootOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: generateInterval
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: initialGenerateDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 86122818179481959, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: generateIntervalRandomOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289512742859133854, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_Name
+      value: EnemyGenerator (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760822488773218436, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: pools.EffectPool
+      value: 
+      objectReference: {fileID: 4448056336793429669}
+    - target: {fileID: 1760822488773218436, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: pools.ExplosionPool
+      value: 
+      objectReference: {fileID: 7966880639728268074}
+    - target: {fileID: 1760822488773218436, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: pools.EnemyDropsPool
+      value: 
+      objectReference: {fileID: 4420177578915629120}
+    - target: {fileID: 1760822488773218436, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: pools.HeartEnergyPool
+      value: 
+      objectReference: {fileID: 3159291650422918806}
+    - target: {fileID: 1760822488773218436, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: pools.AnxietyPropagationEffectPool
+      value: 
+      objectReference: {fileID: 7026596347051818249}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536868375766325372, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: pool
+      value: 
+      objectReference: {fileID: 9043096203240800698}
+    - target: {fileID: 8536868375766325372, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e65de902108174e88997b8f4e1640f, type: 2}
+    - target: {fileID: 8536868375766325372, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+      propertyPath: enemyName
+      value: Anxiety
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+--- !u!114 &2364436638228700689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8536868375766325372, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+  m_PrefabInstance: {fileID: 6244564238222427757}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f3094d9973b0b43bf7e2b0683502dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7294018091780182814 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3715655345990767987, guid: f6bdacfb3fe6acc408b8879a24526999, type: 3}
+  m_PrefabInstance: {fileID: 6244564238222427757}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6444116083007432976
 PrefabInstance:
