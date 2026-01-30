@@ -22,27 +22,27 @@ MonoBehaviour:
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 07c1e0f78b0c2fd4f9b3e42a68622b88, type: 3}
   - bgmId: 3
-    bgmAudioClip: {fileID: 8300000, guid: 025a0558ea8211e4d9dbf3ec7495cadf, type: 3}
+    bgmAudioClip: {fileID: 8300000, guid: bef36019a32231d4381572784678f437, type: 3}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 44059bac7034b014cbfdfd2969182d69, type: 3}
   - bgmId: 4
-    bgmAudioClip: {fileID: 8300000, guid: 3e964258f236ccb4a9e2016236da1bd5, type: 3}
+    bgmAudioClip: {fileID: 8300000, guid: 7423974d28b13714b9a937c24dec7a3b, type: 3}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
   - bgmId: 5
-    bgmAudioClip: {fileID: 8300000, guid: d89a98a42ec12da48993d93313c905ad, type: 3}
+    bgmAudioClip: {fileID: 8300000, guid: 3e964258f236ccb4a9e2016236da1bd5, type: 3}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
   - bgmId: 6
-    bgmAudioClip: {fileID: 8300000, guid: fc4c1fbcc6c4cc744bb9bbf062367933, type: 3}
+    bgmAudioClip: {fileID: 8300000, guid: d89a98a42ec12da48993d93313c905ad, type: 3}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
   - bgmId: 8
-    bgmAudioClip: {fileID: 8300000, guid: a9dac24fd6c7d5c46ad1c09865bcb524, type: 3}
+    bgmAudioClip: {fileID: 8300000, guid: 944ebc3f980147343a1f068a6e371310, type: 3}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
-  - bgmId: 7
-    bgmAudioClip: {fileID: 8300000, guid: 944ebc3f980147343a1f068a6e371310, type: 3}
+  - bgmId: 9
+    bgmAudioClip: {fileID: 8300000, guid: a9dac24fd6c7d5c46ad1c09865bcb524, type: 3}
     bgmDisplayName: 
     bgmJacketImage: {fileID: 21300000, guid: 8b2ec94f197bc6049bf57a0b242a16c0, type: 3}
   - bgmId: 7

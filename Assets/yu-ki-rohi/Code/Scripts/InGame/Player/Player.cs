@@ -99,10 +99,14 @@ public class Player : MonoBehaviour, IDamageable
     #region  Player Input ‚É“o˜^‚·‚éƒƒ\ƒbƒh
     private void OnMove(InputAction.CallbackContext context)
     {
-        if(canMove == false) { return; }
-
+        
         // “ü—Íî•ñ‚Ìó‚¯æ‚è
         Vector2 input = context.ReadValue<Vector2>();
+        if (canMove == false) 
+        {
+            input = Vector2.zero;
+        }
+
         foreach (var playerComoponent in playerComponents)
         {
             playerComoponent.OnMove(input);
@@ -356,8 +360,7 @@ public class Player : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        if (canMove == false) { return; }
-
+        
         if (itemSelectLockTimer > 0)
         {
             itemSelectLockTimer -= Time.deltaTime;

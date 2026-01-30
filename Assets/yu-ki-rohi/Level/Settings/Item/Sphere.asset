@@ -21,4 +21,4 @@ MonoBehaviour:
   ItemType: 2
   Duration: 10
   Radius: 8
-  NumberOfPossessions: 9
+  NumberOfPossessions: 3
