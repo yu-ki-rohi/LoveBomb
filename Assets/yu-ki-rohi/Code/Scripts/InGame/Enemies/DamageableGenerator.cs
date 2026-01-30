@@ -18,6 +18,7 @@ public class DamageableGenerator : MonoBehaviour, IDamageable
         {
             if(DebugMessenger.NullCheckError(pools.EffectPool)) { return; }
             pools.EffectPool.PlayEffect(transform.position, EffectData.EffectType.HitEffect);
+            AudioManager.Instance.PlaySEById(SEName.EnemyDamage);
         }
     }
 
