@@ -327,7 +327,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             if (!src.isPlaying)
             {
                 ApplySE3DSetting(src, is3D);
-                src.PlayOneShot(clip);
+                src.PlayOneShot(clip, is3D ? 0.8f : 1.0f);
                 return;
             }
         }
@@ -337,18 +337,26 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         sources[0].PlayOneShot(clip);
     }
 
+    /// <summary>
+    /// 3D音源用の設定
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="is3D"></param>
     private void ApplySE3DSetting(AudioSource src, bool is3D)
     {
         if (is3D)
         {
             src.spatialBlend = 1f;
-            src.rolloffMode = AudioRolloffMode.Logarithmic;
+            src.rolloffMode = AudioRolloffMode.Linear;
             src.minDistance = 1.5f;
             src.maxDistance = 25f;
         }
         else
         {
-            src.spatialBlend = 0f; // ← 超重要
+            src.spatialBlend = 0f;
+            src.rolloffMode = AudioRolloffMode.Logarithmic; // or Default
+            src.minDistance = 1f;
+            src.maxDistance = 500f;
         }
     }
     /// <summary>
