@@ -245,9 +245,10 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         {
             return;
         }
+        bool is3D = seId == SEName.Explosion;
 
         //SEを流す
-        PlayClipsMultiAudioSources(seSources, seConfig.SeAudioClip);
+        PlayClipsMultiAudioSources(seSources, seConfig.SeAudioClip, is3D);
     }
 
     #endregion
@@ -262,9 +263,16 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         //  BGMとSEのオーディオソースを必要な数分新規生成
         bgmSource = gameObject.AddComponent<AudioSource>();
+        bgmSource.outputAudioMixerGroup = gameSettings.BgmMixerGroup;
+
         seSources = new AudioSource[gameSettings.MaxSeCount];
         for (int i = 0; i < gameSettings.MaxSeCount; i++)
+        {
             seSources[i] = gameObject.AddComponent<AudioSource>();
+            seSources[i].outputAudioMixerGroup = gameSettings.SeMixerGroup;
+
+        }
+
     }
 
     /// <summary>
@@ -302,7 +310,8 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     /// <summary>
     /// 複数の AudioSource のいずれかで効果音を再生する共通処理。
     /// </summary>
-    private void PlayClipsMultiAudioSources(AudioSource[] sources, AudioClip clip)
+    private void PlayClipsMultiAudioSources(AudioSource[] sources, AudioClip clip, bool is3D)
+
     {
         //クリップに何も入ってこないなら
 
@@ -317,16 +326,31 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             //そのオーディオソースが再生中ではないなら
             if (!src.isPlaying)
             {
-                //SEを一度流して処理しない
+                ApplySE3DSetting(src, is3D);
                 src.PlayOneShot(clip);
                 return;
             }
         }
+        ApplySE3DSetting(sources[0], is3D);
 
         // 全て使用中なら先頭で再生
         sources[0].PlayOneShot(clip);
     }
 
+    private void ApplySE3DSetting(AudioSource src, bool is3D)
+    {
+        if (is3D)
+        {
+            src.spatialBlend = 1f;
+            src.rolloffMode = AudioRolloffMode.Logarithmic;
+            src.minDistance = 1.5f;
+            src.maxDistance = 25f;
+        }
+        else
+        {
+            src.spatialBlend = 0f; // ← 超重要
+        }
+    }
     /// <summary>
     /// 指定した BGM ID の曲をループ再生する。
     /// </summary>
