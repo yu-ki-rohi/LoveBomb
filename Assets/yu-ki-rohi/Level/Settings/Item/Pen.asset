@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3031dc2d70d03b746b42aff68942e5ed, type: 3}
+  m_Name: Pen
+  m_EditorClassIdentifier: 
+  Name: Pen
+  id: 1
+  MaxNum: 9
+  Icon: {fileID: -3555617272626150023, guid: adb3c11fc2fbdeb46a66f0aff4c56ee7, type: 3}
+  LifeTime: 10
+  Controller: {fileID: 9100000, guid: c69aef7bb9909bf4bab5ec663a583d95, type: 2}
+  ItemType: 1
+  Duration: 15
+  Radius: 8
+  NumberOfPossessions: 3

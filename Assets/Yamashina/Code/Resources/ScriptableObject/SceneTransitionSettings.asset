@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb894e4ca15f9a14abff18dff48efcc7, type: 3}
+  m_Name: SceneTransitionSettings
+  m_EditorClassIdentifier: 
+  simpleColorPrefab: {fileID: 3285298533831491324, guid: 08ae21ef337e6b24fabc5f03b33edd0a, type: 3}
+  animatedPrefab: {fileID: 0}
+  particlePrefab: {fileID: 0}
+  fadeOutSettings:
+    startAlpha: 0
+    endAlpha: 1
+    fadeSpeed: 0.8
+    defaultFadeMode: 0
+  fadeInSettings:
+    startAlpha: 1
+    endAlpha: 0
+    fadeSpeed: 1
+    defaultFadeMode: 0

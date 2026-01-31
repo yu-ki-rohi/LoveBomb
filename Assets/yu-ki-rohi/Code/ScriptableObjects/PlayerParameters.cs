@@ -23,7 +23,8 @@ public class PlayerMovementParameters
     public float BurstForce = 50.0f;
     [Range(0.5f, 5.0f)]
     public float BurstCoolTime = 1.0f;
-
+    [Range(0.5f, 1.0f)]
+    public float InvincibleTime = 0.5f;
 
     [Header("画面端に行った時のバッファ"), Min(0.0f)]
     public float PlayerRadius = 0.5f;
@@ -38,6 +39,12 @@ public class PlayerAnimationParameters
     public float LeadInTime = 0.1f;
     [Range(0.01f, 0.5f)]
     public float FollowThroughTime = 0.3f;
+
+    [Header("ダメージ関連")]
+    [Min(0.01f)]
+    public float DamagedRigidTime = 0.3f;
+    [Min(0.01f)]
+    public float DamagedInvincibleTime = 1.0f;
 }
 
 [Serializable]
@@ -50,6 +57,15 @@ public class CameraOffsetParameters
     public float OffsetY = 3.0f;
     [Min(0.0f)]
     public float ChangeOffsetTime = 1.0f;
+}
+
+[Serializable]
+public class CameraOffsetByCinemachineParameters
+{
+    [Min(0.0f)]
+    public float Distance = 5.0f;
+    [Min(0.0f)]
+    public float TimeOfChangeAimToMove = 1.0f;
 }
 
 [Serializable]
@@ -76,15 +92,32 @@ public class PlayerShootParameters
 {
     [Range(0.0f, 2.0f)]
     public float ShootPositionDistance = 0.5f;
-    [Range(0.1f, 5.0f)]
+    [Range(0.1f, 3.0f)]
     public float ChargeTime = 1.0f;
+
+    public Vector2 ShootPosAdjust = Vector2.zero;
+
     [Header("各種矢の設定")]
     public List<ArrowParams> Arrows;
 
     [Range(0.1f, 5.0f)]
     public float ExplosionScale = 1.0f;
+    
+    [Min(1)]
+    public int HeartEnergyMax = 1;
+
+    [Min(1)]
+    public int InitialHeartEnergy = 1;
 }
 
+[Serializable]
+public class PlayerUseItem
+{
+    [Range(0.0f, 1.0f)]
+    public float SelectItemInterval = 0.1f;
+
+    public float UseItemDistance = 3.0f;
+}
 
 [CreateAssetMenu(fileName = "PlayerParameters", menuName = "CharacterData/PlayerParameters")]
 public class PlayerParameters : ScriptableObject
@@ -96,9 +129,11 @@ public class PlayerParameters : ScriptableObject
     public PlayerAnimationParameters PlayerAnimationParameters;
 
     [Header("Cameraのoffset関係設定")]
-    public CameraOffsetParameters CameraOffsetParameters;
+    public CameraOffsetByCinemachineParameters CameraOffsetParameters;
 
     [Header("射撃関連設定")]
     public PlayerShootParameters PlayerShootParameters;
 
+    [Header("アイテム関係")]
+    public PlayerUseItem PlayerUseItem;
 }

@@ -20,30 +20,38 @@ MonoBehaviour:
     DampingForce: 4.9
     BurstForce: 60.2
     BurstCoolTime: 0.92
+    InvincibleTime: 0.5
     PlayerRadius: 0.8
   PlayerAnimationParameters:
     LeadInTime: 0.1
     FollowThroughTime: 0.208
+    DamagedRigidTime: 0.2
+    DamagedInvincibleTime: 2
   CameraOffsetParameters:
-    OffsetX: 5
-    OffsetY: 3
-    ChangeOffsetTime: 0.6
+    Distance: 4
+    TimeOfChangeAimToMove: 1
   PlayerShootParameters:
     ShootPositionDistance: 1.01
-    ChargeTime: 0.92
+    ChargeTime: 0.315
+    ShootPosAdjust: {x: 0, y: 1}
     Arrows:
     - Name: Normal
       ArrowType: 0
       Image: {fileID: -765150924802650856, guid: 4953ff9561651ee47a7ce387774442cc, type: 3}
       Power: 3
-      Cost: 0
+      Cost: 1
       Speed: 30
       EffectiveRange: 15
     - Name: Explosion
       ArrowType: 1
       Image: {fileID: 7520068711724117926, guid: 4a41885d589923743b3bc3166b406287, type: 3}
       Power: 6
-      Cost: 0
-      Speed: 10
+      Cost: 30
+      Speed: 18
       EffectiveRange: 8
-    ExplosionScale: 1.48
+    ExplosionScale: 2.5
+    HeartEnergyMax: 100
+    InitialHeartEnergy: 25
+  PlayerUseItem:
+    SelectItemInterval: 0.15
+    UseItemDistance: 10

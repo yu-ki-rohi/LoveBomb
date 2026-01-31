@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public abstract class NormalPlayerComponent : PlayerComponentBase, IUpdatable, IInputCallbackOfPlayer
 {
-    public NormalPlayerComponent(Player owner) :
+    public NormalPlayerComponent(PlayerIndividualData owner) :
         base(owner)
     {
 
@@ -52,5 +52,9 @@ public abstract class NormalPlayerComponent : PlayerComponentBase, IUpdatable, I
 
     #endregion
 
+    public virtual void OnDamaged()
+    {
+
+    }
 
 }

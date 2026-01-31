@@ -1,11 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
-public class EnemiesGenerator : MonoBehaviour
+public class EnemiesGenerator : Generator
 {
     [SerializeField] Transform target;
     [SerializeField] private ManagedEnemyPoolManager pool;
-    [SerializeField, HideInInspector] private GeneratorBase generator;
     [SerializeField, HideInInspector] private EnemyData enemyData;
 
     #region エディタ限定
@@ -53,17 +52,14 @@ public class EnemiesGenerator : MonoBehaviour
 
     #endregion
 
+    public EnemyData EnemyData { get { return enemyData; } }
 
-    void OnDestroy()
-    {
-        generator?.UnlinkCallback(OnGenerate);
-    }
+    public Transform Target { get { return transform; } set { target = value; } }
 
     void Start()
     {
-        if(generator == null )
+        if(DebugMessenger.NullCheckError(generator))
         {
-            Debug.LogError("Attach Generater in Utility");
             gameObject.SetActive(false);
             return;
         }
@@ -76,7 +72,7 @@ public class EnemiesGenerator : MonoBehaviour
         generator.RegisterCallback(OnGenerate);
     }
 
-    private void OnGenerate()
+    protected override void OnGenerate()
     {
         if(generator == null)
         {
@@ -88,55 +84,10 @@ public class EnemiesGenerator : MonoBehaviour
             Debug.LogError("EnemyPool is Null!");
             return;
         }
-        pool.EnemyAppear(generator.DecideGeneratePosition(), target, enemyData);
-    }
-    #region エディタ限定
-#if UNITY_EDITOR
-    public void ForcedGenerate()
-    {
-        if (!Application.isPlaying)
+        int num = generateNumAtOnce + Random.Range(-generateNumRange, generateNumRange);
+        for(int i = 0; i < num; i++)
         {
-            Debug.LogWarning("This Execute Only in Playing!!");
-            return;
+            pool.EnemyAppear(generator.DecideGeneratePosition(), target, enemyData);
         }
-        OnGenerate();
     }
-
-    public void AttachCircle()
-    {
-        AttachGenerator<CircleGenerator>();
-    }
-
-    public void AttachBox()
-    {
-
-        AttachGenerator<BoxGenerator>();
-    }
-
-    private void AttachGenerator<T>() where T : GeneratorBase
-    {
-        if (Application.isPlaying)
-        {
-            Debug.LogWarning("This Execute Only in Editor!!");
-            return;
-        }
-
-        float initialGenerateDelay = 5.0f, generateInterval = 3.0f, generateIntervalRandomOffset = 0.0f;
-        if (generator != null)
-        {
-            initialGenerateDelay = generator.InitialGenerateDelay;
-            generateInterval = generator.GenerateInterval;
-            generateIntervalRandomOffset = generator.GenerateIntervalRandomOffset;
-            Undo.DestroyObjectImmediate(generator);
-        }
-        generator = Undo.AddComponent<T>(gameObject);
-        generator.InitialGenerateDelay = initialGenerateDelay;
-        generator.GenerateInterval = generateInterval;
-        generator.GenerateIntervalRandomOffset = generateIntervalRandomOffset;
-    }
-
-#endif
-
-    #endregion
-
 }

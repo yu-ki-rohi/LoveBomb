@@ -11,4 +11,6 @@ public class EnemyCommonData : ScriptableObject
 
     [Min(0.0f)]
     public float AnxietyPropagateSpeed = 10.0f;
+    [Min(0.0f)]
+    public float AnxietyPropagateInterval = 5.0f;
 }

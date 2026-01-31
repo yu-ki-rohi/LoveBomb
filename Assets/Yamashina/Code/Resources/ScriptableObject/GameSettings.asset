@@ -15,5 +15,7 @@ MonoBehaviour:
   maxSeCount: 3
   initialBgmVolume: 0.121
   initialSeVolume: 0.3
+  bgmMixerGroup: {fileID: 2470247180301319813, guid: 79d828f201f5bc34a83758bdf0a42b8b, type: 2}
+  seMixerGroup: {fileID: -2293204170877483160, guid: 79d828f201f5bc34a83758bdf0a42b8b, type: 2}
   fadeSpeed: 1
   retryDelayMilliseconds: 100

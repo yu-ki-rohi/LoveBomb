@@ -11,5 +11,5 @@ public enum DamageType
 
 public interface IDamageable
 {
-    public void TakeDamage(int attack, DamageType damageType, float bonus);
+    public void TakeDamage(int attack, DamageType damageType);
 }

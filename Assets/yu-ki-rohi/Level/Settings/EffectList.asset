@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a63256ae5dd074891aef5aa2fadf28, type: 3}
+  m_Name: EffectList
+  m_EditorClassIdentifier: 
+  Effects:
+  - Name: Charge
+    Type: 0
+    Controller: {fileID: 9100000, guid: d40aa8a5d70767f44b6baac9a2f32dbe, type: 2}
+    IsLoop: 0
+    Scale: 2.2
+  - Name: ChargeEnd
+    Type: 1
+    Controller: {fileID: 9100000, guid: 2db7d588653d6834e81818561bf15c74, type: 2}
+    IsLoop: 0
+    Scale: 1.8
+  - Name: Hit Effect
+    Type: 2
+    Controller: {fileID: 9100000, guid: 5cd6bb7112f1be545bea05b51aab73a2, type: 2}
+    IsLoop: 0
+    Scale: 1

@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(CircleGenerator), true)]
-public class CircleEnemiesGeneratorEditor : GeneratorCustomEditor
+public class CircleEnemiesGeneratorEditor : GeneratorBaseCustomEditor
 {
     public override void OnInspectorGUI()
     {
@@ -20,7 +20,7 @@ public class CircleEnemiesGeneratorEditor : GeneratorCustomEditor
 
             // 下限はともかく、上限はインスペクター上で変更できるようにしたい
             float lowerLimit = 0.0f;
-            float upperLimit = 50.0f;
+            float upperLimit = 80.0f;
 
             EditorGUILayout.MinMaxSlider("Radius Range", ref inner, ref outer, lowerLimit, upperLimit);
 

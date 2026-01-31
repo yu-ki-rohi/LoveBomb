@@ -1,41 +1,51 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EndingScene : MonoBehaviour
 {
     [SerializeField] ContentManagement contentManagement;
+    [SerializeField] GameState gameState;
+    [SerializeField] StageDataBase stageDataBase;
+    [SerializeField] Image backGround;
+    [SerializeField] Sprite win;
+    [SerializeField] Sprite lose;
+
+
+    private bool isFinish = false;
 
     void Start()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
-        BGMName bgmName = BGMName.None;
 
-        switch (sceneName)
+        if(gameState.Score < stageDataBase.Stages[gameState.StageID].ScoreInfomation.ScoreBorder)
         {
-            case string name when name == "GameOver":
-                bgmName = BGMName.Failed; // ƒŠƒUƒ‹ƒgŽ¸”s‚ÌBGM–¼
-                break;
 
-            case string name when name == "GameClear":
+            // TODO: Ž¸”sŽžˆ—
+            AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Failed);
+            backGround.sprite = lose;
 
-                bgmName = BGMName.Succeed;
-                break;
-            default:
-                Debug.LogWarning($"No BGM assigned for the scene '{sceneName}'.");
-                return; // BGM‚ªŽw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍI—¹
 
         }
-        if (!string.IsNullOrEmpty(bgmName.ToString()))
+        else
         {
-            AudioManager.Instance.PlayBGMIfNotPlaying(bgmName); // BGM‚ðÄ¶
-            contentManagement.RunFirstContent();
+            // TODO: ¬Œ÷Žžˆ—
+            AudioManager.Instance.PlayBGMIfNotPlaying(BGMName.Succeed);
+            backGround.sprite = win;
+
         }
+
+        contentManagement.RunFirstContent();
     }
     void Update()
     {
         if (!contentManagement.IsAllContentEnd())
         {
             contentManagement.ContentUpdate();
+        }
+        else if (isFinish == false) 
+        {
+            SceneTransitionManager.Instance.TransitionToNextScene();
+            isFinish = true;
         }
 
         InputKeys();

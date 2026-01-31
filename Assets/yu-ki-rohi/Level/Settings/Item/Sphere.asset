@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3031dc2d70d03b746b42aff68942e5ed, type: 3}
+  m_Name: Sphere
+  m_EditorClassIdentifier: 
+  Name: Sphere
+  id: 2
+  MaxNum: 9
+  Icon: {fileID: 3677364256132826775, guid: fad53d8ad1b08b14d895b7c585673c52, type: 3}
+  LifeTime: 10
+  Controller: {fileID: 9100000, guid: a504732b4a80b004e9a584bcbad04f2e, type: 2}
+  ItemType: 2
+  Duration: 10
+  Radius: 8
+  NumberOfPossessions: 3

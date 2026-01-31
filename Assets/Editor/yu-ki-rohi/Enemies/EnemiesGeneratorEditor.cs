@@ -4,21 +4,18 @@ using System.Collections.Generic;
 
 [CustomEditor(typeof(EnemiesGenerator))]
 
-public class EnemiesGeneratorEditor : Editor
+public class EnemiesGeneratorEditor : GeneratorCustomEditor
 {
 
     public override void OnInspectorGUI()
     {
         EnemiesGenerator enemyGenerator = (EnemiesGenerator)target;
-        base.OnInspectorGUI();
-
-       
 
         EnemyDataList enemyDataList = enemyGenerator.EnemyDataList;
-        if(enemyDataList != null && enemyDataList.EnemyList.Count > 0)
+        if (enemyDataList != null && enemyDataList.EnemyList.Count > 0)
         {
             List<string> enemyNames = new List<string>();
-            foreach(var enemy in enemyDataList.EnemyList)
+            foreach (var enemy in enemyDataList.EnemyList)
             {
                 enemyNames.Add(enemy.Name);
             }
@@ -36,24 +33,6 @@ public class EnemiesGeneratorEditor : Editor
             EditorGUILayout.HelpBox("EnemyListÇê›íËÇ∑ÇÈÇ∆ëIëÇ≈Ç´Ç‹Ç∑ÅB", MessageType.Info);
         }
 
-        if (GUILayout.Button("Attach Circle Generator"))
-        {
-            enemyGenerator.AttachCircle();
-        }
-
-        if (GUILayout.Button("Attach Box Generator"))
-        {
-            enemyGenerator.AttachBox();
-        }
-
-        if (GUILayout.Button("Generate Enemy"))
-        {
-            enemyGenerator.ForcedGenerate();
-        }
-
-        if (GUI.changed)
-        {
-            EditorUtility.SetDirty(enemyGenerator);
-        }
+        base.OnInspectorGUI();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(BoxGenerator), true)]
-public class BoxEnemiesGeneratorCustomEditor : GeneratorCustomEditor
+public class BoxEnemiesGeneratorCustomEditor : GeneratorBaseCustomEditor
 {
     public override void OnInspectorGUI()
     {
@@ -23,7 +23,7 @@ public class BoxEnemiesGeneratorCustomEditor : GeneratorCustomEditor
 
             // 下限はともかく、上限はインスペクター上で変更できるようにしたい
             float lowerLimit = 0.0f;
-            float upperLimit = 50.0f;
+            float upperLimit = 100.0f;
 
             EditorGUILayout.MinMaxSlider("X Range", ref min.x, ref max.x, lowerLimit, upperLimit);
             EditorGUILayout.MinMaxSlider("Y Range", ref min.y, ref max.y, lowerLimit, upperLimit);

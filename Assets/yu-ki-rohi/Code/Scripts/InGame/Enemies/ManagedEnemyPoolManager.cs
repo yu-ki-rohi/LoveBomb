@@ -2,14 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+// HACK: EnemyManagerAPoolManager‚Ì–ğŠ„‚Ìüˆø‚«‚ª‚¨‚©‚µ‚¢
+
+// NOTE: Œã‚©‚çEnemyManager‚ğ’Ç‰Á‚µ‚½‚Ì‚ÅA‚»‚ê‚É‚æ‚Á‚ÄŠÇ—‚³‚ê‚éEnemy‚ğ•Ê‚Éì‚Á‚Ä‚¢‚é
+
 public class ManagedEnemyPoolManager : PoolManager<ManagedEnemy>, IEnemyPoolManager
 {
     [SerializeField] private EnemyDataList enemyDataList;
     [SerializeField] private EnemyCommonData enemyCommonData;
-    [SerializeField] private ExplosionPoolManager explosionPool;
-    [SerializeField] private AnxietyPropagationEffectPoolManager anxietyPropagationEffectPool;
-    [SerializeField] private EnemyDropsPoolManager enemyDropsManager;
     [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private PoolsEnemyUse poolsEnemyUse;
+
+    // HACK: •Ê‚Ì‚Æ‚±‚ë‚ªó‚¯‚Â‚×‚«‚©‚à
+    [SerializeField] private DefeatNumViewer defeatNumViewer;
+
+    public DefeatNumViewer DefeatNumViewer { set  => defeatNumViewer = value; } 
+
 #if UNITY_EDITOR
     public EnemyDataList EnemyDataList { get => enemyDataList; }
 #endif
@@ -44,7 +52,7 @@ public class ManagedEnemyPoolManager : PoolManager<ManagedEnemy>, IEnemyPoolMana
     protected override ManagedEnemy Create()
     {
         var instance = base.Create();
-        instance.OnCreate(enemyCommonData, explosionPool, anxietyPropagationEffectPool, enemyDropsManager);
+        instance.OnCreate(enemyCommonData, poolsEnemyUse, defeatNumViewer);
         return instance;
     }
 

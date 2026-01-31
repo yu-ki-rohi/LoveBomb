@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - HeartCore
+  - HeartEnergy
+  - Stage
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -13,11 +16,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Stage
+  - PassThroughStage
+  - CameraLimit
+  - PassThroughStageAndEnemy
+  - PlayerInvincible
   - 
   - 
   - 
@@ -45,6 +48,9 @@ TagManager:
     locked: 0
   - name: BackGround
     uniqueID: 1766681681
+    locked: 0
+  - name: OnFloor
+    uniqueID: 1528085781
     locked: 0
   - name: Actors
     uniqueID: 3415234525

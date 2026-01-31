@@ -1,20 +1,24 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class HeartCore : MonoBehaviour
 {
     private int enemyCount = 0;
 
-    // 仮で入れているだけ
-    private int playerScore = 0;
-    private int enemyScore = 0;
+
+    private Light2D light2d;
 
     [SerializeField] private TextMeshProUGUI enemyNumText;
-    [SerializeField] private Image playerScoreUI;
-    [SerializeField] private Image enemyScoreUI;
-    [Min(50), SerializeField] private int maxSub = 1000;
+
+    private IScoreFluctuate scoreFluctuate;
+
+    public IScoreFluctuate ScoreFluctuate { set { scoreFluctuate = value; } }
+
+    public TextMeshProUGUI EnemyNumText { set { enemyNumText = value; } }
+    
 
     public void AddEnemyCount()
     {
@@ -30,26 +34,24 @@ public class HeartCore : MonoBehaviour
 
     public void AddPlayerScore(int score)
     {
-        playerScore += score;
-        ReflectUI();
+        scoreFluctuate?.AddScore(score);
+        // TODO: スコア加算音の再生
+
+        AudioManager.Instance.PlaySEById(SEName.AddScore);
+
     }
 
     public void AddEnemyScore(int score)
     {
-        enemyScore += score;
-        ReflectUI();
+        scoreFluctuate?.ReduceScore(score);
+        // TODO: スコア減少音の再生
     }
 
     void Start()
     {
         enemyNumText.text = enemyCount.ToString();
+        light2d = GetComponent<Light2D>();
     }
 
-    private void ReflectUI()
-    {
-        int sub = playerScore - enemyScore;
-        float ratio = Mathf.Clamp01((float)(maxSub + sub) / (maxSub * 2.0f));
-        playerScoreUI.fillAmount = ratio;
-        enemyScoreUI.fillAmount = 1.0f - ratio;
-    }
+   
 }

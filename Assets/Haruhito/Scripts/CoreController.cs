@@ -47,7 +47,7 @@ public class CoreController : MonoBehaviour
             {
                 // リストに追加し、リストの数で管理
                 touchingEnemies.Add(enemyRb);
-                AudioManager.Instance.PlaySEById(SEName.Noroi);
+                //AudioManager.Instance.PlaySEById(SEName.Noroi);
                 currentEnemyCount = touchingEnemies.Count;
             }
         }

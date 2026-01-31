@@ -104,9 +104,15 @@ public class Arrow : ProjectileBase, IPooledObject<Arrow>
             {
                 var damageable = collision.GetComponent<IDamageable>();
                 if (DebugMessenger.NullCheckError(damageable)) { Deactivate(); return; }
-                damageable.TakeDamage(parameters.Power, DamageType.Piercing, 1.0f);
+                damageable.TakeDamage(parameters.Power, DamageType.Piercing);
             }
             isAttackable = false;
+            Deactivate();
+        }
+        else if(collision.CompareTag("Stage"))
+        {
+            isAttackable = false;
+            AudioManager.Instance.PlaySEById(SEName.ArrowHitStage);
             Deactivate();
         }
     }

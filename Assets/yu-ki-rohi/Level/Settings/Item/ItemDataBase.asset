@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82bdec225d14d7b4ea8eaa2ed49e9742, type: 3}
+  m_Name: ItemDataBase
+  m_EditorClassIdentifier: 
+  CommonData:
+    Speed: 10
+    StartBlinkRemainingTimeFirstPhase: 5
+    VisibleTimeFirstPhase: 0.4
+    InvisibleTimeFirstPhase: 0.1
+    StartBlinkRemainingTimeSecondPhase: 2
+    VisibleTimeSecondPhase: 0.2
+    InvisibleTimeSecondPhase: 0.1
+  VacuumPower: 35
+  Interval: 1.2
+  PushPower: 200
+  KnockPower: 20
+  BlinkTime: 3
+  ExplosionPower: 24
+  ExplosionScale: 10
+  NumOfIgnit: 20
+  Items:
+  - {fileID: 11400000, guid: 32c23d99c01a28647be304bb09a7485b, type: 2}
+  - {fileID: 11400000, guid: cbe09d83d5794554d8dae267fa89a118, type: 2}
+  - {fileID: 11400000, guid: c10071513cf2ca143a1208eca0f957a8, type: 2}

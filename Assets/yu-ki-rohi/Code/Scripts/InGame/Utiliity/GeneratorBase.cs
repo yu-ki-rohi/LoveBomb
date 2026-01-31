@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using System;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
+
+// Generatorとは継承関係ではない
+// あちらは生成するオブジェクトの決定、こちらは生成範囲及び頻度を担っている
 public abstract class GeneratorBase : MonoBehaviour
 {
     public enum Type
@@ -17,9 +17,11 @@ public abstract class GeneratorBase : MonoBehaviour
     [SerializeField, Min(0.0f)] private float initialGenerateDelay = 5.0f;
     [SerializeField, Min(0.1f)] private float generateInterval = 3.0f;
     [SerializeField, Min(0.0f)] private float generateIntervalRandomOffset = 0.0f;
+    [SerializeField] bool isBootOnStart = true;
     private CancellationTokenSource generateCts;
     private event Action onGenerate;
 
+    public bool IsBootOnStart { get => isBootOnStart; set => isBootOnStart = value; }
     
     #region Unity Editor
 #if UNITY_EDITOR
@@ -55,18 +57,33 @@ public abstract class GeneratorBase : MonoBehaviour
 
     public abstract Vector3 DecideGeneratePosition();
 
+    public void BootGenerateAsync()
+    {
+        CancelGenrateAsync();
+
+        generateCts = new CancellationTokenSource();
+        GenerateAsync(generateCts.Token).Forget();
+    }
+
+    public void CancelGenrateAsync()
+    {
+        generateCts?.Cancel();
+        generateCts?.Dispose();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        generateCts = new CancellationTokenSource();
-        GenerateAsync(generateCts.Token, initialGenerateDelay).Forget();
+        if(isActiveAndEnabled)
+        {
+            BootGenerateAsync();
+        }
     }
 
     void OnDisable()
     {
         // オブジェクト破棄時に安全にキャンセル
-        generateCts?.Cancel();
-        generateCts?.Dispose();
+        CancelGenrateAsync();
     }
 
     private void OnDestroy()
@@ -74,29 +91,28 @@ public abstract class GeneratorBase : MonoBehaviour
         onGenerate = null;
     }
 
-    private async UniTaskVoid GenerateAsync(CancellationToken token, float delay)
+    private async UniTaskVoid GenerateAsync(CancellationToken token)
     {
         float currentTime = 0f;
-
+        float delay = initialGenerateDelay;
         try
         {
-            while (currentTime < delay)
+            while (true)
             {
-                // フレーム待ち（Updateタイミング）
-                await UniTask.Yield(PlayerLoopTiming.Update, token);
+                while (currentTime < delay)
+                {
+                    // フレーム待ち（Updateタイミング）
+                    await UniTask.Yield(PlayerLoopTiming.Update, token);
 
-                // 経過時間加算
-                currentTime += Time.deltaTime;
+                    // 経過時間加算
+                    currentTime += Time.deltaTime;
+                }
+
+                // コールバックで生成処理
+                onGenerate?.Invoke();
+                currentTime = 0f;
+                delay = generateInterval;
             }
-
-            // コールバックで生成処理
-            onGenerate?.Invoke();
-
-            // 次回生成処理を起動
-            generateCts?.Dispose();
-            generateCts = new CancellationTokenSource();
-            float randomOffset = UnityEngine.Random.Range(-generateIntervalRandomOffset, generateIntervalRandomOffset);
-            GenerateAsync(generateCts.Token, generateInterval + randomOffset).Forget();
         }
         catch (OperationCanceledException)
         {

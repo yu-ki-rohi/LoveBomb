@@ -1,0 +1,12 @@
+using System;
+
+[Serializable]
+public class PoolsEnemyUse
+{
+    public ExplosionPoolManager ExplosionPool;
+    public AnxietyPropagationEffectPoolManager AnxietyPropagationEffectPool;
+    public EnemyDropsPoolManager EnemyDropsPool;
+    public HeartEnergyPoolManager HeartEnergyPool;
+    public EffectPoolManager EffectPool;
+    public CommonDropItemPoolManger DropItemPool;
+}

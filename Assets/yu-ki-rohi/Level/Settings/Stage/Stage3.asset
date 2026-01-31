@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa42ea174a944ba43ad2b64f85c5eabb, type: 3}
+  m_Name: Stage3
+  m_EditorClassIdentifier: 
+  StageManager: {fileID: 8939141112774927236, guid: 91294ba141f636c43850e5b2b7f16591, type: 3}
+  TimeInfomation:
+    GameTime: 180
+  ScoreInfomation:
+    ScoreInitial: 5000
+    ScoreBorder: 20000
+    ScoreMax: 30000
+  LightInfomation:
+    minLightRadius: 0.1
+    maxLightRadius: 10
+    lightOuterRadiusMaltiplier: 10
+    minGrobalLight: {r: 0.00040049778, g: 0.028301895, b: 0.013530566, a: 0}
+    maxGrobalLight: {r: 0.18729973, g: 0.21698111, b: 0.2058506, a: 0}
+    playerLightBorder: 0.7
