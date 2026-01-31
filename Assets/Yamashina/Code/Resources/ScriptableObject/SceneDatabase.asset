@@ -18,7 +18,7 @@ MonoBehaviour:
     nextScene:
       m_SceneName: StageSelect
     previousScene:
-      m_SceneName: TitleScene
+      m_SceneName: DemoScene
   - scene:
       m_SceneName: StageSelect
     nextScene:
@@ -37,3 +37,9 @@ MonoBehaviour:
       m_SceneName: StageSelect
     previousScene:
       m_SceneName: InGameTest
+  - scene:
+      m_SceneName: DemoScene
+    nextScene:
+      m_SceneName: TitleScene
+    previousScene:
+      m_SceneName: TitleScene

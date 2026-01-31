@@ -17,7 +17,7 @@ MonoBehaviour:
     Type: 0
     Controller: {fileID: 9100000, guid: d40aa8a5d70767f44b6baac9a2f32dbe, type: 2}
     IsLoop: 0
-    Scale: 2
+    Scale: 2.2
   - Name: ChargeEnd
     Type: 1
     Controller: {fileID: 9100000, guid: 2db7d588653d6834e81818561bf15c74, type: 2}
