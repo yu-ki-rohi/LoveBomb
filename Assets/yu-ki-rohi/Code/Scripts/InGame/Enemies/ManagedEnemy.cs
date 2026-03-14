@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
+// EnemyManager‚ğ’Ê‚µ‚Ä“®‚©‚·Enemy
+// ‚ ‚Æ‚©‚ç‚±‚ÌŒ`‚É•ÏX‚µ‚½‚©‚çA•Ê–¼‚Å’Ç‰Á‚µ‚½‚à‚Ì
 public class ManagedEnemy : Enemy, IEnemyManaged, IPooledObject<ManagedEnemy>
 {
 

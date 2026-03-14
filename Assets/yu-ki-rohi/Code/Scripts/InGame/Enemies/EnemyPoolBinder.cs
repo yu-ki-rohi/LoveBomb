@@ -10,6 +10,8 @@ using UnityEditor;
 // もし何らかの理由で使用する場合は必ず【#if UNITY_EDITOR *** #endif】という形でくくってください(***は処理の内容を指します)
 // 守っていただかないとビルド出来ないのでよろしくお願いいたします。
 
+// ※現在は使用していない
+
 public class EnemyPoolBinder : MonoBehaviour
 {
 #if UNITY_EDITOR

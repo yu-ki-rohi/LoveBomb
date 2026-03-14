@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// 破壊可能なジェネレーターに付けるもの
 public class DamageableGenerator : MonoBehaviour, IDamageable
 {
     [SerializeField] private PoolsEnemyUse pools;

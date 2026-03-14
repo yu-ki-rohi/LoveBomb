@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-// HACK：作りがイマイチ、もう少し工夫したい
+// HACK：エネミー毎の動きはそれぞれ別のクラスに委譲したい
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]

@@ -3,6 +3,8 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+// ジェネレーターに攻撃対象を登録するために用意したクラス
+//
 public class EnemiesGeneratorManager : MonoBehaviour
 {
     // todo: 下記をHideInInspectorに *今は確認のためインスペクターに表示

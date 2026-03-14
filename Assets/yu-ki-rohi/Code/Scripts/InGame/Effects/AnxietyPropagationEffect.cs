@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
+// 敵の攻撃エフェクトの挙動を記述したクラス
 public class AnxietyPropagationEffect : MonoBehaviour, IPooledObject<AnxietyPropagationEffect>
 {
     private Vector3 targetPosition = Vector3.zero;

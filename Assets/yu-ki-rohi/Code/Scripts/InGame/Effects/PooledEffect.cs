@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Pool;
 
+// 基本的なエフェクト
 [RequireComponent(typeof(Animator))]
 public class PooledEffect : MonoBehaviour, IPooledObject<PooledEffect>
 {

@@ -1,4 +1,5 @@
 using UnityEngine;
+// Œ»ó‚ÍManagedEnemy‚ğg‚Á‚Ä‚¢‚é‚Ì‚Å‚±‚¿‚ç‚Íg—p‚µ‚Ä‚¢‚È‚¢
 #if false
 public class EnemyPoolManager : PoolManager<Enemy>, IEnemyPoolManager
 {

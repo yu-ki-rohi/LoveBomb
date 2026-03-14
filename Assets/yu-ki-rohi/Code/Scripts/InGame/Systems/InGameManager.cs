@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+// インゲーム上の主にシーケンス周りを管理
 public class InGameManager : MonoBehaviour
 {
     [SerializeField] private Player player;
@@ -162,8 +164,12 @@ public class InGameManager : MonoBehaviour
             stageData = this.stageData;
             stageManager = this.stageManager;
         }
+
 #else
-        StageData stageData = stageDataBase.Stages[gameState.StageID];
+        StageData stageData = stageDataBase.Stages[gameState.StageID]; 
+
+        // 現状StageManagerを通して初期化するような造りになっているけど、
+        // StageManagerをフィールドで持ってそこ経由でアクセスの方がよさそう
         StageManager stageManager = Instantiate(stageData.StageManager);
 #endif
         stageManager.SetInitialPositionOfPlayer(player.transform);
@@ -323,6 +329,7 @@ public class InGameManager : MonoBehaviour
         GameSet();
     }
 
+    // 各種インゲームの動きを封じるためのヘルパー関数
     private void LockEveryThing()
     {
         player.CanMove = false;

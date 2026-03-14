@@ -1,5 +1,5 @@
 using UnityEngine;
-
+// ”š”­‚Ìƒv[ƒ‹
 public class ExplosionPoolManager : PoolManager<Explosion>
 {
     public void Explode(int power, Vector3 position, float scaleMultiplier)

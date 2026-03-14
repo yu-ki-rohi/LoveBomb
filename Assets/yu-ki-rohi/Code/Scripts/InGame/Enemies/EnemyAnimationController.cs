@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// エネミーのアニメーションを制御するクラスう
 public class EnemyAnimationController
 {
     Animator animator;
