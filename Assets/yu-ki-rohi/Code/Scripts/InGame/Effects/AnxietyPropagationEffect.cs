@@ -50,40 +50,52 @@ public class AnxietyPropagationEffect : MonoBehaviour, IPooledObject<AnxietyProp
     // Update is called once per frame
     void Update()
     {
+        // 移動
         transform.position += moveDir * enemyCommonData.AnxietyPropagateSpeed * Time.deltaTime;
 
+        // 目的地を通り過ぎたかを内積で検知
         if(Vector3.Dot(moveDir, targetPosition - transform.position) <= 0 )
         {
-            // HACK：複雑すぎ、要リファクタリング
+            // 心の核に向かっていた場合はスコアを渡して終了
             if(heartCore != null)
             {
                 heartCore.AddEnemyScore(power);
                 Deactivate();
                 return;
             }
+            // 向かう先が無かった場合はそこで終わり(この条件は普通はありえないという想定)
             else if(targetEnemy == null)
             {
                 Deactivate();
                 return;
             }
+
+            // 敵から攻撃力を受け取る
             power += targetEnemy.Strength;
+
+            // 次の目的地を受け取る
             var nextTargetEnemy = targetEnemy.HoldingHandsEnemy;
             if( nextTargetEnemy != null )
             {
                 targetPosition = nextTargetEnemy.AnxietyEffectPos;
             }
+            // 次の目的地が敵でなかったら、心の核が目的地のはず
             else
             {
                 heartCore = targetEnemy.HeartCore;
+
+                // 行き先がなければ終了
                 if( heartCore == null )
                 {
                     Deactivate();
                     return;
                 }
+
                 targetPosition = heartCore.transform.position;
             }
             targetEnemy = nextTargetEnemy;
 
+            // 移動方向の再計算
             moveDir = (targetPosition - transform.position).normalized;
         }
     }
