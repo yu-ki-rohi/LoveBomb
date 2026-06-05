@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// こうもり型のエネミーの挙動
 public class EnemyMovementChasePlayer : IUpdatable
 {
     private Transform transform;

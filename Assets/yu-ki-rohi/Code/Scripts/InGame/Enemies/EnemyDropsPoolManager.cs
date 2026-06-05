@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+// スコアアイテムのプール
 public class EnemyDropsPoolManager : PoolManager<PooledEnemyDrops>
 {
     [SerializeField] private List<HeartCore> heartCores;

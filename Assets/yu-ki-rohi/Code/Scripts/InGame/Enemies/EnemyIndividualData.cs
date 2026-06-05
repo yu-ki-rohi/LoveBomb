@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// エネミー個々のデータ
 public class EnemyIndividualData
 {
     public EnemyData BasicData;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 基本的なエフェクトのプール
 public class EffectPoolManager : PoolManager<PooledEffect>
 {
     [SerializeField] private EffectList list;

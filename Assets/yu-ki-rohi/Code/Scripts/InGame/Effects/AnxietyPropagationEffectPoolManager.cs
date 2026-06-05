@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// 敵の攻撃エフェクトのプールを管理
 public class AnxietyPropagationEffectPoolManager : PoolManager<AnxietyPropagationEffect>
 {
     [SerializeField] private EnemyCommonData enemyCommonData;

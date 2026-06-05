@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 
 // Chat GPTのコードから改造
+// UI上にマウスが来た時のふるまいを登録
 public class ButtonHover : MonoBehaviour, IPointerEnterHandler
 {
     private event Action<int> onPointerEnter;

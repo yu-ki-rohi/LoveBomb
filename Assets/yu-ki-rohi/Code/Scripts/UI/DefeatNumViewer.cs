@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 爆発による連続撃破した数を表示するためのクラス
 public class DefeatNumViewer : MonoBehaviour
 {
     [SerializeField] private Sprite[] numbers;

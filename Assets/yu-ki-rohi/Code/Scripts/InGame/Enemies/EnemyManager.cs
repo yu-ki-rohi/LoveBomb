@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+// ManagedEnemy‚Í‚±‚ÌƒNƒ‰ƒX‚ğ’Ê‚¶‚ÄUpdateˆ—‚ğ‚µ‚Ä‚¢‚é
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private int enemyNumMax = 500;

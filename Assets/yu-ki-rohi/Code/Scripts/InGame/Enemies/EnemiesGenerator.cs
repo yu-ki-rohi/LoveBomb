@@ -1,6 +1,12 @@
 using UnityEditor;
 using UnityEngine;
 
+// 敵を生成させるクラス
+// Generator派生とGeneratorBase派生は別系統であることに注意
+// 出来れば適切な名前に変えたいが、作業量的にそこまでは難しい
+
+// 現状はジェネレーターをマップ上に生成してここのパラメーターをいじってバランス調整みたいな造りだが、
+// 出来ればタイムテーブル的なのを参照する形で一括化するか、メタAIでプレイ状況を参照しながら生成していく形にしたい
 public class EnemiesGenerator : Generator
 {
     [SerializeField] Transform target;

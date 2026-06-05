@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// お化け型のエネミーの挙動
+// 挙動周りは出来れば完全にこっちに委譲したい
 public class EnemyMovementToHeartCore : IUpdatable
 {
     private Transform transform;

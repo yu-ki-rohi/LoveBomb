@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// お化け型エネミーの挙動
+// こちらはAddForceを通じて動かしている
 public class EnemyMovementToHeartCoreByAddForce : IUpdatable
 {
     private Transform transform;

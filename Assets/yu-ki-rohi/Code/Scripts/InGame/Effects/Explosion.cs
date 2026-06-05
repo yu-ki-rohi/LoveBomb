@@ -2,6 +2,8 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Pool;
 
+// 爆発による攻撃を記述するため
+// 判定のON/OFFはアニメーションで付けている
 public class Explosion : MonoBehaviour, IPooledObject<Explosion>
 {
     private int power;
